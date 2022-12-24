@@ -1,7 +1,7 @@
-import './App.css';
+import './assets/styles/Main.scss';
 import React from 'react';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
     </div>

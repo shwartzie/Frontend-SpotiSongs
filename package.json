@@ -5,10 +5,13 @@
   "dependencies": {
     "axios": "^1.2.1",
     "cra-template": "1.2.0",
+    "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass": "^1.57.1"
   }
 }
