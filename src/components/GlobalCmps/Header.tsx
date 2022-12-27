@@ -1,16 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { NavBar } from './NavBar.tsx';
 export const Header = () => {
 
     return (
-        <>
-            <section className="pagination-buttons">
-                <button><svg></svg></button>
-                <button><svg></svg></button>
-            </section>
-
-            <section className="user-profile">
-
-            </section>
-        </>
-    )
-}
+        <header className='main-layout-nav-bar'>
+            <NavBar />
+        </header>
+    );
+};

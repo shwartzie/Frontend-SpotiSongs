@@ -2,3 +2,44 @@
 @import 'setup/variables';
 @import 'setup/functions';
 @import 'setup/mixins';
+
+// Pages
+@import './pages/landingPage/main-layout';
+// Components
+@import './components/landingPage/aside';
+@import './components/landingPage/layout';
+@import './components/landingPage/navbar';
+
+//
+@font-face {
+    font-family: AvenirLTStd-Black;
+    src: url('./typography/fonts/Circular-Font-Family/AvenirLTStd-Black.otf');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: AvenirLTStd-Black;
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    font-family: AvenirLTStd-Black;
+    margin: 0;
+    min-height: 100vh;
+    font-family: AvenirLTStd-Black, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    #root {
+        height:100vh;
+        .App {
+            height:100%;
+        }
+    }
+}
