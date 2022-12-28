@@ -1,14 +1,16 @@
-import React from 'react'
+import React from 'react';
 import { Header } from '../GlobalCmps/Header.tsx';
-import { Footer } from '../GlobalCmps/Footer.tsx';
+import { Favourites } from './Favourites.tsx';
 export const Layout = () => {
-   
     return (
         <div className='landing-page-layout'>
-            <Header />
-            Layout
-            <Footer />
+            <article>
+                <Header />
+                <section>
+                    <Favourites />
+                </section>
+            </article>
         </div>
-    )
+    );
 }
 

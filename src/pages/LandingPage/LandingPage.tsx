@@ -11,6 +11,7 @@ export const LandingPage = () => {
                 <div className="main-landing-page-container">
                     <Aside />
                     <Layout />
+                    {/* <Footer /> */}
                 </div>
             </main>
         </>

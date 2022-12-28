@@ -1,0 +1,38 @@
+.favourites-container {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-bottom: 16px;
+    min-height: 200px;
+    position: relative;
+    line-height: 1.6;
+    .favourites-title {
+        display: flex;
+        margin-bottom: 16px;
+        line-height: 26px;
+        div {
+            display: block;
+            flex-grow: 1;
+            line-height: normal;
+            min-width: 0;
+            h2 {
+                box-sizing: border-box;
+                -webkit-tap-highlight-color: transparent;
+                margin-block: 0px;
+                font-size: 2rem;
+                font-weight: 700;
+                font-family: CircularStd-Bold;
+                color: #000000;
+                display: inline-block;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}
