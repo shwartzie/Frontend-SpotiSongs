@@ -1,17 +1,20 @@
 .main-layout-nav-bar {
-    grid-area: main-view;
     height: 64px;
     min-width: 0;
     pointer-events: none;
-    z-index: 2;
-    width: 100%;
-    //width: calc(100% - 461px);
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+
     .nav-layout {
-        padding: 16px 32px;
-        padding-inline-end: 32px;
         display: flex;
         justify-content: space-between;
-
+        @media (min-width: 1024px) {
+            -webkit-padding-end: 32px;
+            padding: 16px 32px;
+            padding-inline-end: 32px;
+        }
         .pagination-buttons {
             height: 64px;
             display: flex;
@@ -39,7 +42,7 @@
     :hover {
         background-color: #282828;
     }
-    
+
     button {
         cursor: pointer;
         align-items: center;

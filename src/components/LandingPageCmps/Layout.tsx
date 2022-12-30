@@ -6,9 +6,7 @@ export const Layout = () => {
         <div className='landing-page-layout'>
             <article>
                 <Header />
-                <section>
-                    <Favourites />
-                </section>
+                <Favourites />
             </article>
         </div>
     );

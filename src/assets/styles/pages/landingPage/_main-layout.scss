@@ -20,15 +20,16 @@
 .landing-page-layout {
     width: 100%;
     article {
+        height:100%;
         section {
             grid-gap: 24px;
             display: grid;
             padding-top: 24px;
-            @media (min-width: 1024px) {
-                padding: 0 32px;
-                margin: 0;
-                max-width: 1955px;
-            }
+            // @media (min-width: 1024px) {
+            //     padding: 0 32px;
+            //     margin: 0;
+            //     max-width: 1955px;
+            // }
         }
     }
 }
