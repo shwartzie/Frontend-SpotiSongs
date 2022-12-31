@@ -9,8 +9,16 @@ export const NavBar = () => {
         <nav className='nav-layout'>
 
             <section className="pagination-buttons">
-                <button><svg src={leftArrow} role="img" aria-hidden="true" viewBox="0 0 24 24" data-encore-id="icon" width="24" height="24"></svg></button>
-                <button><svg src={rightArrow} role="img" aria-hidden="true" viewBox="0 0 24 24" data-encore-id="icon" width="24" height="24"></svg></button>
+                <button>
+                    <svg src={leftArrow} role="img" aria-hidden="true" viewBox="0 0 24 24" data-encore-id="icon" width="24" height="24">
+                    <path></path>
+                    </svg>
+                </button>
+                <button>
+                    <svg src={rightArrow} role="img" aria-hidden="true" viewBox="0 0 24 24" data-encore-id="icon" width="24" height="24">
+                        <path></path>
+                    </svg>
+                </button>
             </section>
 
             <section className="user-profile">

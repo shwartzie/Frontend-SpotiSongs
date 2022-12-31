@@ -1,19 +1,17 @@
 .favourites-container {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    vertical-align: baseline;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    margin-bottom: 16px;
-    min-height: 200px;
-    position: relative;
-    line-height: 1.6;
+    // $item-height
+
+    display: grid;
+    grid-gap: $row-gap $column-gap;
+    grid-template: auto/repeat(
+        auto-fill,
+        minmax(max($min-column-width, 25%), 1fr)
+    );
     .favourites-title {
         display: flex;
         margin-bottom: 16px;
         line-height: 26px;
+        height: 36px;
         div {
             display: block;
             flex-grow: 1;
@@ -32,6 +30,131 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+            }
+        }
+    }
+}
+
+.favourite-display {
+    background-color: hsla(0, 0%, 100%, 0.1);
+    border-radius: 4px;
+    height: $item-height;
+    overflow: hidden;
+    position: relative;
+    -webkit-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+
+    div:first-child {
+        display: flex;
+    }
+
+    .favourite-image {
+        min-height: $item-height;
+        min-width: $item-height;
+
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        align-items: center;
+        background-color: hsla(0, 0%, 100%, 0.2);
+        -webkit-box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+        box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        position: relative;
+
+        img {
+            display: block;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+        }
+    }
+
+    .favourite-title {
+        p {
+            margin-block: 0px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: inherit;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            white-space: normal;
+            word-break: break-word;
+        }
+    }
+
+    .favourite-title-button-container {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-box-flex: 1;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        align-items: center;
+        color: #fff;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex: 1;
+        flex: 1;
+        justify-content: space-between;
+        padding: 0 16px;
+    }
+
+    .favourite-button {
+        button {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-size: 1rem;
+            font-weight: 700;
+            background-color: transparent;
+            border: 0px;
+            border-radius: 500px;
+            display: inline-block;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            text-transform: none;
+            touch-action: manipulation;
+            transition-duration: 33ms;
+            transition-property: background-color, border-color, color,
+                box-shadow, filter, transform;
+            user-select: none;
+            vertical-align: middle;
+            transform: translate3d(0px, 0px, 0px);
+            padding: 0px;
+            min-inline-size: 0px;
+            align-self: center;
+            cursor: pointer;
+        }
+        .favourite-button-first-span {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+            background-color: #1ed760;
+            color: #000;
+            display: flex;
+            border-radius: 500px;
+            font-size: inherit;
+            min-block-size: 48px;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            inline-size: 48px;
+            block-size: 48px;
+
+            span {
+                display: flex;
+                position: absolute;
+                top: 12px;
+                left: 12px;
             }
         }
     }

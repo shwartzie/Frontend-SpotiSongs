@@ -19,17 +19,28 @@
 
 .landing-page-layout {
     width: 100%;
-    article {
-        height:100%;
-        section {
+    main {
+        height: 100%;
+        display: block;
+        .landing-page-header-and-favourites-container {
             grid-gap: 24px;
             display: grid;
+            padding: 0 32px;
             padding-top: 24px;
-            // @media (min-width: 1024px) {
-            //     padding: 0 32px;
-            //     margin: 0;
-            //     max-width: 1955px;
-            // }
+
+            .landing-page-header-and-favourites-section {
+                webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                margin-bottom: 16px;
+                min-height: 200px;
+                position: relative;
+            }
         }
     }
 }
+

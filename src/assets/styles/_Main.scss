@@ -1,17 +1,17 @@
 // Setup
-@import 'setup/variables';
-@import 'setup/functions';
-@import 'setup/mixins';
-@import './typography/typography';
+@import "setup/variables";
+@import "setup/functions";
+@import "setup/mixins";
+@import "./typography/typography";
 // Pages
-@import './pages/landingPage/main-layout';
-@import './pages/landingPage/aside';
+@import "./pages/landingPage/main-layout";
+@import "./pages/landingPage/aside";
 // Components
-@import './components/landingPage/layout';
-@import './components/landingPage/navbar';
-@import './components/landingPage/favourites';
-//
-
+@import "./components/landingPage/layout";
+@import "./components/landingPage/navbar";
+@import "./components/landingPage/favourites";
+// Helpers
+@import "./helpers/layout-helper";
 
 * {
     box-sizing: border-box;
@@ -28,15 +28,21 @@ body {
     font-family: Circular-Black;
     margin: 0;
     min-height: 100vh;
-    font-family: Circular-Black, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-        "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: Circular-Black, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+        "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: relative;
     #root {
-        height:100vh;
+        height: 100vh;
         .App {
-            height:100%;
+            height: 100%;
         }
+    }
+    div {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        vertical-align: baseline;
     }
 }
