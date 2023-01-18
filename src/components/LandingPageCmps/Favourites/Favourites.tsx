@@ -1,5 +1,5 @@
 import React from 'react';
-import { Favourite } from './Favourite.tsx';
+import { FavouritePreview } from './FavouritePreview.tsx';
 import { FavouritesTitle } from './FavouritesTitle.tsx';
 export const Favourites = () => {
     const song = { songName: "Casper", id: "1" };
@@ -44,15 +44,14 @@ export const Favourites = () => {
         title: "album4",
         imageUrl: ""
     };
-    const favourites = [playlist, likedSongs, album1, album2, album3, album4];
+    const favourites: any[] = [playlist, likedSongs, album1, album2, album3, album4];
 
-    console.log(favourites);
+    // console.log(favourites);
 
     return (
-        <section className="favourites-container">
-            
+        <section className="favourites-container"> 
             {favourites && favourites.map((favourite) => (
-                <Favourite favourite={favourite} key={favourite.id} />
+                <FavouritePreview favourite={favourite} key={favourite.id} />
             ))}
         </section>
     );

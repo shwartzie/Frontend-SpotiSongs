@@ -7,32 +7,7 @@
         auto-fill,
         minmax(max($min-column-width, 25%), 1fr)
     );
-    .favourites-title {
-        display: flex;
-        margin-bottom: 16px;
-        line-height: 26px;
-        height: 36px;
-        div {
-            display: block;
-            flex-grow: 1;
-            line-height: normal;
-            min-width: 0;
-            h2 {
-                box-sizing: border-box;
-                -webkit-tap-highlight-color: transparent;
-                margin-block: 0px;
-                font-size: 2rem;
-                font-weight: 700;
-                font-family: CircularStd-Bold;
-                color: #000000;
-                display: inline-block;
-                max-width: 100%;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
-        }
-    }
+    
 }
 
 .favourite-display {
@@ -133,6 +108,10 @@
             align-self: center;
             cursor: pointer;
         }
+        button:hover {
+            
+        }
+
         .favourite-button-first-span {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
