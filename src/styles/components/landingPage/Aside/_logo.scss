@@ -1,0 +1,37 @@
+.aside-logo-container {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    -webkit-box-direction: normal;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    flex-shrink: 0;
+    justify-content: space-between;
+    background: url('../../../../assets/svg/Spotify_logo_with_text.svg') no-repeat;
+    height:50px;
+    width:100px;
+    // a {
+    //     text-decoration: none;
+    //     color: #fff;
+    //     position: relative;
+    //     -webkit-box-flex: 1;
+    //     border: 0;
+    //     -ms-flex: 1;
+    //     flex: 1;
+    //     margin-bottom: 18px;
+    //     padding: 0 24px;
+    //     svg {
+    //         //TODO update to a responsive logo;
+    //         // height: 40px;
+    //         // max-width: 131px;
+    //         width: 100%;
+    //     }
+    // }
+}

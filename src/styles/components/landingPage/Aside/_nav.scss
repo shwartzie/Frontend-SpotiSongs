@@ -1,0 +1,37 @@
+.nav-options-preview-ul {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    li {
+        padding: 0 8px;
+        a {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            border-radius: 4px;
+            cursor: pointer;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            gap: 16px;
+            height: 40px;
+            padding: 0 16px;
+            text-decoration: none;
+            span {
+                @media (min-width: 768px) {
+                    font-size: rem(14px);
+                    box-sizing: border-box;
+                    margin-block: 0px;
+                    font-size: 0.8125rem;
+                    font-weight: 700;
+                    color: #b3b3b3;
+                }
+            }
+            span:hover {
+                transition: color ease-in 0.2s;
+                color: #fff;
+            }
+        }
+    }
+}
+

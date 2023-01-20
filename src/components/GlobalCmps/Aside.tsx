@@ -1,32 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Home } from '../../pages/Aside/NavPages/Home.tsx';
-import { Library } from '../../pages/Aside/NavPages/Library.tsx';
-import { Search } from '../../pages/Aside/NavPages/Search.tsx';
+import { CreatePlaylist } from '../AsideCmps/CreatePlaylist.tsx';
+import { Logo } from '../AsideCmps/Logo.tsx';
 import { NavOptionsPreview } from '../AsideCmps/NavOptionsPreview.tsx';
 
-export const Aside = () => {
-
-    const [activePage, setActivePage] = useState<string>('home');
-
-
-    const Components = {
-        home: <Home />,
-        search: <Search />,
-        library: <Library />
-    };
-
-    const options: string[] = ['home', 'search', 'library'];
+export const Aside = ({ setActivePage, options }) => {
 
     return (
         <aside className='landing-page-aside-layout'>
+            <Logo />
             <nav>
                 <ul className='nav-options-preview-ul'>
                     {options.map(option => (
                         <NavOptionsPreview key={option} option={option} setActivePage={setActivePage} />
                     ))}
+                    {/* <CreatePlaylist /> */}
                 </ul>
             </nav>
-            {Components[activePage]}
         </aside >
     );
 }

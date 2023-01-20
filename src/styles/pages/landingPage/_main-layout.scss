@@ -1,25 +1,25 @@
 .main-landing-page {
-    display: grid;
-    grid-template-areas:
-        "top-bar top-bar"
-        "nav-bar main-view"
-        "now-playing-bar now-playing-bar";
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr auto;
+    display: flex;
     height: 100%;
-    min-height: 100%;
-    position: relative;
+
     width: 100%;
     .main-landing-page-container {
         display: flex;
-        height: 100vh;
-        width: 100vw;
+        width: 100%;
     }
 }
 
 .landing-page-layout {
+    display: flex;
     width: 100%;
     background-color: #121212;
+
+    .landing-page-component-container {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 241px);
+    }
+
     main {
         height: 100%;
         display: block;
