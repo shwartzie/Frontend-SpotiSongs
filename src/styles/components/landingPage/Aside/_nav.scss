@@ -31,7 +31,36 @@
                 transition: color ease-in 0.2s;
                 color: #fff;
             }
+
+            .home {
+                background-image: url("../../../../assets/svg/home-svgrepo-com.svg");
+            }
+
+            .search {
+                background-image: url("../../../../assets/svg/search-svgrepo-com.svg");
+            }
+
+            .library {
+                background-image: url("../../../../assets/svg/library-svgrepo-com.svg");
+            }
+
+            .likedSongs {
+                background-image: url("../../../../assets/svg/file-liked-svgrepo-com.svg");
+            }
+            
+            .createPlaylist {
+                background-image: url("../../../../assets/svg/add-square-svgrepo-com.svg");
+            }
+            .home,
+            .search,
+            .library,
+            .likedSongs,
+            .createPlaylist {
+                height: 24px;
+                width: 24px;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
         }
     }
 }
-

@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "baseUrl": "./src",
+        "jsx": "react",
+        "esModuleInterop": true,
+        "paths": {
+            "@components/*": ["components/*"],
+            "@services/*": ["services/*"],
+            "@svg/*": ["assets/svg/*"],
+            "@images/*": ["assets/images/*"],
+        }
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

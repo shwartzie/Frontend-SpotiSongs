@@ -1,16 +1,16 @@
-import { userService } from "../../services/userService"
+import { userService } from "../../Features/UserCommon/services/user.service"
 
 export const login = ( ) => {
     return async (dispatch) => {
-        const user = await userService.login()
-        dispatch({ type: 'LOGIN', loggedInUser: user })
+        // const user = await userService.login()
+        // dispatch({ type: 'LOGIN', loggedInUser: user })
     }
 }
 
 
 export const logout = ( loggedInUser ) => {
     return async (dispatch) => {
-        const user = await userService.logout()
-        dispatch({ type: 'LOGOUT', loggedInUser: user })
+        // const user = await userService.logout()
+        // dispatch({ type: 'LOGOUT', loggedInUser: user })
     }
 }
