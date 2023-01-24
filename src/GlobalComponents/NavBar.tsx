@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-//TODO fix svgs
-// import leftArrow from '../../assets/svg/left-svgrepo-com.svg';
-// import rightArrow from '../../assets/svg/right-svgrepo-com.svg';
-import { UserNavProfile } from '../Features/Navbar/components/UserNavProfile';
+import { UserNavProfile } from '../Features/AsideNavbar/components/UserNavProfile';
+import { UserNavModal } from '../Features/NavModal/components/UserNavModal';
 
 export const NavBar = () => {
-
+    const [isClicked, setClicked] = useState<boolean>(false);
+    console.log(isClicked);
+    
     return (
-        <nav className='nav-layout'>
+        <nav className='nav-layout' >
 
             <section className="pagination-buttons">
-                <button>
-
+                <button >
+                    <span className='left-arrow' ></span>
                 </button>
-                <button>
-
+                <button >
+                    <span className='right-arrow'></span>
                 </button>
             </section>
 
             <section className="user-profile">
-                <UserNavProfile />
+                <UserNavProfile setClicked={setClicked}/>
+                {isClicked && <UserNavModal/>}
             </section>
         </nav>
     );

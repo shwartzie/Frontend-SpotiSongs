@@ -5,7 +5,7 @@ import { Search } from '../../Search/pages/Search';
 import { Library } from '../../Library/pages/Library';
 
 import { Header } from '../../../GlobalComponents/Header';
-import { Aside } from '../../../GlobalComponents/Aside';
+import { Aside } from '../../AsideNavbar/pages/Aside';
 import { LikedSongs } from '../../LikedSongs/pages/LikedSongs';
 import { CreatePlaylist } from '../../CreatePlaylist/pages/CreatePlaylist';
 

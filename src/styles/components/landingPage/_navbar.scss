@@ -1,8 +1,6 @@
 .main-layout-nav-bar {
     height: 64px;
     min-width: 0;
-    pointer-events: none;
-
 
     .nav-layout {
         display: flex;
@@ -24,11 +22,26 @@
                 border-radius: 50%;
                 color: #fff;
                 cursor: pointer;
-                display: inline-flex;
+                // display: inline-flex;
                 height: 32px;
                 justify-content: center;
                 position: relative;
                 width: 32px;
+            }
+
+            .left-arrow {
+                background-image: url("../../../assets/svg/arrow-left-svgrepo-com.svg");
+            }
+            .right-arrow {
+                background-image: url("../../../assets/svg/arrow-right-svgrepo-com.svg");
+            }
+
+            .left-arrow,
+            .right-arrow {
+                height: 18px;
+                width: 18px;
+                background-repeat: no-repeat;
+                background-size: cover;
             }
         }
     }
@@ -36,12 +49,12 @@
 
 .user-profile {
     height: 32px;
+    cursor: pointer;
     :hover {
         background-color: #282828;
     }
 
     button {
-        cursor: pointer;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.7);
         border: 0;
@@ -82,11 +95,21 @@
             font-size: 0.8125rem;
             font-weight: 700;
         }
-        svg {
-            fill: currentcolor;
+
+        .arrow-down {
             margin-inline-end: 6px;
-            height: 16;
-            width: 16;
+            height: 16px;
+            width: 16px;
+            background-image: url("../../../assets/svg/arrow-down-simple-svgrepo-com.svg");
+            background-size: contain;
+        }
+        .arrow-up {
+            margin-inline-end: 6px;
+            height: 16px;
+            width: 16px;
+            background-image: url("../../../assets/svg/arrow-down-simple-svgrepo-com.svg");
+            background-size: contain;
+            transform: rotate(180deg);
         }
     }
 }

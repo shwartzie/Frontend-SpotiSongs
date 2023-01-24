@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Home } from '../Features/Home/pages/Home';
-import { Logo } from '../Features/Navbar/components/Logo';
-import { NavOptionsPreview } from '../Features/Navbar/components/NavOptionsPreview';
+import { Home } from '../../Home/pages/Home';
+import { Logo } from '../components/Logo';
+import { NavOptionsPreview } from '../components/NavOptionsPreview';
 
 export const Aside = ({ setActivePage, options }) => {
 

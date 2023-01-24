@@ -1,0 +1,80 @@
+.nav-modal-container {
+    min-width: 196px;
+    z-index: 9999;
+    position: absolute;
+    margin: 0px;
+    transform: translate(-21px, 10px);
+    // transition: height 0.5s ease;
+    ul {
+        margin: 0px;
+        -webkit-app-region: no-drag;
+        background-color: #282828;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 16px 24px rgb(0 0 0 / 30%),
+            0 6px 8px rgb(0 0 0 / 20%);
+        box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+        max-height: calc(100vh - 24px);
+        max-width: 350px;
+        min-width: 160px;
+        overflow-y: auto;
+        padding: 4px;
+        li {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            vertical-align: baseline;
+            button {
+                -webkit-padding-end: 8px;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                gap: 8px;
+                height: 40px;
+                justify-content: space-between;
+                padding: 12px;
+                padding-inline-end: 8px;
+                position: relative;
+                text-align: start;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                width: 100%;
+                background: transparent;
+                border: 0;
+                border-radius: 2px;
+                color: hsla(0, 0%, 100%, 0.9);
+                cursor: default;
+                text-decoration: none;
+                a {
+                    background: transparent;
+                    border: 0;
+                    border-radius: 2px;
+                    color: hsla(0, 0%, 100%, 0.9);
+                    cursor: default;
+                    text-decoration: none;
+                }
+                &:hover {
+                    background-color: hsla(0, 0%, 100%, 0.1);
+                    color: #fff;
+                    text-decoration: none;
+                    
+                }
+            }
+            li:not(:last-child) > :after {
+                border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+                bottom: 0;
+                content: "";
+                left: 0;
+                pointer-events: none;
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+}
