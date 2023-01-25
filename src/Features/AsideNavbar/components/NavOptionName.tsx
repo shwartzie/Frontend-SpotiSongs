@@ -2,13 +2,17 @@
 import React, { useState } from 'react';
 import { utilService } from '../../../common/services/util.service';
 
-export const NavOptionsName = (p: { option: string; }) => {
+type NavOptionsProps = {
+    option: string;
+    activePage: string;
+};
+export const NavOptionsName = ({ option, activePage }: NavOptionsProps) => {
 
 
-    let currentOption: string = utilService.getCurrentAsideOption(p.option);
+    let currentOption: string = utilService.getCurrentAsideOption(option);
 
     return (
-        <span>
+        <span className={option === activePage ? "active-option" : "null"}>
             {currentOption}
         </span>
     );

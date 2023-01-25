@@ -51,6 +51,11 @@
                 color: hsla(0, 0%, 100%, 0.9);
                 cursor: default;
                 text-decoration: none;
+                &:hover {
+                    background-color: hsla(0, 0%, 100%, 0.1);
+                    color: #fff;
+                    text-decoration: none;
+                }
                 a {
                     background: transparent;
                     border: 0;
@@ -58,12 +63,6 @@
                     color: hsla(0, 0%, 100%, 0.9);
                     cursor: default;
                     text-decoration: none;
-                }
-                &:hover {
-                    background-color: hsla(0, 0%, 100%, 0.1);
-                    color: #fff;
-                    text-decoration: none;
-                    
                 }
             }
             li:not(:last-child) > :after {

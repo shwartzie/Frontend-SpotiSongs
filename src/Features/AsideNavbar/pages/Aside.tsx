@@ -3,7 +3,12 @@ import { Home } from '../../Home/pages/Home';
 import { Logo } from '../components/Logo';
 import { NavOptionsPreview } from '../components/NavOptionsPreview';
 
-export const Aside = ({ setActivePage, options }) => {
+type AsideProps = {
+    setActivePage: React.Dispatch<React.SetStateAction<string>>;
+    options: string[],
+    activePage: string;
+};
+export const Aside = ({ setActivePage, options, activePage }: AsideProps) => {
 
     return (
         <aside className='landing-page-aside-layout'>
@@ -11,7 +16,7 @@ export const Aside = ({ setActivePage, options }) => {
             <nav>
                 <ul className='nav-options-preview-ul'>
                     {options.map(option => (
-                        <NavOptionsPreview option={option} setActivePage={setActivePage} key={option}/>
+                        <NavOptionsPreview option={option} setActivePage={setActivePage} key={option} activePage={activePage} />
                     ))}
                 </ul>
             </nav>

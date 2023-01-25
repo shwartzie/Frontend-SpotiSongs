@@ -3,18 +3,18 @@ import { NavOptionsName } from './NavOptionName';
 import { useNavigate } from 'react-router-dom';
 
 //TODO FIX SVGS
-interface Props {
-    option: string;
+type NavOptionsProps = {
     setActivePage: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export const NavOptionsPreview = ({ option, setActivePage }: Props) => {
+    option: string,
+    activePage: string;
+};
+export const NavOptionsPreview = ({ option, setActivePage, activePage }: NavOptionsProps) => {
 
     return (
         <li>
             <a href="#" onClick={() => setActivePage(option)}>
                 <div className={option}> </div>
-                <NavOptionsName option={option} />
+                <NavOptionsName option={option} activePage={activePage}/>
             </a>
         </li>
     );

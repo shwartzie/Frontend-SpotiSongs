@@ -1,0 +1,70 @@
+.search-container > * {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+.search-input-container {
+    white-space: nowrap;
+
+    -webkit-app-region: no-drag;
+    pointer-events: auto;
+    -webkit-box-flex: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    form {
+        width: 40%;
+        position: relative;
+        width: 40%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+    }
+    input {
+        color: rgb(0, 0, 0);
+        font-size: rem(16px);
+        border: 0;
+        border-radius: 500px;
+        color: #000;
+        height: 40px;
+        padding: 6px 48px;
+        text-overflow: ellipsis;
+        width: 90%;
+        text-transform: none;
+        &:focus-visible {
+            outline: 2px solid rgb(62, 117, 194);
+        }
+    }
+
+    span {
+        background-image: url("../../../../../assets/svg/search-magnify-magnifier-glass-svgrepo-com.svg");
+        -webkit-box-flex: 1;
+        color: #121212;
+        left: 32px;
+
+    }
+    span,
+    button {
+        position: absolute;
+
+        width: 30px;
+        height: 30px;
+        background-size: cover;
+        background-size: cover;
+    }
+    button {
+        position: absolute;
+        background-color: transparent;
+        background-image: url("../../../../../assets/svg/close-svgrepo-com.svg");
+        border: 0;
+        color: #121212;
+        padding: 0;
+        pointer-events: auto;
+        right: 32px;
+
+    }
+}

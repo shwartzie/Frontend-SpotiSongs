@@ -16,17 +16,17 @@
             gap: 16px;
 
             button {
-                align-items: center;
                 background-color: rgba(0, 0, 0, 0.7);
                 border: none;
                 border-radius: 50%;
                 color: #fff;
                 cursor: pointer;
-                // display: inline-flex;
+                display: flex;
                 height: 32px;
-                justify-content: center;
                 position: relative;
                 width: 32px;
+                align-items: center;
+                justify-content: space-around;
             }
 
             .left-arrow {
@@ -50,9 +50,6 @@
 .user-profile {
     height: 32px;
     cursor: pointer;
-    :hover {
-        background-color: #282828;
-    }
 
     button {
         align-items: center;

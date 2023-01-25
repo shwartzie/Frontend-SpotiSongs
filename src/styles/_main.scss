@@ -16,6 +16,10 @@
 // Helpers
 @import "./helpers/layout-helper";
 
+
+//Feature
+@import './components/landingPage/Aside/Search/search';
+
 * {
     box-sizing: border-box;
 }

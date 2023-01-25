@@ -20,7 +20,7 @@
         display: flex;
     }
 
-    div:first-child:hover {
+    div:first-child:hover > div {
         background-color: hsla(0, 0%, 100%, 0.2);
         cursor: pointer;
         -webkit-transition: background-color 0.4s ease;
@@ -116,9 +116,9 @@
             align-self: center;
             cursor: default;
         }
-        :hover {
-            transition: display ease-in-out 0.3s;
-        }
+        // :hover {
+        //     transition: display ease-in-out 0.3s;
+        // }
 
         .favourite-button-first-span {
             box-sizing: border-box;
