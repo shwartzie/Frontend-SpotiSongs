@@ -1,6 +1,7 @@
 export const utilService = {
     getCurrentDayStatus,
-    getCurrentAsideOption
+    getCurrentAsideOption,
+    makeId
 };
 
 function getCurrentDayStatus(): string {
@@ -37,4 +38,8 @@ function getCurrentAsideOption(option: string): string {
             break;
     }
     return currentOption;
+}
+
+function makeId(length = 24) {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
