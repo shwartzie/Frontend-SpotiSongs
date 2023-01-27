@@ -21,7 +21,7 @@ export const FavouritePreview = ({ favourite }: any) => {
 
 
 
-    const { title }: any = favourite;
+    const { title } = favourite;
 
     return (
         <section className='favourite-display'

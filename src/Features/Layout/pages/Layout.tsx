@@ -4,7 +4,7 @@ import { Home } from '../../Home/pages/Home';
 import { Search } from '../../Search/pages/Search';
 import { Library } from '../../Library/pages/Library';
 
-import { Header } from './Header';
+import { Header } from '../components/Header';
 import { Aside } from '../../AsideNavbar/pages/Aside';
 import { LikedSongs } from '../../LikedSongs/pages/LikedSongs';
 import { CreatePlaylist } from '../../CreatePlaylist/pages/CreatePlaylist';

@@ -1,55 +1,80 @@
 // Setup
-@import "setup/variables";
-@import "setup/functions";
-@import "setup/mixins";
-@import "./typography/typography";
+@import 'setup/variables';
+@import 'setup/functions';
+@import 'setup/mixins';
+@import './typography/typography';
 // Pages
-@import "./pages/landingPage/main-layout";
-@import "./pages/landingPage/aside";
+@import './pages/landingPage/main-layout';
+@import './pages/landingPage/aside';
 // Components
-@import "./components/landingPage/layout";
-@import "./components/landingPage/navbar";
-@import "./components/landingPage/favourites";
+@import './components/landingPage/layout';
+@import './components/landingPage/navbar';
+@import './components/landingPage/favourites';
 @import './components/landingPage/Aside/nav';
 @import './components/landingPage/Aside/logo';
 @import './components/landingPage/Aside/nav_modal';
 // Helpers
-@import "./helpers/layout-helper";
-
+@import './helpers/layout-helper';
 
 //Feature
 @import './components/landingPage/Aside/Search/search';
 
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-    font-family: Circular-Black;
-    font-size: 16px;
-    scroll-behavior: smooth;
+	font-family: Circular-Black;
+	font-size: 16px;
+	scroll-behavior: smooth;
 }
 
 body {
-    width: 100%;
-    font-family: Circular-Black;
-    margin: 0;
-    min-height: 100vh;
-    font-family: Circular-Black, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-        "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    position: relative;
-    #root {
-        height: 100vh;
-        .App {
-            height: 100%;
-        }
-    }
-    div {
-        border: 0;
-        margin: 0;
-        padding: 0;
-        vertical-align: baseline;
-    }
+	width: 100%;
+	font-family: Circular-Black;
+	margin: 0;
+	min-height: 100vh;
+	font-family: Circular-Black, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+		'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	position: relative;
+	#root {
+		height: 100vh;
+		.App {
+			height: 100%;
+		}
+	}
+	div {
+		border: 0;
+		margin: 0;
+		padding: 0;
+		vertical-align: baseline;
+	}
+	.general-title {
+		display: flex;
+		margin-bottom: 16px;
+		line-height: 26px;
+		height: 36px;
+		div {
+			display: block;
+			flex-grow: 1;
+			line-height: normal;
+			min-width: 0;
+			h2 {
+				color: white;
+				box-sizing: border-box;
+				-webkit-tap-highlight-color: transparent;
+				margin-block: 0px;
+				font-size: 2rem;
+				font-weight: 700;
+				font-family: CircularStd-Bold;
+				display: inline-block;
+				max-width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
+	}
 }

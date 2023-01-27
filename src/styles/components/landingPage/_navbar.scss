@@ -50,7 +50,7 @@
 .user-profile {
     height: 32px;
     cursor: pointer;
-
+    
     button {
         align-items: center;
         background-color: rgba(0, 0, 0, 0.7);
@@ -63,6 +63,9 @@
         justify-content: center;
         padding: 2px;
         position: relative;
+        &:hover {
+            background-color: hsla(0, 0%, 100%, 0.1);
+        }
         figure {
             width: 28px;
             height: 28px;

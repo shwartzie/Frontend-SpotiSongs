@@ -9,9 +9,10 @@ type AsideProps = {
     activePage: string;
 };
 export const Aside = ({ setActivePage, options, activePage }: AsideProps) => {
+    const px = activePage == "search" ? "384px" : "241px";
 
     return (
-        <aside className='landing-page-aside-layout'>
+        <aside className='landing-page-aside-layout' style={{width: px}}>
             <Logo />
             <nav>
                 <ul className='nav-options-preview-ul'>
