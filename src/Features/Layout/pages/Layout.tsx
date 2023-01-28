@@ -8,6 +8,7 @@ import { Header } from '../components/Header';
 import { Aside } from '../../AsideNavbar/pages/Aside';
 import { LikedSongs } from '../../LikedSongs/pages/LikedSongs';
 import { CreatePlaylist } from '../../CreatePlaylist/pages/CreatePlaylist';
+import { Footer } from '../Features/pages/Footer';
 
 export const Layout = () => {
 
@@ -17,7 +18,7 @@ export const Layout = () => {
     useEffect(() => {
         console.log(onPagination);
         setActivePage(onPagination);
-        
+
     }, [setPage]);
 
     const options: string[] = ['home', 'search', 'library', 'likedSongs', "createPlaylist"];
@@ -32,12 +33,14 @@ export const Layout = () => {
 
     return (
         <div className='landing-page-layout'>
-            <Aside setActivePage={setActivePage} options={options} activePage={activePage} />
-            <div className='landing-page-component-container'>
-                <Header activePage={activePage} setPage={setPage} />
-                {Components[activePage]}
+            <div className='landing-page-layout-main-container'>
+                <Aside setActivePage={setActivePage} options={options} activePage={activePage} />
+                <div className='landing-page-component-container'>
+                    <Header activePage={activePage} setPage={setPage} />
+                    {Components[activePage]}
+                </div>
             </div>
-            {/* <Footer /> */}
+            <Footer />
         </div>
     );
 }

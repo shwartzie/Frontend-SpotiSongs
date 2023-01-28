@@ -6,6 +6,7 @@
 // Pages
 @import './pages/landingPage/main-layout';
 @import './pages/landingPage/aside';
+@import './pages/landingPage/footer';
 // Components
 @import './components/landingPage/layout';
 @import './components/landingPage/navbar';
@@ -13,6 +14,7 @@
 @import './components/landingPage/Aside/nav';
 @import './components/landingPage/Aside/logo';
 @import './components/landingPage/Aside/nav_modal';
+@import './components/footer/left-side';
 // Helpers
 @import './helpers/layout-helper';
 
