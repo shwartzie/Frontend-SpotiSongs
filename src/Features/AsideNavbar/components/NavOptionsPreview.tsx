@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavOptionsName } from './NavOptionName';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 //TODO FIX SVGS
 type NavOptionsProps = {
@@ -10,11 +10,21 @@ type NavOptionsProps = {
 };
 export const NavOptionsPreview = ({ option, setActivePage, activePage }: NavOptionsProps) => {
 
+    const navigate = useNavigate();
+
+    const handleActivePage = () => {
+        if (option == "home") {
+            navigate('/');
+        } else {
+            navigate(option);
+            setActivePage(option);
+        }
+    };
     return (
         <li>
-            <a href="#" onClick={() => setActivePage(option)}>
-                <div className={option}> </div>
-                <NavOptionsName option={option} activePage={activePage}/>
+            <a onClick={() => handleActivePage()}>
+                <div className={option}></div>
+                <NavOptionsName option={option} activePage={activePage} />
             </a>
         </li>
     );

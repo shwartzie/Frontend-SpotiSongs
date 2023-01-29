@@ -1,28 +1,20 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { MainRoutes } from 'routes/main.routes';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { LandingPage } from './Features/LandingPage/pages/LandingPage';
 import { LogInPage } from './Features/UserCommon/Login/pages/LogInPage';
 import { SignUpPage } from './Features/UserCommon/Signup/pages/SignUpPage';
 
 const App = () => {
 
-  // useEffect(() => {
-  //   ( async() => {
-  //     const res = await axios.get('test')
-  //   })();
-  // }, [])
+
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path='/' element={<LandingPage />} />
-          <Route path='/log-in' element={<LogInPage />} />
-          <Route path='/sign-up' element={<SignUpPage />} />
-        </Routes>
-      </div>
-    </Router>
+
+    <BrowserRouter>
+      <MainRoutes />
+    </BrowserRouter>
+
   );
 };
 
