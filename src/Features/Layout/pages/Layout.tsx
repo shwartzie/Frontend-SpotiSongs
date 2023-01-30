@@ -9,26 +9,15 @@ import { Header } from '../components/Header';
 import { Aside } from '../../AsideNavbar/pages/Aside';
 import { LikedSongs } from '../../LikedSongs/pages/LikedSongs';
 import { CreatePlaylist } from '../../CreatePlaylist/pages/CreatePlaylist';
-import { Footer } from '../Features/pages/Footer';
+import { Footer } from '../Features/Footer/pages/Footer';
 
 export const Layout = ({ children }: any) => {
 
     const [activePage, setActivePage] = useState<string>('home');
     const [onPagination, setPage] = useState<any>(activePage);
-
-    // useEffect(() => {
-    //     setActivePage(onPagination);
-    // }, [onPagination]);
-
+    
     const options: string[] = ['home', 'search', 'library', 'likedSongs', "createPlaylist"];
 
-    // const Components = {
-    //     home: <Home />,
-    //     search: <Search />,
-    //     library: <Library />,
-    //     likedSongs: <LikedSongs />,
-    //     createPlaylist: <CreatePlaylist />
-    // };
 
     return (
         <>

@@ -1,0 +1,16 @@
+.prev-image-container {
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    .prev-image-button {
+        background: transparent;
+        border: none;
+        height: 16px;
+        width: 16px;
+        min-width: 16px;
+        background-image: url('../../../../assets/svg/screen-desktop-svgrepo-com.svg');
+        background-size: cover;
+    }
+}

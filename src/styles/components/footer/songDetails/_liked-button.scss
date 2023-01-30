@@ -1,0 +1,22 @@
+.song-liked-container {
+    height: 32px;
+    width: 32px;
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    .song-liked-button {
+        background: transparent;
+        color: #ffffffb3;
+        padding: 0;
+        border: none;
+        height: 16px;
+        width: 16px;
+        min-width: 16px;
+        background-image: url("../../../../assets/svg/heart-svgrepo-com.svg");
+        background-size: cover;
+    }
+}
+.liked {
+    background-color: #1ed760;
+}

@@ -1,49 +1,85 @@
 .left-side-footer-container {
-	min-width: 180px;
-	width: 30%;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-	-webkit-box-pack: start;
-	-ms-flex-pack: start;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-direction: row;
-	flex-direction: row;
-	justify-content: flex-start;
-	position: relative;
-	-webkit-transform: translateX(0);
-	transform: translateX(0);
-	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0.3, 0, 0, 1);
-	transition: -webkit-transform 0.25s cubic-bezier(0.3, 0, 0, 1);
-	transition: transform 0.25s cubic-bezier(0.3, 0, 0, 1);
-	transition: transform 0.25s cubic-bezier(0.3, 0, 0, 1),
-		-webkit-transform 0.25s cubic-bezier(0.3, 0, 0, 1);
+    min-width: 180px;
+    width: 30%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: -webkit-transform 0.25s cubic-bezier(0.3, 0, 0, 1);
+    transition: -webkit-transform 0.25s cubic-bezier(0.3, 0, 0, 1);
+    transition: transform 0.25s cubic-bezier(0.3, 0, 0, 1);
+    transition: transform 0.25s cubic-bezier(0.3, 0, 0, 1),
+        -webkit-transform 0.25s cubic-bezier(0.3, 0, 0, 1);
 
-	.expanding-image-container {
-		width: 56px;
-		height: 56px;
-		background-color: #282828;
-		border: 0;
-		display: block;
-		margin: 0;
-		position: relative;
-		z-index: 0;
-		.expanding-image {
-			background-color: #000;
-			background-position: 50%;
-			background-repeat: no-repeat;
-			background-size: contain;
-			height: 100%;
-			left: 0;
-			position: absolute;
-			top: 0;
-			width: 100%;
+    
+    .expanding-image-container {
+        width: 56px;
+        height: 56px;
+        background-color: #282828;
+        border: 0;
+        display: block;
+        margin: 0;
+        position: relative;
+        z-index: 0;
+        .expanding-image {
+            position: relative;
+            background-color: #000;
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
             object-fit: cover;
             object-position: center center;
-		}
-	}
+        }
+        .expanded-image-translated {
+            transition: translateX ease 0.6s;
+            transform: translateX(-100px);
+        }
+        .absolute-position-right {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+        .expanded-image {
+            position: absolute;
+            height: 241px;
+            width: 241px;
+            bottom: 59px;
+            left: 0px;
+        }
+        .arrow-up {
+            right: 0;
+            top: 2px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.374);
+            transition: background-color ease 0.5s;
+            position: absolute;
+            background-image: url("../../../assets/svg/arrow-left-svgrepo-com.svg");
+            transform: rotate(90deg);
+            background-size: contain;
+            height: 24px;
+            width: 24px;
+            z-index: 1;
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(0, 0, 0, 0.762);
+            }
+        }
+    }
 }
