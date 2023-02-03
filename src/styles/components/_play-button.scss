@@ -1,0 +1,13 @@
+.play-button {
+    border-radius: 50%;
+    background-color: #fff !important;
+    svg {
+    }
+    .paused { 
+        background-image: url('../../assets/svg/pause-button.svg');
+    }
+    .playing {
+        background-image: url('../../assets/svg/play-button.svg');
+    }
+}
+

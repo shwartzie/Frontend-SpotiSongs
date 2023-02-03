@@ -1,12 +1,9 @@
 .main-landing-page {
     display: flex;
     height: 100%;
-
+    flex-direction: column;
     width: 100%;
-    // .main-landing-page-container {
-    //     display: flex;
-    //     width: 100%;
-    // }
+   
 }
 
 .landing-page-layout {
@@ -14,7 +11,8 @@
     width: 100%;
     background-color: #121212;
     flex-direction: column;
-
+    position: relative;
+    height: 100%;
     .landing-page-layout-main-container {
         display: flex;
         height: 100%;
@@ -24,7 +22,6 @@
         display: flex;
         flex-direction: column;
         width: calc(100% - 241px);
-        overflow: auto;
     }
 
     main {

@@ -18,6 +18,13 @@
 @import './components/footer/songDetails/song-title';
 @import './components/footer/songDetails/liked-button';
 @import './components/footer/songDetails/preview-image';
+@import './components/footer/playerControls/player-controls';
+@import './components/shuffle';
+@import './components/previous-song';
+@import './components/play-button';
+@import './components/next-song';
+@import './components/repeat';
+@import './components/player';
 // Helpers
 @import './helpers/layout-helper';
 
@@ -46,6 +53,7 @@ body {
 	position: relative;
 	#root {
 		height: 100vh;
+		overflow: hidden;
 		.App {
 			height: 100%;
 		}

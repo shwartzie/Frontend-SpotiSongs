@@ -15,7 +15,7 @@ export const Layout = ({ children }: any) => {
 
     const [activePage, setActivePage] = useState<string>('home');
     const [onPagination, setPage] = useState<any>(activePage);
-    
+
     const options: string[] = ['home', 'search', 'library', 'likedSongs', "createPlaylist"];
 
 
@@ -34,16 +34,6 @@ export const Layout = ({ children }: any) => {
                 </div>
             </main>
         </>
-        // <div className='landing-page-layout'>
-        //     <div className='landing-page-layout-main-container'>
-        //         <Aside setActivePage={setActivePage} options={options} activePage={activePage} />
-        //         <div className='landing-page-component-container'>
-        //             <Header activePage={activePage} setPage={setPage} />
-        //             {Components[activePage]}
-        //         </div>
-        //     </div>
-        //     <Footer />
-        // </div>
     );
 }
 
