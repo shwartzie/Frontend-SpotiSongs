@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-export const PlayButton = () => {
 
-    const [isPlaying, setPlaying] = useState<boolean>(false);
+interface ControlButtonsProps {
+    isPlaying: boolean;
+    setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-    const className = (isPlaying ? 'playing' : 'paused');
+export const PlayButton = ({ isPlaying, setPlaying }: ControlButtonsProps) => {
+
+
+    const className = (!isPlaying ? 'playing' : 'paused');
 
     const handlePlay = () => {
         setPlaying(prev => !prev);

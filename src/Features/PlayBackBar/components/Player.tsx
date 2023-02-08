@@ -1,36 +1,26 @@
 import React, { useRef } from 'react';
 import { BsFillPlayCircleFill, BsFillPauseCircleFill, BsSkipEndCircleFill, BsFillSkipEndCircleFill } from 'react-icons/bs';
-export const Player = ({ audioElem, isPlaying, setIsPlaying, currentSong, setCurrentSong, songs }: any) => {
+import { AudioElement } from '../../../types';
+
+interface PlayerProps {
+    songs: any;
+    currentSong: any;
+    setCurrentSong: React.Dispatch<React.SetStateAction<any>>;
+    audioElement: AudioElement;
+}
+
+export const Player = ({ audioElement, currentSong, setCurrentSong, songs }: PlayerProps) => {
 
     const clickRef: any = useRef();
-
-    const PlayPause = () => {
-        setIsPlaying(!isPlaying);
-
-    };
-
 
     const checkWidth = (e) => {
         let width = clickRef.current.clientWidth;
         const offset = e.nativeEvent.offsetX;
 
         const divprogress = offset / width * 100;
-        audioElem.current.currentTime = divprogress / 100 * currentSong.length;
+        audioElement.current.currentTime = divprogress / 100 * currentSong.length;
 
     };
-
-    const skipBack = () => {
-        const index = songs.findIndex(x => x.title == currentSong.title);
-        if (index == 0) {
-            setCurrentSong(songs[songs.length - 1]);
-        }
-        else {
-            setCurrentSong(songs[index - 1]);
-        }
-        audioElem.current.currentTime = 0;
-
-    };
-
 
     const skiptoNext = () => {
         const index = songs.findIndex(x => x.title == currentSong.title);
@@ -41,7 +31,7 @@ export const Player = ({ audioElem, isPlaying, setIsPlaying, currentSong, setCur
         else {
             setCurrentSong(songs[index + 1]);
         }
-        audioElem.current.currentTime = 0;
+        audioElement.current.currentTime = 0;
 
     };
 

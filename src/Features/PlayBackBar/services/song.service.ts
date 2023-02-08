@@ -1,13 +1,27 @@
+import axios from '../../../common/services/Server/axios';
+
+
+
 export const songService = {
-    get
+    get,
+    query
 };
 
+async function query(filterBy = {}) {
+    try {
+        return await axios.get('/api/songs/');
+
+    } catch (error) {
+        console.log(error);
+        return error.response;
+    }
+}
 
 async function get() {
     try {
-        const demoSongs = getDemoSongs();
-        return demoSongs
+        return getDemoSongs();
     } catch (error) {
+        console.log(error);
 
     }
 }
@@ -20,7 +34,7 @@ function getDemoSongs() {
         },
         {
             "title": "Linking Park - In the end",
-            "url": "https://beardbarnmusicbucket.s3.amazonaws.com/The+Wild+Horse"
+            "url": "https://www.youtube.com/watch?v=eVTXPUF4Oz4&ab_channel=LinkinPark"
         },
         {
             "title": "Travis Scott - Stop trina be God",
