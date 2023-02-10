@@ -9,7 +9,7 @@ export const songService = {
 
 async function query(filterBy = {}) {
     try {
-        return await axios.get('/api/songs/');
+        return await axios.get('songs/');
 
     } catch (error) {
         console.log(error);

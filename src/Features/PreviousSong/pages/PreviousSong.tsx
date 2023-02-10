@@ -10,7 +10,7 @@ interface PreviousSong {
 
 type CurrentSong = {
     title: string;
-    uri: string;
+    url: string;
 };
 
 export const PreviousSong = ({ songs, currentSong, setCurrentSong, audioElement }: PreviousSong) => {

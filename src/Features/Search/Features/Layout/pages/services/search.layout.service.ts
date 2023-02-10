@@ -11,7 +11,7 @@ async function query() {}
 
 async function queryDemo() {
 	try {
-		const { data:{ query } } = await axios.get('api/genres/query')
+		const { data:{ query } } = await axios.get('genres/query')
 		return query
 	} catch (err) {
 		console.log(err)

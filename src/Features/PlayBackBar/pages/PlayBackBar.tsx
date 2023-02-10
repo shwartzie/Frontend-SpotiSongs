@@ -15,7 +15,7 @@ type PlayBackBarProps = {
 
 type CurrentSong = {
     title: string;
-    uri: string;
+    url: string;
 };
 
 
@@ -45,7 +45,7 @@ export const PlayBackBar = ({ songs, setSongs, currentSong, setCurrentSong, isPl
     return (
         <article className='play-back-bar'>
             <>
-                <audio src={currentSong.uri} ref={audioElement} onTimeUpdate={onPlaying} />
+                <audio src={currentSong.url} ref={audioElement} onTimeUpdate={onPlaying} />
                 <Player songs={songs} audioElement={audioElement} currentSong={currentSong} setCurrentSong={setCurrentSong} />
             </>
         </article>

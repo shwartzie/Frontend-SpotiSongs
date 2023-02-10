@@ -6,7 +6,7 @@ import { PreviousSong } from '../../PreviousSong/pages/PreviousSong';
 import { Repeat } from '../../Repeat/pages/Repeat';
 import { Shuffle } from '../../Shuffle/pages/Shuffle';
 
-type ControlButtonsProps = {
+interface ControlButtonsProps {
     songs: any;
     currentSong: CurrentSong;
     setCurrentSong: React.Dispatch<React.SetStateAction<any>>;
@@ -18,19 +18,26 @@ type ControlButtonsProps = {
 
 type CurrentSong = {
     title: string;
-    uri: string;
+    url: string;
 };
 
 
 export const ControlButtons = (
     { isPlaying, setPlaying, setCurrentSong, songs, audioElement, currentSong }: ControlButtonsProps) => {
 
+    const skipPayLoad = {
+        setCurrentSong,
+        songs,
+        audioElement,
+        currentSong
+    };
+
     return (
         <article className='control-buttons-container'>
             <Shuffle />
-            <PreviousSong setCurrentSong={setCurrentSong} songs={songs} audioElement={audioElement} currentSong={currentSong} />
+            <PreviousSong {...skipPayLoad} />
             <PlayButton isPlaying={isPlaying} setPlaying={setPlaying} />
-            <NextSong />
+            <NextSong {...skipPayLoad} />
             <Repeat />
         </article>
     );

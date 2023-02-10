@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { BsFillPlayCircleFill, BsFillPauseCircleFill, BsSkipEndCircleFill, BsFillSkipEndCircleFill } from 'react-icons/bs';
 import { AudioElement } from '../../../types';
-
+import SpotifyPlayer from 'react-spotify-web-playback';
 interface PlayerProps {
     songs: any;
     currentSong: any;
@@ -13,25 +13,12 @@ export const Player = ({ audioElement, currentSong, setCurrentSong, songs }: Pla
 
     const clickRef: any = useRef();
 
-    const checkWidth = (e) => {
+    const checkWidth = (e: React.MouseEvent<HTMLElement>) => {
         let width = clickRef.current.clientWidth;
         const offset = e.nativeEvent.offsetX;
 
-        const divprogress = offset / width * 100;
+        const divprogress: number = offset / width * 100;
         audioElement.current.currentTime = divprogress / 100 * currentSong.length;
-
-    };
-
-    const skiptoNext = () => {
-        const index = songs.findIndex(x => x.title == currentSong.title);
-
-        if (index == songs.length - 1) {
-            setCurrentSong(songs[0]);
-        }
-        else {
-            setCurrentSong(songs[index + 1]);
-        }
-        audioElement.current.currentTime = 0;
 
     };
 
