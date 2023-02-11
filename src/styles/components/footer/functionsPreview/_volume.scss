@@ -1,13 +1,53 @@
+.volume-container {
+	display: flex;
+	align-items: center;
+	input[type='range'] {
+		-webkit-appearance: none;
+		margin-right: 15px;	
+		width: 100%;
+		height: 3px;
+		background: #464646af;
+		border-radius: 5px;
+		background-image: linear-gradient(#ffffffb3, #ffffffb3);
+		background-size: 0% 100%;
+		background-repeat: no-repeat;
+	}
+
+	input[type='range']::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		height: 16px;
+		width: 16px;
+		border-radius: 50%;
+		background: #ffffffb3;
+		cursor: ew-resize;
+		box-shadow: 0 0 15px 0 #464646af;
+		transition: background 0.3s ease-in-out;
+	}
+
+	// input[type='range']::-webkit-slider-runnable-track {
+	// 	-webkit-appearance: none;
+	// 	box-shadow: none;
+	// 	border: none;
+	// 	background: transparent;
+	// }
+}
 .volume-btn {
 	height: $button-size;
 	width: $button-size;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
-	svg {
+	position: relative;
+
+	.volume-display {
 		height: $svg-size;
 		width: $svg-size;
-		background-image: url('../../../../assets/svg/volume-svgrepo-com.svg');
 		background-size: cover;
+		background-image: url('../../../../assets/svg/volume-svgrepo-com.svg');
+	}
+	.muted {
+		position: absolute;
+		left: 8px;
+		background-image: url('../../../../assets/svg/line-svgrepo-com.svg');
 	}
 }
