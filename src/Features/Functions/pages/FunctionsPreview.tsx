@@ -1,19 +1,19 @@
-import { ConnectDevicePreview } from '../../ConnectDevice/pages/ConnectDevicePreview'
-import { LyricsPreview } from '../../Lyrics/pages/LyricsPreview'
-import { QueuePreview } from '../../Queue/pages/QueuePreview'
-import { VolumePreview } from '../../Volume/pages/VolumePreview'
-import { FullScreenPreview } from '../../FullScreen/pages/FullScreenPreview'
+import { ConnectDevice } from '../../C../../ConnectDevice/pages/ConnectDevice'
+import { Lyrics } from '../../Lyrics/pages/Lyrics'
+import { Queue } from '../../Queue/pages/Queue'
+import { Volume } from '../../Volume/pages/Volume'
+import { FullScreen } from '../../FullScreen/pages/FullScreen'
 
 import React from 'react'
 
 export const FunctionsPreview = () => {
 
     const components: any[] = [
-        { cmp: <LyricsPreview />, key: 1 },
-        { cmp: <QueuePreview />, key: 2 },
-        { cmp: <ConnectDevicePreview />, key: 3 },
-        { cmp: <VolumePreview />, key: 4 },
-        { cmp: <FullScreenPreview />, key: 5 },
+        { cmp: <Lyrics />, key: 1 },
+        { cmp: <Queue />, key: 2 },
+        { cmp: <ConnectDevice />, key: 3 },
+        { cmp: <Volume />, key: 4 },
+        { cmp: <FullScreen />, key: 5 },
     ]
 
     return (

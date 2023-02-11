@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { BsFillPlayCircleFill, BsFillPauseCircleFill, BsSkipEndCircleFill, BsFillSkipEndCircleFill } from 'react-icons/bs';
 import { AudioElement } from '../../../types';
 import SpotifyPlayer from 'react-spotify-web-playback';
+
 interface PlayerProps {
     songs: any;
     currentSong: any;
@@ -34,6 +35,9 @@ export const Player = ({ audioElement, currentSong, setCurrentSong, songs }: Pla
     );
 
 };
+
+
+
 
 
 

@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { AudioElement } from '../../../types';
 import { Player } from '../components/Player';
 import { songService } from '../services/song.service';
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/src/styles.scss';
 
 type PlayBackBarProps = {
 	songs: any;
@@ -28,7 +30,7 @@ export const PlayBackBar = ({ songs, setSongs, currentSong, setCurrentSong, isPl
 		}
 	}, [isPlaying]);
 
-	const onPlaying = () => {
+	const onPlaying = (event) => {
 		const duration = audioElement.current.duration;
 		const ct = audioElement.current.currentTime;
 
@@ -40,7 +42,16 @@ export const PlayBackBar = ({ songs, setSongs, currentSong, setCurrentSong, isPl
 	return (
 		<article className="play-back-bar">
 			<>
-				<audio src={currentSong.url} ref={audioElement} onTimeUpdate={onPlaying} />
+				{/* <AudioPlayer
+					autoPlay
+					src={currentSong.url}
+					onPlay={(e) => {
+						onPlaying(e)
+						console.log('onPlay')
+					}}
+					// other props here
+				/> */}
+				 <audio src={currentSong.url} ref={audioElement} onTimeUpdate={onPlaying} />
 				<Player songs={songs} audioElement={audioElement} currentSong={currentSong} setCurrentSong={setCurrentSong} />
 			</>
 		</article>
