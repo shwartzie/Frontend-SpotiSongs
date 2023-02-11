@@ -1,0 +1,13 @@
+.connect-device-btn {
+	height: $button-size;
+	width: $button-size;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	svg {
+		height: $svg-size;
+		width: $svg-size;
+		background-image: url('../../../../assets/svg/responsive-device-svgrepo-com.svg');
+		background-size: cover;
+	}
+}
