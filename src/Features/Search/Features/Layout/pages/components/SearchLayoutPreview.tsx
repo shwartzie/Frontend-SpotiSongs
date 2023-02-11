@@ -11,7 +11,7 @@ type SearchLayoutPreviewProps = {
 }
 export const SearchLayoutPreview = ({ genre }: SearchLayoutPreviewProps) => {
     return (
-        <a href='#' style={{backgroundColor: genre?.backgroundColor}}>
+        <a style={{backgroundColor: genre?.backgroundColor}}>
             <span>{genre.name}</span>
             <img src={genre.imageUrl} alt="" />
         </a>

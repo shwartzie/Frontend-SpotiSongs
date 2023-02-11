@@ -4,50 +4,45 @@ import { Player } from '../components/Player';
 import { songService } from '../services/song.service';
 
 type PlayBackBarProps = {
-    songs: any;
-    currentSong: CurrentSong;
-    setCurrentSong: React.Dispatch<React.SetStateAction<any>>;
-    setSongs: React.Dispatch<React.SetStateAction<CurrentSong[]>>;
-    isPlaying: boolean;
-    setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-    audioElement: AudioElement;
+	songs: any;
+	currentSong: CurrentSong;
+	setCurrentSong: React.Dispatch<React.SetStateAction<any>>;
+	setSongs: React.Dispatch<React.SetStateAction<CurrentSong[]>>;
+	isPlaying: boolean;
+	setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+	audioElement: AudioElement;
 };
 
 type CurrentSong = {
-    title: string;
-    url: string;
+	title: string;
+	url: string;
 };
 
-
 export const PlayBackBar = ({ songs, setSongs, currentSong, setCurrentSong, isPlaying, setPlaying, audioElement }: PlayBackBarProps) => {
+	useEffect(() => {
+		if (isPlaying) {
+			console.log('audioElement', audioElement.current);
+			audioElement.current?.play();
+		} else {
+			audioElement.current?.pause();
+		}
+	}, [isPlaying]);
 
+	const onPlaying = () => {
+		const duration = audioElement.current.duration;
+		const ct = audioElement.current.currentTime;
 
-    useEffect(() => {
+		console.log('currentSong', currentSong);
 
-        if (isPlaying) {
-            console.log("audioElement", audioElement.current);
-            audioElement.current?.play();
-        } else {
-            audioElement.current?.pause();
-        }
-    }, [isPlaying]);
+		setCurrentSong({ ...currentSong, progress: (ct / duration) * 100, length: duration });
+	};
 
-    const onPlaying = () => {
-        const duration = audioElement.current.duration;
-        const ct = audioElement.current.currentTime;
-
-        console.log("currentSong", currentSong);
-
-        setCurrentSong({ ...currentSong, "progress": ct / duration * 100, "length": duration });
-
-    };
-
-    return (
-        <article className='play-back-bar'>
-            <>
-                <audio src={currentSong.url} ref={audioElement} onTimeUpdate={onPlaying} />
-                <Player songs={songs} audioElement={audioElement} currentSong={currentSong} setCurrentSong={setCurrentSong} />
-            </>
-        </article>
-    );
+	return (
+		<article className="play-back-bar">
+			<>
+				<audio src={currentSong.url} ref={audioElement} onTimeUpdate={onPlaying} />
+				<Player songs={songs} audioElement={audioElement} currentSong={currentSong} setCurrentSong={setCurrentSong} />
+			</>
+		</article>
+	);
 };
