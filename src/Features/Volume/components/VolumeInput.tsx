@@ -16,7 +16,7 @@ export const VolumeInput = ({ setVolume, volume }: Input) => {
 				onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
 					setVolume(event.target.valueAsNumber);
 				}}
-				style={{"backgroundSize":volume +'100%'}}
+				style={{"backgroundSize":`${volume}% 100%`}}
 			/>
 		</>
 	);
