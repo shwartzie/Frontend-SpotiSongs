@@ -15,7 +15,7 @@ export const PlayButton = ({ isPlaying, setPlaying }: ControlButtonsProps) => {
     };
 
     return (
-        <button className='play-button' onClick={() => handlePlay()}>
+        <button className='g-play-button' onClick={() => handlePlay()}>
             <svg className={className}></svg>
         </button>
     );

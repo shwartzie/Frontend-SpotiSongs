@@ -1,42 +1,46 @@
 .player-controls-container {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    vertical-align: baseline;
-    max-width: 722px;
-    width: 40%;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+	max-width: 722px;
+	width: 40%;
 
-    .player-controls-layout {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-    }
+	.player-controls-layout {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+	}
 }
 
 .control-buttons-container {
-    display: flex;
-    flex-flow: row nowrap;
-    margin-bottom: 12px;
-    width: 100%;
-    gap: 16px;
-    margin-bottom: 8px;
-    justify-content: center;
-    align-items: center;
-    > button {
-        height: $button-size;
-        width: $button-size;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        svg {
-            width: $svg-button-size;
-            height: $svg-button-size;
-            background-size: cover;
-        }
-    }
-    // button:hover {
-    //     height: 34px;
-    //     width: 34px;
-    // }
+	display: flex;
+	flex-flow: row nowrap;
+	margin-bottom: 12px;
+	width: 100%;
+	gap: 16px;
+	margin-bottom: 8px;
+	justify-content: center;
+	align-items: center;
+	> button {
+		height: $button-size;
+		width: $button-size;
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		svg {
+			width: $svg-size;
+			height: $svg-size;
+			background-size: cover;
+		}
+	}
+	// button:hover {
+	//     height: 34px;
+	//     width: 34px;
+	// }
 }
