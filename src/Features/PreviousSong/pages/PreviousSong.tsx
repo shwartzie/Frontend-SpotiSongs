@@ -1,11 +1,9 @@
-import React from 'react';
-import { AudioElement } from '../../../types';
+import React, {forwardRef} from 'react';
 
 interface PreviousSong {
     songs: any;
     currentSong: CurrentSong;
     setCurrentSong: React.Dispatch<React.SetStateAction<any>>;
-    audioElement: AudioElement;
 }
 
 type CurrentSong = {
@@ -13,18 +11,16 @@ type CurrentSong = {
     url: string;
 };
 
-export const PreviousSong = ({ songs, currentSong, setCurrentSong, audioElement }: PreviousSong) => {
+export const PreviousSong = ({ songs, currentSong, setCurrentSong }: PreviousSong) => {
 
 
     const handlePreviousSong = () => {
         const index = songs.findIndex(song => song.title === currentSong.title);
-        console.log(index, "handlePreviousSong");
         if (!index) {
             setCurrentSong(songs[songs.length - 1]);
         } else {
             setCurrentSong(songs[index - 1]);
         }
-        audioElement.current.currentTime = 0;
     };
 
     return (

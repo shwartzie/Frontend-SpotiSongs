@@ -1,7 +1,6 @@
 import axios from '../../../common/services/Server/axios';
 
 
-
 export const songService = {
     get,
     query
@@ -27,18 +26,25 @@ async function get() {
 }
 
 function getDemoSongs() {
+
     return [
         {
-            "title": "Drake - Forever",
-            "url": "https://beardbarnmusicbucket.s3.amazonaws.com/The+Wild+Horse"
+            title: "Linking Park - In the end",
+            url: "https://myfreemp3.to/share?key=ODvrbCbppgt",
+            progress: 0,
+            length: 0
         },
         {
-            "title": "Linking Park - In the end",
-            "url": "https://www.youtube.com/watch?v=eVTXPUF4Oz4&ab_channel=LinkinPark"
+            "title": "Drake - Forever",
+            "url": "https://beardbarnmusicbucket.s3.amazonaws.com/The+Wild+Horse",
+            progress: 0,
+            length: 0
         },
         {
             "title": "Travis Scott - Stop trina be God",
-            "url": "https://beardbarnmusicbucket.s3.amazonaws.com/The+Wild+Horse"
+            "url": "https://beardbarnmusicbucket.s3.amazonaws.com/The+Wild+Horse",
+            progress: 0,
+            length: 0
         }
     ];
 }

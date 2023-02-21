@@ -1,10 +1,9 @@
-import React, { useEffect, useMemo, useState, useRef } from 'react';
-import { ControlButtons } from '../components/ControlsButtons';
-import { PlayBackBar } from '../../PlayBackBar/pages/PlayBackBar';
-import { songService } from '../../PlayBackBar/services/song.service';
-import { AudioElement } from '../../../types';
-
-
+import React, { useEffect, useMemo, useState, useRef } from "react";
+import { ControlButtons } from "../components/ControlsButtons";
+import { PlayBackBar } from "../../PlayBackBar/pages/PlayBackBar";
+import { songService } from "../../PlayBackBar/services/song.service";
+import { audioService } from "../../../audio/index";
+const path = '../../../audio/in-the-end.mp3'
 // interface ControlButtons {
 //     audioElement: AudioElement;
 //     isPlaying: boolean;
@@ -18,9 +17,7 @@ import { AudioElement } from '../../../types';
 //     setCurrentSong: React.Dispatch<any>;
 // };
 
-
 interface PayLoad {
-    audioElement: AudioElement;
     isPlaying: boolean;
     setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
     songs: any;
@@ -29,21 +26,27 @@ interface PayLoad {
     setCurrentSong: React.Dispatch<any>;
 }
 
-
-
 export const PlayerControlsPreview = () => {
     const [songs, setSongs] = useState<any>();
     const [currentSong, setCurrentSong] = useState<any>();
     const [isPlaying, setPlaying] = useState<boolean>(false);
 
-    const audioElement: AudioElement = useRef();
-
     useEffect(() => {
         const fetch = async () => {
             const demoSongs: any = await songService.get();
-            setSongs([...demoSongs]);
-            setCurrentSong({ ...demoSongs[0] });
 
+           
+            
+            const audio: HTMLAudioElement = new Audio(path);
+            console.log(audio)
+            const demo = {
+                audio,
+                title: "Linking Park - In the end",
+                progress: 0,
+                length: 0,
+            };
+            setSongs([...demoSongs]);
+            setCurrentSong({ ...demo });
         };
         fetch();
     }, []);
@@ -55,20 +58,17 @@ export const PlayerControlsPreview = () => {
         setCurrentSong,
         isPlaying,
         setPlaying,
-        audioElement
     };
 
     return (
-        <section className='player-controls-container'>
-            <div className='player-controls-layout'>
+        <section className="player-controls-container">
+            <div className="player-controls-layout">
                 <ControlButtons {...payLoad} />
                 {songs && <PlayBackBar {...payLoad} />}
             </div>
         </section>
     );
 };
-
-
 
 // const { data, status }: any = await songService.query();
 // if (status !== 200) {

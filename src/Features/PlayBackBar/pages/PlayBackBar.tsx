@@ -1,59 +1,67 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { AudioElement } from '../../../types';
-import { Player } from '../components/Player';
-import { songService } from '../services/song.service';
-import AudioPlayer from 'react-h5-audio-player';
-import 'react-h5-audio-player/src/styles.scss';
+import React, { useEffect, useRef, useState, useMemo } from "react";
+import { AudioElement } from "../../../types";
+import { Bar } from "../components/Bar";
+import { songService } from "../services/song.service";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/src/styles.scss";
 
 type PlayBackBarProps = {
-	songs: any;
-	currentSong: CurrentSong;
-	setCurrentSong: React.Dispatch<React.SetStateAction<any>>;
-	setSongs: React.Dispatch<React.SetStateAction<CurrentSong[]>>;
-	isPlaying: boolean;
-	setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-	audioElement: AudioElement;
+    songs: any;
+    currentSong: any;
+    setCurrentSong: React.Dispatch<React.SetStateAction<any>>;
+    setSongs: React.Dispatch<React.SetStateAction<any[]>>;
+    isPlaying: boolean;
+    setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-type CurrentSong = {
-	title: string;
-	url: string;
-};
+// type CurrentSong = {
+//     title: string;
+//     url: string;
+//     progress: number;
+//     length: number;
+// };
 
-export const PlayBackBar = ({ songs, setSongs, currentSong, setCurrentSong, isPlaying, setPlaying, audioElement }: PlayBackBarProps) => {
-	useEffect(() => {
-		if (isPlaying) {
-			console.log('audioElement', audioElement.current);
-			audioElement.current?.play();
-		} else {
-			audioElement.current?.pause();
-		}
-	}, [isPlaying]);
+export const PlayBackBar = ({
+    songs,
+    setSongs,
+    currentSong,
+    setCurrentSong,
+    isPlaying,
+    setPlaying,
+}: PlayBackBarProps) => {
 
-	const onPlaying = (event) => {
-		const duration = audioElement.current.duration;
-		const ct = audioElement.current.currentTime;
+    const audioElement: AudioElement = useRef();
 
-		console.log('currentSong', currentSong);
+    const playing = useMemo(async () => {
+        if (isPlaying) {
+            await audioElement.current?.play();
+        } else {
+            await audioElement.current?.pause();
+        }
+    }, [isPlaying]);
 
-		setCurrentSong({ ...currentSong, progress: (ct / duration) * 100, length: duration });
-	};
+    const checkWidth = (event: React.MouseEvent<HTMLElement>, clientWidth) => {
+        const offset = event.nativeEvent.offsetX;
+        const divProgress: number = (offset / clientWidth) * 100;
+        audioElement.current.currentTime = (divProgress / 100) * currentSong.length;
+    };
 
-	return (
-		<article className="play-back-bar">
-			<>
-				{/* <AudioPlayer
-					autoPlay
-					src={currentSong.url}
-					onPlay={(e) => {
-						onPlaying(e)
-						console.log('onPlay')
-					}}
-					// other props here
-				/> */}
-				 <audio src={currentSong.url} ref={audioElement} onTimeUpdate={onPlaying} />
-				<Player songs={songs} audioElement={audioElement} currentSong={currentSong} setCurrentSong={setCurrentSong} />
-			</>
-		</article>
-	);
+    const onPlaying = (event) => {
+        console.log("onPlaying", event);
+        const duration = audioElement.current.duration;
+        const currentTime = audioElement.current.currentTime;
+
+        setCurrentSong({ ...currentSong, progress: (currentTime / duration) * 100, length: duration });
+    };
+
+    return (
+        <article className="play-back-bar">
+            <>
+                <audio ref={audioElement} onTimeUpdate={onPlaying} >
+                    <source src={currentSong.audio.src} type="audio/ogg" />
+                </audio>
+                <Bar currentSong={currentSong} checkWidth={checkWidth} />
+            </>
+        </article>
+    );
 };
