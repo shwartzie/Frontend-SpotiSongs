@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
-import { useNavigate, NavigateFunction } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate, NavigateFunction } from "react-router-dom";
+import { useAuth } from "hooks/authHooks";
+import SpotifyWebApi from "spotify-web-api-node";
 
 type SearchInputProps = {
     query: string;
     setQuery: React.Dispatch<React.SetStateAction<string>>;
 };
+const spotifyApi = new SpotifyWebApi({
+    clientId: "42f2800f08eb405abb7ea297b337bba2",
+});
+
 export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
+    const { accessToken, isLoading } = useAuth();
 
     const navigate: NavigateFunction = useNavigate();
 
@@ -18,7 +25,7 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
     };
 
     return (
-        <div className='search-input-container'>
+        <div className="search-input-container">
             <form role="search">
                 <span></span>
                 <input
@@ -32,5 +39,4 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
             </form>
         </div>
     );
-}
-
+};

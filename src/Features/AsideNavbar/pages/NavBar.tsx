@@ -7,6 +7,8 @@ import { RightArrow } from '../components/RightArrow';
 import { SearchInput } from 'Features/Search/components/SearchInput';
 import { useLocation } from 'react-router-dom';
 
+
+
 type NavBarProps = {
     activePage: string;
     setPage: React.Dispatch<React.SetStateAction<string>>;
@@ -14,10 +16,13 @@ type NavBarProps = {
     setQuery: React.Dispatch<React.SetStateAction<string>>;
 };
 
+
+
 export const NavBar = ({ activePage, setPage, query, setQuery }: NavBarProps) => {
     const [isClicked, setClicked] = useState<boolean>(false);
 
     const { pathname } = useLocation();
+
 
     return (
         <nav className='nav-layout' >

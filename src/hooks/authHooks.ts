@@ -1,13 +1,23 @@
 import { userService } from "Features/UserCommon/services/user.service";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SpotifyWebApi from "spotify-web-api-node";
 
-export const useAuth = (code: string) => {
+const spotifyApi = new SpotifyWebApi({
+    clientId: "42f2800f08eb405abb7ea297b337bba2",
+});
+
+export const useAuth = (code: string = "") => {
     const navigate = useNavigate();
     const [accessToken, setAccessToken] = useState<string>(null);
     const [refreshToken, setRefreshToken] = useState<string>(null);
     const [expiresIn, setExpiresIn] = useState<number>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        if (!accessToken) return;
+        spotifyApi.setAccessToken(accessToken);
+    }, [accessToken]);
 
     useEffect(() => {
         if (!code) {
