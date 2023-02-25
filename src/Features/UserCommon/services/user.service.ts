@@ -1,29 +1,39 @@
 import axios from 'common/services/Server/axios';
 
 export const userService = {
-    test,
-    login
+    login,
+    loginWithSpotify,
+    getRefreshToken
 };
 
-async function test() {
+type User = {
+
+};
+
+async function login(user) {
     try {
-        return axios.get('test');
+        const result = await axios.post('auth/login', { ...user });
+        return result;
     } catch (error) {
         console.log(error);
     }
 }
 
-async function login() {
+async function getRefreshToken(refreshToken: string) {
     try {
-        const res = await axios.get('/', {
-            params: {
-                hi: "hello"
-            },
-        });
-        console.log(res);
-        return await res;
-        // return await axios.post('users/login')
+        const result = await axios.post('auth/login/spotify/refresh', { refreshToken });
+        return result;
     } catch (error) {
         console.log(error);
+    }
+}
+
+async function loginWithSpotify(code) {
+    try {
+        const result = await axios.post('auth/login/spotify', { code });
+        return result;
+    } catch (error) {
+        console.log(error);
+        return error.message;
     }
 }

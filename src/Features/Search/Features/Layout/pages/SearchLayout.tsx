@@ -1,4 +1,4 @@
-import { Title } from 'common/services/Components/Title';
+import { Title } from 'common/Components/Title';
 import { utilService } from 'common/services/util.service';
 import React, { useEffect, useState } from 'react';
 import { SearchLayoutPreview } from './components/SearchLayoutPreview';

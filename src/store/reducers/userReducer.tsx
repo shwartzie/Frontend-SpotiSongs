@@ -1,23 +1,23 @@
 const INITIAL_STATE = {
-	loggedInUser: null,
-}
+    loggedInUser: null,
+};
 
-export const userReducer =(state = INITIAL_STATE, action) => {
-	const { loggedInUser } = state
-	switch (action.type) {
-		case 'LOGIN':
-			return {
-				...state,
-				loggedInUser: action.loggedInUser || loggedInUser,
-			}
+export const userReducer = (state = INITIAL_STATE, action) => {
+    const { loggedInUser } = state;
+    switch (action.type) {
+        case "LOGIN":
+            return {
+                ...state,
+                loggedInUser: action.loggedInUser || loggedInUser,
+            };
 
-		case 'UPDATE_USER':
-			return {
-				...state,
-				loggedInUser: { ...action.loggedInUser },
-			}
-        
-		default:
-			return state
-	}
-}
+        case "UPDATE_USER":
+            return {
+                ...state,
+                loggedInUser: { ...action.loggedInUser },
+            };
+
+        default:
+            return state;
+    }
+};
