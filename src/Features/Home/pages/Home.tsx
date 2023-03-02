@@ -6,14 +6,13 @@ import { useAuth } from "../../../hooks/authHooks";
 import { userService } from "Features/UserCommon/services/user.service";
 import { useNavigate } from "react-router-dom";
 import { Loading } from "../../../common/Components/Loading";
-const code: string = new URLSearchParams(window.location.search).get("code");
 
+const code: string = new URLSearchParams(window.location.search).get("code");
 export const Home = () => {
     const navigate = useNavigate();
 
-    const { accessToken, isLoading  } = useAuth(code);
+    const { isLoading } = useAuth(code, false);
 
-    console.log("Home");
     return (
         <main>
             {isLoading ? (

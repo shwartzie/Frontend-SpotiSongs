@@ -1,17 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import { MainRoutes } from "routes/main.routes";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { LogInPage } from "./Features/UserCommon/Login/pages/LogInPage";
-import { SignUpPage } from "./Features/UserCommon/Signup/pages/SignUpPage";
-import { useSelector } from "react-redux/es/exports";
 
 const App = () => {
-    const { loggedInUser }: any = useSelector((state: any) => state.userModule);
-    useEffect(() => {
-        console.log('loggedinUSer !! ',loggedInUser);
-    }, [loggedInUser]);
-
+ 
     return (
         <BrowserRouter>
             <MainRoutes />

@@ -1,7 +1,8 @@
 export const utilService = {
     getCurrentDayStatus,
     getCurrentAsideOption,
-    makeId
+    makeId,
+    debounce,
 };
 
 function getCurrentDayStatus(): string {
@@ -19,7 +20,6 @@ function getCurrentDayStatus(): string {
 
 function getCurrentAsideOption(option: string): string {
     const capitalizedString: string = option[0].toUpperCase() + option.slice(1);
-
 
     let currentOption: string = "";
 
@@ -42,4 +42,14 @@ function getCurrentAsideOption(option: string): string {
 
 function makeId(length = 24) {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
+
+async function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            func.apply(this, args);
+        }, timeout);
+    };
 }

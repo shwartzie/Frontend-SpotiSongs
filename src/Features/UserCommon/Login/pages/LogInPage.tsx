@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
-import { userService } from "../../services/user.service";
-import { login } from "../../../../store/actions/userActions";
-import { useSelector } from "react-redux";
+import React from "react";
 import { useDispatch } from "react-redux/es/exports";
-import { useAuth } from "../../../../hooks/authHooks";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../../../store/actions/userActions";
 
 const demoUser = {
     username: "admin",
@@ -14,9 +12,11 @@ const AuthUrl: string =
 
 export const LogInPage = () => {
     const dispatch: any = useDispatch();
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         // dispatch(login({ ...demoUser }));
+        // navigate("/home");
     };
 
     return (

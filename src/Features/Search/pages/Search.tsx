@@ -1,8 +1,5 @@
-import { useAuth } from "../../../hooks/authHooks";
-import React, { useState } from "react";
+import React from "react";
 import { SearchLayout } from "../Features/Layout/pages/SearchLayout";
-
-
 
 export const Search = () => {
     console.log("Search");

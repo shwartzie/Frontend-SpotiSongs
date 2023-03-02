@@ -16,8 +16,8 @@ export const MainRoutes = () => {
             <Routes>
                 <Route element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path="search" element={<Search />} />
                     <Route path="login" element={<LogInPage />} />
+                    <Route path="search" element={<Search />} />
                     <Route path="signup" element={<SignUpPage />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />

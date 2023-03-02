@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
     loggedInUser: null,
+    tokenData: null,
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
@@ -17,6 +18,11 @@ export const userReducer = (state = INITIAL_STATE, action) => {
                 loggedInUser: { ...action.loggedInUser },
             };
 
+        case "ADD_TOKEN":
+            return {
+                ...state,
+                tokenData: { ...action.tokenData },
+            };
         default:
             return state;
     }

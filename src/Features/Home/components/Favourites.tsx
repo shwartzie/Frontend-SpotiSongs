@@ -45,7 +45,6 @@ export const Favourites = () => {
     };
     const favourites: any[] = [playlist, likedSongs, album1, album2, album3, album4];
 
-    // console.log(favourites);
 
     return (
         <section className="favourites-container"> 

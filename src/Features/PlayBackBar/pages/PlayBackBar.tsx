@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import React, { useMemo, useRef } from "react";
+import "react-h5-audio-player/src/styles.scss";
 import { AudioElement } from "../../../types";
 import { Bar } from "../components/Bar";
-import { songService } from "../services/song.service";
-import AudioPlayer from "react-h5-audio-player";
-import "react-h5-audio-player/src/styles.scss";
 
 type PlayBackBarProps = {
     songs: any;

@@ -38,7 +38,6 @@ export const PlayerControlsPreview = () => {
            
             
             const audio: HTMLAudioElement = new Audio(path);
-            console.log(audio)
             const demo = {
                 audio,
                 title: "Linking Park - In the end",

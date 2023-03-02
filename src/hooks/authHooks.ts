@@ -1,18 +1,38 @@
 import { userService } from "Features/UserCommon/services/user.service";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-node";
+import { setSpotifyToken } from "store/actions/userActions";
 
 const spotifyApi = new SpotifyWebApi({
     clientId: "42f2800f08eb405abb7ea297b337bba2",
 });
 
-export const useAuth = (code: string = "") => {
-    const navigate = useNavigate();
+export const useAuth = (code: string = "", isGettingData: boolean) => {
     const [accessToken, setAccessToken] = useState<string>(null);
     const [refreshToken, setRefreshToken] = useState<string>(null);
     const [expiresIn, setExpiresIn] = useState<number>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    const dispatch: any = useDispatch();
+    const navigate = useNavigate();
+    const { tokenData }: any = useSelector((state: any): any => state.userModule);
+
+    const payLoad = {
+        accessToken,
+        refreshToken,
+        expiresIn,
+        setAccessToken,
+        setRefreshToken,
+        setExpiresIn,
+        isLoading,
+        spotifyApi
+    };
+
+    if (isGettingData) return payLoad;
+
+    console.log(tokenData);
 
     useEffect(() => {
         if (!accessToken) return;
@@ -20,27 +40,22 @@ export const useAuth = (code: string = "") => {
     }, [accessToken]);
 
     useEffect(() => {
-        if (!code) {
-            navigate("/login");
-            return;
-        }
-        userService
-            .loginWithSpotify(code)
-            .then(({ data: { accessToken, refreshToken, expiresIn }, status }) => {
-                if ((status = 200)) {
-                    navigate("/");
-                    setAccessToken(accessToken);
-                    setRefreshToken(refreshToken);
-                    setExpiresIn(expiresIn);
-                    setIsLoading(false);
-                    code = null;
-                }
-            })
-            .catch((error) => {
-                console.error(`Failed to login: ${error}`);
-                navigate("/login");
-            });
+        if (!code || code === "") return;
+        dispatch(setSpotifyToken({ code }));
     }, [code]);
+
+    useEffect(() => {
+        if (accessToken) return;
+        // console.log(accessToken, tokenData?.accessToken);
+
+        if (tokenData && accessToken !== tokenData.accessToken) {
+            navigate("/");
+            setAccessToken(tokenData.accessToken);
+            setRefreshToken(tokenData.refreshToken);
+            setExpiresIn(tokenData.expiresIn);
+            setIsLoading(false);
+        }
+    }, [tokenData]);
 
     const handleRefreshToken = async (refreshToken: string) => {
         const interval = setInterval(async () => {
@@ -66,18 +81,9 @@ export const useAuth = (code: string = "") => {
         return () => clearInterval(interval);
     };
     useEffect(() => {
-        if ((code && !refreshToken) || !expiresIn) return;
+        if (!refreshToken || !expiresIn) return;
         handleRefreshToken(refreshToken);
     }, [refreshToken, expiresIn]);
 
-    return {
-        accessToken,
-        refreshToken,
-        expiresIn,
-        setAccessToken,
-        setRefreshToken,
-        setExpiresIn,
-        isLoading,
-        handleRefreshToken,
-    };
+    return payLoad;
 };
