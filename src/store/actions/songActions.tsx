@@ -10,7 +10,11 @@ export const setSongsQuery = ({ tracks, tracksData }: setSongsQueryPayload): any
 				dispatch({ type: 'SET_SONGS_QUERY', tracks: null, tracksData: null });
 				return;
 			}
-			dispatch({ type: 'SET_SONGS_QUERY', tracks: [...tracks], ...tracksData });
+			dispatch({
+				type: 'SET_SONGS_QUERY',
+				tracks: [...tracks],
+				tracksData: { ...tracksData },
+			});
 		} catch (error) {
 			console.error(error);
 		}

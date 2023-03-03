@@ -1,14 +1,15 @@
-import { FavouriteTitle } from 'Features/Home/components/FavouriteTitle';
-import React, { useState } from 'react';
+import React from 'react';
 
 type ArtistInfoDisplayProps = {
 	songsData: any;
 };
 export const ArtistInfoDisplay = ({ songsData }: ArtistInfoDisplayProps) => {
+	const { artist, albumImage } = songsData;
 	return (
-		<a>
-			{/* <span>{song.name}</span> */}
-			{/* <img src={song.imageUrl} alt="" /> */}
-		</a>
+		<div>
+			<span>{artist.name}</span>
+			<img src={albumImage} alt="" />
+			<span>{artist.type}</span>
+		</div>
 	);
 };

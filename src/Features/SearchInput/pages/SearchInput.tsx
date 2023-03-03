@@ -27,13 +27,25 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
 			.searchTracks(query)
 			.then((result) => {
 				const { body } = result;
-				const { tracks: tracksData } = body;
-				const { items } = tracksData;
+				const { tracks } = body;
+				const { items } = tracks;
 
-				delete tracksData.items;
-
-				console.log('DATA', tracksData);
-				dispatch(setSongsQuery({ tracks: [...items], tracksData }));
+				const data = { ...items[0] };
+				const tracksData = {
+					id: data.id,
+					name: data.name,
+					artist: data.artists[0],
+					albumImage: data.album.images,
+					album: data.album,
+					preview_url: data.preview_url,
+					popularity: data.popularity,
+					track_number: data.track_number,
+					duration_ms: data.duration_ms,
+					type: data.type,
+					uri: data.uri,
+					is_local: data.is_local,
+				};
+				dispatch(setSongsQuery({ tracks: [...items], tracksData: { ...tracksData } }));
 			})
 			.catch((err) => {
 				console.error(err);
@@ -41,7 +53,7 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
 	}, [query]);
 
 	const handleRemove = (): void => {
-		setQuery("");
+		setQuery('');
 	};
 
 	const handleQuery = async (event: React.ChangeEvent<HTMLInputElement>) => {
