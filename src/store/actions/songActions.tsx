@@ -1,7 +1,16 @@
-export const setSongsQuery = (tracks: any): any => {
+interface setSongsQueryPayload {
+	tracks: any[] | null;
+	tracksData: any | null;
+}
+
+export const setSongsQuery = ({ tracks, tracksData }: setSongsQueryPayload): any => {
 	return async (dispatch: any) => {
 		try {
-			dispatch({ type: 'SET_SONGS_QUERY', tracks: [...tracks] });
+			if (!tracks) {
+				dispatch({ type: 'SET_SONGS_QUERY', tracks: null, tracksData: null });
+				return;
+			}
+			dispatch({ type: 'SET_SONGS_QUERY', tracks: [...tracks], ...tracksData });
 		} catch (error) {
 			console.error(error);
 		}

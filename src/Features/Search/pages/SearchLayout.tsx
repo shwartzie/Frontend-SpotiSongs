@@ -4,22 +4,18 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { FilteredSongsPreview } from '../components/FilteredSongsPreview';
 import { GenreLayoutPreview } from '../components/GenreLayoutPreview';
 import { searchLayoutService } from '../services/search.layout.service';
-
-type Genre = {
-	id: string;
-	name: string;
-	imageUrl: string;
-	backgroundColor: string;
-};
+import { Filtered } from './Filtered';
+import { Genres } from './Genres';
 
 interface SearchLayoutProps {
 	title: string;
-	songs: any | null;
+	songs: any[] | null;
+	songsData: any | null;
 }
-export const SearchLayout = ({ title, songs }: SearchLayoutProps) => {
+export const SearchLayout = ({ title, songs, songsData }: SearchLayoutProps) => {
 	const [genres, setGenres] = useState<string[] | any>();
 
-    // console.log('SearchLayout', songs)
+	// console.log('SearchLayout', songs)
 	useEffect(() => {
 		if (songs) return;
 		const cb = async () => {
@@ -38,19 +34,9 @@ export const SearchLayout = ({ title, songs }: SearchLayoutProps) => {
 	return (
 		<>
 			{!songs ? (
-				<>
-					<Title title={title} className={'search-layout-title'} />
-					<article className="search-layout-container">
-						{genres && genres.map((genre: Genre) => <GenreLayoutPreview genre={genre} key={genre.id} />)}
-					</article>
-				</>
+				<Genres genres={genres} title={title} />
 			) : (
-				<>
-					{/* <Title title={title} className={'search-layout-title'} */}
-					{songs.map((song: any) => (
-						<FilteredSongsPreview song={song} key={song.id} />
-					))}
-				</>
+				<Filtered songs={songs} songsData={songsData} />
 			)}
 		</>
 	);
