@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
-import { Home } from '../../Home/pages/Home';
-import { Search } from '../../Search/pages/Search';
-import { Library } from '../../Library/pages/Library';
 
-import { Header } from '../components/Header';
 import { Aside } from '../../AsideNavbar/pages/Aside';
-import { LikedSongs } from '../../LikedSongs/pages/LikedSongs';
-import { CreatePlaylist } from '../../CreatePlaylist/pages/CreatePlaylist';
+import { Header } from '../components/Header';
 import { Footer } from '../Features/Footer/pages/Footer';
 
 export const Layout = ({ children }: any) => {

@@ -1,7 +1,7 @@
 import { FavouriteTitle } from "Features/Home/components/FavouriteTitle";
 import React, { useState } from "react";
 
-type SearchLayoutPreviewProps = {
+type GenreLayoutPreviewProps = {
     genre: {
         id: string;
         name: string;
@@ -9,7 +9,7 @@ type SearchLayoutPreviewProps = {
         backgroundColor: string;
     };
 };
-export const SearchLayoutPreview = ({ genre }: SearchLayoutPreviewProps) => {
+export const GenreLayoutPreview = ({ genre }: GenreLayoutPreviewProps) => {
     return (
         <a style={{ backgroundColor: genre?.backgroundColor }}>
             <span>{genre.name}</span>

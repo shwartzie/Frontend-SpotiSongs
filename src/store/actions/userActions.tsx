@@ -10,7 +10,6 @@ export const login = (userToLogIn: UserToLogIn) => {
             const { data, status } = await userService.login(userToLogIn);
             if (status !== 200) {
                 throw new Error(`User was not found, following error: ${data.error}`);
-                return;
             }
             dispatch({ type: "LOGIN", loggedInUser: data });
         } catch (error) {

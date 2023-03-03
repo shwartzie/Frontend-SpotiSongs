@@ -1,20 +1,19 @@
 import { useAuth } from "hooks/authHooks";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import SpotifyWebApi from "spotify-web-api-node";
+import { setSongsQuery } from "../../../store/actions/songActions";
 
 type SearchInputProps = {
     query: string;
     setQuery: React.Dispatch<React.SetStateAction<string>>;
 };
-// const spotifyApi = new SpotifyWebApi({
-//     clientId: "42f2800f08eb405abb7ea297b337bba2",
-// });
 
 export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
     const { spotifyApi, isLoading } = useAuth("", true);
     const navigate: NavigateFunction = useNavigate();
+
+    const dispatch = useDispatch();
 
     const { tokenData }: any = useSelector((state: any) => state.userModule);
     // console.log("got access token", tokenData?.accessToken);
@@ -25,31 +24,38 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
             return;
         }
 
-        spotifyApi.searchTracks("linkinpark").then((res) => {
-            console.log("searchTracks", res);
+
+        spotifyApi.searchTracks(query).then((result) => {
+            const { body } = result;
+            const { tracks } = body;
+            const { items } = tracks
+
+            dispatch(setSongsQuery([...items]))
+
+        }).catch((err) => {
+            console.error(err);
+
         });
+
+        // spotifyApi.searchTracks("linkinpark").then((res) => {
+        //     console.log("searchTracks", res);
+        // });
     }, [query]);
 
     const handleRemove = (): void => {
         // setQuery("");
     };
 
-    const handleQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleQuery = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const filterBy = event.target.value;
-        // "linkinpark"
         setQuery(filterBy);
+        // const res = utilService.debounce(() => setQuery(filterBy), 1000)
 
-        // return utilService.debounce( () => {
-        //     console.log("trying to debounce", filterBy);
-        //     return spotifyApi.searchTracks(filterBy);
-        // });
+        // console.log("trying to debounce", filterBy);
+        // console.log('res',res)
     };
 
-    // const filterBy = event.target.value;
-    //     return await utilService.debounce(async () => {
-    //         console.log("trying to debounce", filterBy);
-    //         return await spotifyApi.searchTracks(filterBy);
-    //     });
+
     return (
         <div className="search-input-container">
             <form role="search">

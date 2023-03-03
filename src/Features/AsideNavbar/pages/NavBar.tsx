@@ -4,7 +4,7 @@ import { UserNavProfile } from '../components/UserNavProfile';
 import { UserNavModal } from '../../NavModal/components/UserNavModal';
 import { LeftArrow } from '../components/LeftArrow';
 import { RightArrow } from '../components/RightArrow';
-import { SearchInput } from 'Features/Search/components/SearchInput';
+import { SearchInput } from 'Features/SearchInput/pages/SearchInput';
 import { useLocation } from 'react-router-dom';
 
 
