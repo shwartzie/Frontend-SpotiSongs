@@ -3,17 +3,21 @@
 	padding-bottom: 32px;
 	min-height: calc(((100vh - 64px) - 90px) - 519px);
 	.filtered-layout {
-		grid-gap: $grid-gap;
-		display: grid;
-		grid-template-columns: repeat($column-count, minmax(0, 1fr));
+		display: flex;
 		min-width: $min-container-width;
 		margin-top: 16px;
 		.filtered-layout-conatainer {
+			@media (max-width: 1100px) {
+				& {
+					display: flex;
+					grid-gap: $grid-gap;
+					min-width: $min-container-width;
+					flex-wrap: wrap;
+				}
+			}   
+			display: flex;
 			grid-gap: $grid-gap;
-			display: grid;
-			grid-template-columns: repeat($column-count, minmax(0, 1fr));
 			min-width: $min-container-width;
-			row-gap: 32px;
 			& > :first-child {
 				grid-column: 1/-1;
 			}
@@ -81,11 +85,83 @@
 					border-radius: 500px;
 					display: inline-block;
 					padding: 4px 12px;
-                    box-sizing: border-box;
-                    margin-block: 0px;
-                    font-size: 0.8125rem;
-                    font-weight: 700;
-                    color: $text-base;
+					box-sizing: border-box;
+					margin-block: 0px;
+					font-size: 0.8125rem;
+					font-weight: 700;
+					color: $text-base;
+				}
+			}
+		}
+	}
+}
+
+.filtered-songs-main-conatiner {
+	grid-column: 3/-1;
+	max-width: 100%;
+	width: 100vw;
+
+	.songs-layout {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		min-width: 394px;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		outline: 0;
+		height: 224px;
+		contain: layout size;
+		position: relative;
+		transform: translateY(0px);
+
+		.songs-preview {
+			.songs-grid-row > *:not(:last-child) {
+				margin-right: 16px;
+			}
+			.songs-grid-row {
+				grid-gap: 16px;
+				padding: 0 16px;
+				display: flex;
+				justify-content: space-between;
+				border: 1px solid transparent;
+				border-radius: 4px;
+				height: 56px;
+				position: relative;
+
+				&[aria-colcount='2']:not(&) {
+					grid-template-columns: [first] 4fr [last] minmax(120px, 1fr);
+				}
+				.song-left {
+					display: flex;
+					justify-self: start;
+					font-size: rem(16px);
+					img {
+						min-width: 40px;
+						min-height: 40px;
+					}
+					> *:not(:last-child) {
+						margin-right: 16px;
+					}
+					.song-name {
+						margin-block: 0px;
+						font-size: rem(16px);
+						font-weight: 400;
+						color: $text-base;
+						white-space: unset;
+						word-break: break-all;
+						font-weight: 500;
+					}
+					.song-artist {
+						color: #b3b3b3;
+						@media (min-width: 768px) {
+							font-size: 0.875rem;
+						}
+					}
+				}
+				.song-right {
+					display: flex;
+					grid-column: last;
+					justify-self: end;
 				}
 			}
 		}

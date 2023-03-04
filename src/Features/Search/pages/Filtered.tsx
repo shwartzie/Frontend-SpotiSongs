@@ -1,6 +1,6 @@
 import { Title } from 'common/Components/Title';
 import React from 'react';
-import { ArtistInfoDisplay } from '../../ArtistInfoDisplay/pages/ArtistInfoDisplay';
+import { ArtistInfo } from '../../ArtistInfoDisplay/pages/ArtistInfo';
 import { FilteredSongsPreview } from '../components/FilteredSongsPreview';
 
 interface FilteredProps {
@@ -12,18 +12,26 @@ export const Filtered = ({ songs, songsData }: FilteredProps) => {
 		<main className="content-spacing filtered-main-container">
 			<header>options to filter by:</header>
 			<article className="filtered-layout">
-				<div className='filtered-layout-conatainer'>
-					<section className='artist-section'>
+				<div className="filtered-layout-conatainer">
+					<section className="artist-section">
 						<Title title={'Top Result'} className={'search-layout-title'} />
-						<ArtistInfoDisplay songsData={songsData} />
+						<ArtistInfo songsData={songsData} />
 					</section>
 
-					<section>
+					<section className="filtered-songs-main-conatiner">
 						<Title title={'Songs'} className={'search-layout-title'} />
-						{songs &&
-							songs.map((song: any) => (
-								<FilteredSongsPreview song={song} key={song.id} />
-							))}
+						<div className="songs-layout">
+							{songs &&
+								songs
+									.slice(0, 4)
+									.map((song: any, index: number) => (
+										<FilteredSongsPreview
+											song={song}
+											key={song.id}
+											index={index}
+										/>
+									))}
+						</div>
 					</section>
 				</div>
 			</article>

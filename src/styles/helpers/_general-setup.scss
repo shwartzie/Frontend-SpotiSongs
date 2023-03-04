@@ -1,5 +1,12 @@
 .content-spacing {
-    margin: 0;
+	margin: 0;
 	max-width: $content-max-width;
 	padding: 0 $content-spacing;
+}
+
+.flex {
+	display: flex;
+}
+.column {
+	flex-direction: column;
 }

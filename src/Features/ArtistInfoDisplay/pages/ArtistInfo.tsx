@@ -1,10 +1,10 @@
 import { Title } from 'common/Components/Title';
 import React from 'react';
 
-type ArtistInfoDisplayProps = {
+type ArtistInfoProps = {
 	songsData: any;
 };
-export const ArtistInfoDisplay = ({ songsData }: ArtistInfoDisplayProps) => {
+export const ArtistInfo = ({ songsData }: ArtistInfoProps) => {
 	const { artist, albumImage } = songsData;
 	const camelizedArtistStr: string = artist.type[0].toUpperCase() + artist.type.slice(1);
 
