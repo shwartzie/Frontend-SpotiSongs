@@ -9,18 +9,24 @@ interface FilteredProps {
 }
 export const Filtered = ({ songs, songsData }: FilteredProps) => {
 	return (
-		<>
+		<main className="content-spacing filtered-main-container">
 			<header>options to filter by:</header>
-			<section>
-				<Title title={'Top Result'} className={'search-layout-title'} />
-				<ArtistInfoDisplay songsData={songsData} />
-			</section>
+			<article className="filtered-layout">
+				<div className='filtered-layout-conatainer'>
+					<section className='artist-section'>
+						<Title title={'Top Result'} className={'search-layout-title'} />
+						<ArtistInfoDisplay songsData={songsData} />
+					</section>
 
-			<section>
-				<Title title={'Songs'} className={'search-layout-title'} />
-				{songs &&
-					songs.map((song: any) => <FilteredSongsPreview song={song} key={song.id} />)}
-			</section>
-		</>
+					<section>
+						<Title title={'Songs'} className={'search-layout-title'} />
+						{songs &&
+							songs.map((song: any) => (
+								<FilteredSongsPreview song={song} key={song.id} />
+							))}
+					</section>
+				</div>
+			</article>
+		</main>
 	);
 };

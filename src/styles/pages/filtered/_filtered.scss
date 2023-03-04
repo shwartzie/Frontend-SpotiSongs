@@ -1,0 +1,93 @@
+.filtered-main-container {
+	isolation: isolate;
+	padding-bottom: 32px;
+	min-height: calc(((100vh - 64px) - 90px) - 519px);
+	.filtered-layout {
+		grid-gap: $grid-gap;
+		display: grid;
+		grid-template-columns: repeat($column-count, minmax(0, 1fr));
+		min-width: $min-container-width;
+		margin-top: 16px;
+		.filtered-layout-conatainer {
+			grid-gap: $grid-gap;
+			display: grid;
+			grid-template-columns: repeat($column-count, minmax(0, 1fr));
+			min-width: $min-container-width;
+			row-gap: 32px;
+			& > :first-child {
+				grid-column: 1/-1;
+			}
+		}
+	}
+}
+
+.artist-section {
+	min-height: 0;
+	grid-column: 1/3;
+	contain-intrinsic-size: auto $shelf-min-height;
+	content-visibility: auto;
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	margin-bottom: 16px;
+	max-width: 100%;
+	min-height: $shelf-min-height;
+	min-width: $min-container-width;
+	position: relative;
+}
+
+.artist-info-container {
+	background: #181818;
+	border-radius: calc($card-container-border-radius + 2px);
+	flex: 1;
+	isolation: isolate;
+	padding: 20px;
+	position: relative;
+	transition: background-color 0.3s ease;
+	width: 100%;
+
+	.artist-info-layout {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		height: 100%;
+
+		.artist-info-img {
+			padding-bottom: 92px;
+			width: 92px;
+			border-radius: 50%;
+			position: relative;
+			img {
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+				border-radius: 50%;
+			}
+		}
+		.artist-info-credentials {
+			min-height: 62px;
+
+			.credentials-type {
+				box-sizing: border-box;
+				-webkit-tap-highlight-color: transparent;
+				margin-block: 0px;
+				font-size: 0.8125rem;
+				font-weight: 400;
+				color: $text-subdued, #6a6a6a;
+				span {
+					background-color: rgba(0, 0, 0, 0.2);
+					border-radius: 500px;
+					display: inline-block;
+					padding: 4px 12px;
+                    box-sizing: border-box;
+                    margin-block: 0px;
+                    font-size: 0.8125rem;
+                    font-weight: 700;
+                    color: $text-base;
+				}
+			}
+		}
+	}
+}

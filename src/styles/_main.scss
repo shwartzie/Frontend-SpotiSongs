@@ -3,10 +3,13 @@
 @import 'setup/functions';
 @import 'setup/mixins';
 @import './typography/typography';
+// Helpers
+@import './helpers/general-setup';
 // Pages
 @import './pages/landingPage/main-layout';
 @import './pages/landingPage/aside';
 @import './pages/landingPage/footer';
+@import './pages/filtered/filtered';
 // Components
 @import './components/landingPage/layout';
 @import './components/landingPage/navbar';
@@ -54,8 +57,8 @@ body {
 	font-family: Circular-Black;
 	margin: 0;
 	min-height: 100vh;
-	font-family: Circular-Black, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-		'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	font-family: Circular-Black, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+		'Droid Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	position: relative;

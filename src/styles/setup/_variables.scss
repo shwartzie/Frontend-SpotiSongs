@@ -4,6 +4,8 @@ $clr2: #293241;
 $clr3: #5c3fc5;
 $clr4: #696969;
 $clr5: #e6e9ec;
+$text-subdued: #a7a7a7;
+$text-base: #fff;
 
 $min-column-width: 270px;
 $item-height: 80px;
@@ -19,5 +21,16 @@ $wide-breakpoint: 1080px;
 
 //Buttons
 $button-size: 32px;
-$svg-button-size:16px;
+$svg-button-size: 16px;
 $svg-size: 16px;
+
+// Screen Width
+$content-max-width: 1955px;
+$content-spacing: 32px;
+
+$column-width: 185px;
+$column-count: 6;
+$grid-gap: 24px;
+$min-container-width: 394px;
+$card-container-border-radius: clamp(4px, $column-width - 32px * 0.025, 8px);
+$shelf-min-height: 300px;
