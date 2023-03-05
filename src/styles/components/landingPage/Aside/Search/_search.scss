@@ -56,6 +56,8 @@
 		min-height: 188px;
 		color: #fff;
 		text-decoration: none;
+		width: 100%;
+		height: 100%;
 		span {
 			max-width: 100%;
 			overflow-wrap: break-word;
@@ -85,8 +87,8 @@
 	}
 }
 .nav-search-input {
-	// width: 475px;
 	width: 100%;
+	min-width: 360px;
 	.search-input-container {
 		white-space: nowrap;
 
@@ -98,7 +100,7 @@
 		width: 100%;
 		form {
 			// width: 100%;
-			min-width: 270px;
+			min-width: 360px;
 			max-width: 100%;
 			position: relative;
 			position: relative;
@@ -106,6 +108,7 @@
 			align-items: center;
 			justify-content: center;
 			align-content: center;
+			width: 100%;
 		}
 		input {
 			color: rgb(0, 0, 0);
