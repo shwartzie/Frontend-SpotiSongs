@@ -1,4 +1,3 @@
-import { useAuth } from 'hooks/authHooks';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
@@ -10,14 +9,13 @@ type SearchInputProps = {
 };
 
 export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
-	const { spotifyApi, isLoading } = useAuth('', true);
 	const navigate: NavigateFunction = useNavigate();
 
 	const dispatch = useDispatch();
 
-	const { tokenData }: any = useSelector((state: any) => state.userModule);
+	const { tokenData, spotifyApi }: any = useSelector((state: any) => state.userModule);
 	useEffect(() => {
-		if (!query) return;
+		if (!query || query == '') return;
 		if (!tokenData?.accessToken) {
 			navigate('/login');
 			return;
