@@ -5,17 +5,18 @@
 	.nav-layout {
 		display: flex;
 		justify-content: space-between;
-		// @media (min-width: 1024px) {
-		// 	padding: 16px 32px;
-		// 	padding-inline-end: 32px;
-		// }
+	
+		.nav-layout-pagination-and-input-container {
+			display: flex;
+			
+		}
 		padding: 16px 32px;
 		padding-inline-end: 32px;
 		.pagination-buttons {
 			height: 64px;
 			display: flex;
 			gap: 16px;
-
+			width:130px;
 			button {
 				background-color: rgba(0, 0, 0, 0.7);
 				border: none;
@@ -55,7 +56,9 @@
 	button {
 		@media (max-width: 920px) {
 			& {
-				span,.arrow-down,.arrow-up {
+				span,
+				.arrow-down,
+				.arrow-up {
 					display: none;
 				}
 			}

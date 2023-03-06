@@ -68,15 +68,17 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
 	return (
 		<div className="search-input-container">
 			<form role="search">
-				<span></span>
-				<input
-					maxLength={800}
-					autoCorrect="off"
-					placeholder="What do you want to listen to?"
-					value={query}
-					onChange={(event) => handleQuery(event)}
-				/>
-				<button onClick={() => handleRemove()}></button>
+				<div className='search-input-calculated-width'>
+					<span></span>
+					<input
+						maxLength={800}
+						autoCorrect="off"
+						placeholder="What do you want to listen to?"
+						value={query}
+						onChange={(event) => handleQuery(event)}
+					/>
+					<button onClick={() => handleRemove()}></button>
+				</div>
 			</form>
 		</div>
 	);

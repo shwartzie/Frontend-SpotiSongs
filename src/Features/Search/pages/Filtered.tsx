@@ -23,7 +23,7 @@ export const Filtered = ({ songs, songsData }: FilteredProps) => {
 						<div className="songs-layout">
 							{songs &&
 								songs
-									.slice(0, 4)
+									.slice(0)
 									.map((song: any, index: number) => (
 										<FilteredSongsPreview
 											song={song}

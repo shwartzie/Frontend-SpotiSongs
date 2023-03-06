@@ -89,24 +89,28 @@
 .nav-search-input {
 	width: 100%;
 	min-width: 360px;
+	max-width: 600px;
+	// padding-left: 20px;
 	.search-input-container {
+		.search-input-calculated-width {
+			width: 100%;
+			position: relative;
+		}
 		white-space: nowrap;
 
 		pointer-events: auto;
-		position: relative;
+		// position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		width: 100%;
 		form {
 			// width: 100%;
-			min-width: 360px;
+			min-width: 415px;
 			max-width: 100%;
-			position: relative;
-			position: relative;
+			// position: relative;
 			display: flex;
 			align-items: center;
-			justify-content: center;
 			align-content: center;
 			width: 100%;
 		}
@@ -119,7 +123,7 @@
 			height: 40px;
 			padding: 6px 48px;
 			text-overflow: ellipsis;
-			width: 90%;
+			width: 100%;
 			text-transform: none;
 			&:focus-visible {
 				outline: 2px solid rgb(62, 117, 194);
@@ -130,26 +134,28 @@
 			background-image: url('../../../../../assets/svg/search-magnify-magnifier-glass-svgrepo-com.svg');
 			-webkit-box-flex: 1;
 			color: #121212;
-			left: 32px;
+			left: 10px;
 		}
 		span,
 		button {
 			position: absolute;
-
 			width: 30px;
 			height: 30px;
 			background-size: cover;
 			background-size: cover;
+			
+			top: 5px;
+
 		}
 		button {
-			position: absolute;
 			background-color: transparent;
 			background-image: url('../../../../../assets/svg/close-svgrepo-com.svg');
 			border: 0;
 			color: #121212;
 			padding: 0;
 			pointer-events: auto;
-			right: 32px;
+			right:0;
+			// right: 32px;
 		}
 	}
 }
