@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { SearchLayout } from './SearchLayout';
 import { Loading } from '../../../common/Components/Loading';
-export const Search = () => {
+
+interface SearchProps {
+	onSong: (song: any) => void;
+}
+export const Search = ({ onSong }: SearchProps) => {
 	const { tracks, tracksData } = useSelector((state: any) => state.songModule);
 	const [songs, setSongs] = useState<any | null>(tracks);
 	const [songsData, setSongsData] = useState<any | null>(tracksData);
@@ -36,9 +40,9 @@ export const Search = () => {
 			) : (
 				<>
 					{songs && songsData ? (
-						<SearchLayout title={'Broadcasts'} songs={songs} songsData={songsData} />
+						<SearchLayout title={'Broadcasts'} songs={songs} songsData={songsData} onSong={onSong}/>
 					) : (
-						<SearchLayout title={'Broadcasts'} songs={null} songsData={null} />
+						<SearchLayout title={'Broadcasts'} songs={null} songsData={null} onSong={null} />
 					)}
 				</>
 			)}

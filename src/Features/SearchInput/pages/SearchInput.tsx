@@ -20,10 +20,11 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
 			navigate('/login');
 			return;
 		}
-
+		let cancelled: boolean = false;
 		spotifyApi
 			.searchTracks(query)
 			.then((result) => {
+				if (cancelled) return;
 				const { body } = result;
 				const { tracks } = body;
 				const { items } = tracks;
@@ -35,19 +36,19 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
 					artist: data.artists[0],
 					albumImage: data.album.images,
 					album: data.album,
-					preview_url: data.preview_url,
 					popularity: data.popularity,
-					track_number: data.track_number,
-					duration_ms: data.duration_ms,
 					type: data.type,
 					uri: data.uri,
-					is_local: data.is_local,
 				};
 				dispatch(setSongsQuery({ tracks: [...items], tracksData: { ...tracksData } }));
 			})
 			.catch((err) => {
 				console.error(err);
 			});
+
+		return () => {
+			cancelled = true;
+		};
 	}, [query]);
 
 	const handleRemove = (): void => {
@@ -68,7 +69,7 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
 	return (
 		<div className="search-input-container">
 			<form role="search">
-				<div className='search-input-calculated-width'>
+				<div className="search-input-calculated-width">
 					<span></span>
 					<input
 						maxLength={800}

@@ -6,8 +6,10 @@ import { FilteredSongsPreview } from '../components/FilteredSongsPreview';
 interface FilteredProps {
 	songs: any[];
 	songsData: any | null;
+	onSong: (song: any) => void;
 }
-export const Filtered = ({ songs, songsData }: FilteredProps) => {
+export const Filtered = ({ songs, songsData ,onSong}: FilteredProps) => {
+
 	return (
 		<main className="content-spacing filtered-main-container">
 			<header>options to filter by:</header>
@@ -29,6 +31,7 @@ export const Filtered = ({ songs, songsData }: FilteredProps) => {
 											song={song}
 											key={song.id}
 											index={index}
+											onSong={onSong}
 										/>
 									))}
 						</div>

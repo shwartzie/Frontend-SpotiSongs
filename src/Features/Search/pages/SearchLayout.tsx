@@ -11,8 +11,9 @@ interface SearchLayoutProps {
 	title: string;
 	songs: any[] | null;
 	songsData: any | null;
+	onSong: (song: any) => void | null;
 }
-export const SearchLayout = ({ title, songs, songsData }: SearchLayoutProps) => {
+export const SearchLayout = ({ title, songs, songsData, onSong }: SearchLayoutProps) => {
 	const [genres, setGenres] = useState<string[] | any>();
 
 	// console.log('SearchLayout', songs)
@@ -36,7 +37,7 @@ export const SearchLayout = ({ title, songs, songsData }: SearchLayoutProps) => 
 			{!songs ? (
 				<Genres genres={genres} title={title} />
 			) : (
-				<Filtered songs={songs} songsData={songsData} />
+				<Filtered songs={songs} songsData={songsData} onSong={onSong} />
 			)}
 		</>
 	);

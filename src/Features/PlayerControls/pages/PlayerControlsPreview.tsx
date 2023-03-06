@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState, useRef } from "react";
-import { ControlButtons } from "../components/ControlsButtons";
-import { PlayBackBar } from "../../PlayBackBar/pages/PlayBackBar";
-import { songService } from "../../PlayBackBar/services/song.service";
-import { audioService } from "../../../audio/index";
-const path = '../../../audio/in-the-end.mp3'
+import React, { useEffect, useMemo, useState, useRef } from 'react';
+import { ControlButtons } from '../components/ControlsButtons';
+import { PlayBackBar } from '../../PlayBackBar/pages/PlayBackBar';
+import { songService } from '../../PlayBackBar/services/song.service';
+import { audioService } from '../../../audio/index';
+const path = '../../../audio/in-the-end.mp3';
 // interface ControlButtons {
 //     audioElement: AudioElement;
 //     isPlaying: boolean;
@@ -18,55 +18,45 @@ const path = '../../../audio/in-the-end.mp3'
 // };
 
 interface PayLoad {
-    isPlaying: boolean;
-    setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-    songs: any;
-    setSongs: React.Dispatch<any>;
-    currentSong: any;
-    setCurrentSong: React.Dispatch<any>;
+	isPlaying: boolean;
+	setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+	songs: any;
+	setSongs: React.Dispatch<any>;
+	currentSong: any;
+	setCurrentSong: React.Dispatch<any>;
 }
 
-export const PlayerControlsPreview = () => {
-    const [songs, setSongs] = useState<any>();
-    const [currentSong, setCurrentSong] = useState<any>();
-    const [isPlaying, setPlaying] = useState<boolean>(false);
+interface PlayerControlsPreviewProps {
+	currentSongPlaying: any;
+}
 
-    useEffect(() => {
-        const fetch = async () => {
-            const demoSongs: any = await songService.get();
+export const PlayerControlsPreview = ({ currentSongPlaying }: PlayerControlsPreviewProps) => {
+	const [songs, setSongs] = useState<any>();
+	const [currentSong, setCurrentSong] = useState<any>();
+	const [isPlaying, setPlaying] = useState<boolean>(false);
 
-           
-            
-            const audio: HTMLAudioElement = new Audio(path);
-            const demo = {
-                audio,
-                title: "Linking Park - In the end",
-                progress: 0,
-                length: 0,
-            };
-            setSongs([...demoSongs]);
-            setCurrentSong({ ...demo });
-        };
-        fetch();
-    }, []);
+	useEffect(() => {
+		setCurrentSong(currentSongPlaying);
+        console.log('MOUNTED PlayerControlsPreview', currentSongPlaying);
+	}, [currentSongPlaying]);
 
-    const payLoad: PayLoad = {
-        songs,
-        setSongs,
-        currentSong,
-        setCurrentSong,
-        isPlaying,
-        setPlaying,
-    };
+	const payLoad: PayLoad = {
+		songs,
+		setSongs,
+		currentSong,
+		setCurrentSong,
+		isPlaying,
+		setPlaying,
+	};
 
-    return (
-        <section className="player-controls-container">
-            <div className="player-controls-layout">
-                <ControlButtons {...payLoad} />
-                {songs && <PlayBackBar {...payLoad} />}
-            </div>
-        </section>
-    );
+	return (
+		<section className="player-controls-container">
+			<div className="player-controls-layout">
+				<ControlButtons {...payLoad} />
+				{songs && <PlayBackBar {...payLoad} currentSong={currentSong}/>}
+			</div>
+		</section>
+	);
 };
 
 // const { data, status }: any = await songService.query();

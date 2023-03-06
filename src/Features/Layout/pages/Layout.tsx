@@ -6,7 +6,10 @@ import { Aside } from '../../AsideNavbar/pages/Aside';
 import { Header } from '../components/Header';
 import { Footer } from '../Features/Footer/pages/Footer';
 
-export const Layout = ({ children }: any) => {
+interface LayoutProps {
+    currentSongPlaying: any
+}
+export const Layout = ({ currentSongPlaying }: LayoutProps) => {
 
     const [activePage, setActivePage] = useState<string>('home');
     const [onPagination, setPage] = useState<any>(activePage);
@@ -25,7 +28,7 @@ export const Layout = ({ children }: any) => {
                             <Outlet />
                         </div>
                     </div>
-                    <Footer />
+                    <Footer currentSongPlaying={currentSongPlaying}/>
                 </div>
             </main>
         </>

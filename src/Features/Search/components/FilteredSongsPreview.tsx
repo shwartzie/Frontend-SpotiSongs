@@ -4,8 +4,9 @@ import { LikedSong } from '../../SongDetails/components/LikedSong';
 type FilteredSongsPreviewProps = {
 	song: any;
 	index: number;
+	onSong: (song: any) => void;
 };
-export const FilteredSongsPreview = ({ song, index }: FilteredSongsPreviewProps) => {
+export const FilteredSongsPreview = ({ song, index,onSong }: FilteredSongsPreviewProps) => {
 	const [isSelected, setIsSelected] = useState(false);
 	const [isLiked, setIsLiked] = useState(false);
 	const handleSelect = () => {
@@ -13,7 +14,7 @@ export const FilteredSongsPreview = ({ song, index }: FilteredSongsPreviewProps)
 	};
 
 	const img = song.album.images[0].url;
-	console.log('song', song);
+	// console.log('song', song);
 
 	return (
 		<div
@@ -23,7 +24,7 @@ export const FilteredSongsPreview = ({ song, index }: FilteredSongsPreviewProps)
 			aria-selected={isSelected}
 			onClick={() => handleSelect()}
 		>
-			<div className="songs-grid-row">
+			<div className="songs-grid-row" onClick={() => onSong({...song})}>
 				<div className="song-left" role="gridcell">
 					<img src={img} alt="" />
 					<div className='flex column'>

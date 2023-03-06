@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FunctionsPreview } from '../../../../Functions/pages/FunctionsPreview';
 import { PlayerControlsPreview } from '../../../../PlayerControls/pages/PlayerControlsPreview';
 import { SongDetailsPreview } from '../../../../SongDetails/pages/SongDetailsPreview';
-export const Footer = () => {
 
-    return (
-        <footer className='footer-main-container'>
-            <div className='footer-container'>
-                <main className='footer-layout'>
-                    <SongDetailsPreview />
-                    <PlayerControlsPreview />
-                    <FunctionsPreview />
-                </main>
-            </div>
-        </footer>
-    );
+interface FooterProps {
+	currentSongPlaying: any;
+}
+
+export const Footer = ({ currentSongPlaying }: FooterProps) => {
+	useEffect(() => {
+		// setCurrentSong(currentSongPlaying);
+		console.log('MOUNTED Footer', currentSongPlaying);
+	}, [currentSongPlaying]);
+	return (
+		<footer className="footer-main-container">
+			<div className="footer-container">
+				<main className="footer-layout">
+					<SongDetailsPreview />
+					<PlayerControlsPreview currentSongPlaying={currentSongPlaying} />
+					<FunctionsPreview />
+				</main>
+			</div>
+		</footer>
+	);
 };
