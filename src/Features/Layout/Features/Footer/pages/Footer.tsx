@@ -8,10 +8,7 @@ interface FooterProps {
 }
 
 export const Footer = ({ currentSongPlaying }: FooterProps) => {
-	useEffect(() => {
-		// setCurrentSong(currentSongPlaying);
-		console.log('MOUNTED Footer', currentSongPlaying);
-	}, [currentSongPlaying]);
+	
 	return (
 		<footer className="footer-main-container">
 			<div className="footer-container">

@@ -11,16 +11,16 @@ import { NotFound } from 'Features/NotFound/pages/NotFound';
 export const MainRoutes = () => {
 	const [currentSongPlaying, setCurrentSong] = useState<any>(null);
 
-	useEffect(() => {
-        console.log('listening..',currentSongPlaying)
-    }, [currentSongPlaying]);
+	// useEffect(() => {
+    //     console.log('listening..',currentSongPlaying)
+    // }, [currentSongPlaying]);
 
 	return (
 		<>
 			<Routes>
 				<Route element={<Layout currentSongPlaying={currentSongPlaying} />}>
-					<Route index element={<Home />} />
-					<Route path="login" element={<LogInPage />} />
+					<Route index element={<LogInPage />} />
+					<Route path="home" element={<Home />} />
 					<Route path="search" element={<Search onSong={setCurrentSong} />} />
 					<Route path="signup" element={<SignUpPage />} />
 				</Route>

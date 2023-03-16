@@ -8,28 +8,24 @@ import { useNavigate } from 'react-router-dom';
 import { Loading } from '../../../common/Components/Loading';
 import { useSelector } from 'react-redux';
 
-const code: string = new URLSearchParams(window.location.search).get('code');
+// const code: string = new URLSearchParams(window.location.search).get('code');
 export const Home = () => {
+	// const { tokenData } = useSelector((state: any): any => state.userModule);
 
-	const { tokenData } = useSelector((state: any): any => state.userModule);
-    
-    const { isLoading } = useAuth(code);
 
 
 	return (
 		<main>
-			{isLoading ? (
-				<Loading />
-			) : (
-				<div>
-					<div className="landing-page-header-and-favourites-container">
-						<section className="landing-page-header-and-favourites-section">
-							<FavouritesTitle />
-							<Favourites />
-						</section>
-					</div>
+			(
+			<div>
+				<div className="landing-page-header-and-favourites-container">
+					<section className="landing-page-header-and-favourites-section">
+						<FavouritesTitle />
+						<Favourites />
+					</section>
 				</div>
-			)}
+			</div>
+			)
 		</main>
 	);
 };

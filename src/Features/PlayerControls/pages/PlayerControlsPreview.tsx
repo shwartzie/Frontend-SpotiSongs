@@ -35,10 +35,10 @@ export const PlayerControlsPreview = ({ currentSongPlaying }: PlayerControlsPrev
 	const [currentSong, setCurrentSong] = useState<any>();
 	const [isPlaying, setPlaying] = useState<boolean>(false);
 
-	useEffect(() => {
-		setCurrentSong(currentSongPlaying);
-        console.log('MOUNTED PlayerControlsPreview', currentSongPlaying);
-	}, [currentSongPlaying]);
+	// useEffect(() => {
+	// 	setCurrentSong(currentSongPlaying);
+    //     console.log('MOUNTED PlayerControlsPreview', currentSongPlaying);
+	// }, [currentSongPlaying]);
 
 	const payLoad: PayLoad = {
 		songs,

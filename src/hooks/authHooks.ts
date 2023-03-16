@@ -19,6 +19,7 @@ export const useAuth = (code: string = '') => {
 	const { tokenData }: any = useSelector((state: any): any => state.userModule);
 
 	useEffect(() => {
+		console.log('useEffect[code]')
 		if (!code || code === '' || tokenData) return;
 		dispatch(setSpotifyToken({ code, spotifyApi }));
 	}, [code]);
@@ -26,7 +27,7 @@ export const useAuth = (code: string = '') => {
 	useEffect(() => {
 		if (!tokenData) return;
 		spotifyApi.setAccessToken(tokenData.accessToken);
-		navigate('/');
+		navigate('/home');
 		setRefreshToken(tokenData.refreshToken);
 		setExpiresIn(tokenData.expiresIn);
 		setIsLoading(false);
