@@ -66,5 +66,6 @@ export const useAuth = (code: string = '') => {
 		setExpiresIn,
 		isLoading,
 		spotifyApi,
+		tokenData
 	};
 };

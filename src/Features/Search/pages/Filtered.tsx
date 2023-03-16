@@ -2,14 +2,9 @@ import { Title } from 'common/Components/Title';
 import React from 'react';
 import { ArtistInfo } from '../../ArtistInfoDisplay/pages/ArtistInfo';
 import { FilteredSongsPreview } from '../components/FilteredSongsPreview';
+import { FilteredProps } from '../../../types/Songs';
 
-interface FilteredProps {
-	songs: any[];
-	songsData: any | null;
-	onSong: (song: any) => void;
-}
-export const Filtered = ({ songs, songsData ,onSong}: FilteredProps) => {
-
+export const Filtered = ({ songs, songsData, onSong }: FilteredProps) => {
 	return (
 		<main className="content-spacing filtered-main-container">
 			<header>options to filter by:</header>

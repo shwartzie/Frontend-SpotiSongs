@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
 import { LikedSong } from '../../SongDetails/components/LikedSong';
+import React, { useState } from 'react';
 
-type FilteredSongsPreviewProps = {
-	song: any;
+interface FilteredSongsPreviewProps {
 	index: number;
+	song: any;
 	onSong: (song: any) => void;
-};
-export const FilteredSongsPreview = ({ song, index,onSong }: FilteredSongsPreviewProps) => {
+}
+export const FilteredSongsPreview = ({ song, index, onSong }: FilteredSongsPreviewProps) => {
 	const [isSelected, setIsSelected] = useState(false);
-	const [isLiked, setIsLiked] = useState(false);
+	const [isLiked, setIsLiked] = useState<boolean>(false);
 	const handleSelect = () => {
 		setIsSelected((prev) => !prev);
+		onSong({ ...song });
+		console.dir(song);
 	};
 
 	const img = song.album.images[0].url;
@@ -24,10 +26,10 @@ export const FilteredSongsPreview = ({ song, index,onSong }: FilteredSongsPrevie
 			aria-selected={isSelected}
 			onClick={() => handleSelect()}
 		>
-			<div className="songs-grid-row" onClick={() => onSong({...song})}>
+			<div className="songs-grid-row">
 				<div className="song-left" role="gridcell">
 					<img src={img} alt="" />
-					<div className='flex column'>
+					<div className="flex column">
 						<span className="song-name">{song.name}</span>
 						<span className="song-artist">{song.album.artists[0].name}</span>
 					</div>

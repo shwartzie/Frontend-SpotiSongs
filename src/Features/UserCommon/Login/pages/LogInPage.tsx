@@ -5,6 +5,7 @@ import { login } from '../../../../store/actions/userActions';
 import { Link } from 'react-router-dom';
 import { useAuth } from 'hooks/authHooks';
 import { Loading } from 'common/Components/Loading';
+import { userLoginService } from '../services/user.login.service';
 const demoUser = {
 	username: 'admin',
 	password: 'admin',
@@ -16,8 +17,13 @@ const code: string = new URLSearchParams(window.location.search).get('code');
 export const LogInPage = () => {
 	const dispatch: any = useDispatch();
 
-	const { isLoading } = useAuth(code);
+	const { isLoading, tokenData } = useAuth(code);
 
+	useEffect(() => {
+		if (tokenData) {
+			userLoginService.save('tokenData', tokenData.accessToken);
+		}
+	}, [tokenData]);
 	const handleLogin = async () => {
 		dispatch(login({ ...demoUser }));
 	};

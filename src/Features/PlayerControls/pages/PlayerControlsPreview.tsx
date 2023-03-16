@@ -32,18 +32,13 @@ interface PlayerControlsPreviewProps {
 
 export const PlayerControlsPreview = ({ currentSongPlaying }: PlayerControlsPreviewProps) => {
 	const [songs, setSongs] = useState<any>();
-	const [currentSong, setCurrentSong] = useState<any>();
+	const [a, setCurrentSong] = useState<any>();
 	const [isPlaying, setPlaying] = useState<boolean>(false);
-
-	// useEffect(() => {
-	// 	setCurrentSong(currentSongPlaying);
-    //     console.log('MOUNTED PlayerControlsPreview', currentSongPlaying);
-	// }, [currentSongPlaying]);
-
+	console.log('PlayerControlsPreview', currentSongPlaying);
 	const payLoad: PayLoad = {
 		songs,
 		setSongs,
-		currentSong,
+		currentSong: currentSongPlaying,
 		setCurrentSong,
 		isPlaying,
 		setPlaying,
@@ -53,18 +48,9 @@ export const PlayerControlsPreview = ({ currentSongPlaying }: PlayerControlsPrev
 		<section className="player-controls-container">
 			<div className="player-controls-layout">
 				<ControlButtons {...payLoad} />
-				{songs && <PlayBackBar {...payLoad} currentSong={currentSong}/>}
+				{songs && <PlayBackBar {...payLoad}/>}
 			</div>
 		</section>
 	);
 };
 
-// const { data, status }: any = await songService.query();
-// if (status !== 200) {
-//     throw new Error("FAILED " + status);
-//     return;
-// }
-// const { query: { tracks } } = data;
-// console.log("tracks", tracks);
-// setSongs([...tracks]);
-// setCurrentSong({ ...tracks[0] });

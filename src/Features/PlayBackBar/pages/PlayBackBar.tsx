@@ -6,7 +6,6 @@ import { Bar } from '../components/Bar';
 type PlayBackBarProps = {
 	songs: any;
 	currentSong: any;
-	setCurrentSong: React.Dispatch<React.SetStateAction<any>>;
 	setSongs: React.Dispatch<React.SetStateAction<any[]>>;
 	isPlaying: boolean;
 	setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,21 +18,20 @@ type PlayBackBarProps = {
 //     length: number;
 // };
 
-export const PlayBackBar = (
-	{ songs, setSongs, setCurrentSong, isPlaying, setPlaying }: PlayBackBarProps,
-	{ currentSong }: any
-) => {
+export const PlayBackBar = ({
+	songs,
+	setSongs,
+	isPlaying,
+	setPlaying,
+	currentSong,
+}: PlayBackBarProps) => {
 	const audioElement: AudioElement = useRef();
-
+	console.log('PlayBackBar', currentSong);
 	useEffect(() => {
-		console.log('PASSED DOWN PROP PlayBackBar', currentSong);
-	}, [currentSong]);
-
-	const playing = useMemo(async () => {
 		if (isPlaying) {
-			await audioElement.current?.play();
+			audioElement.current?.play();
 		} else {
-			await audioElement.current?.pause();
+			audioElement.current?.pause();
 		}
 	}, [isPlaying]);
 
@@ -44,15 +42,15 @@ export const PlayBackBar = (
 	};
 
 	const onPlaying = (event) => {
-		console.log('onPlaying', event);
+		console.log('onPlaying currentSong.uri', currentSong.uri);
 		const duration = audioElement.current.duration;
 		const currentTime = audioElement.current.currentTime;
 
-		setCurrentSong({
-			...currentSong,
-			progress: (currentTime / duration) * 100,
-			length: duration,
-		});
+		// setCurrentSong({
+		// 	...currentSong,
+		// 	progress: (currentTime / duration) * 100,
+		// 	length: duration,
+		// });
 	};
 
 	return (
