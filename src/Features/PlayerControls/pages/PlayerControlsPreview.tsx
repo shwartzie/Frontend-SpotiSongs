@@ -17,40 +17,44 @@ const path = '../../../audio/in-the-end.mp3';
 //     setCurrentSong: React.Dispatch<any>;
 // };
 
-interface PayLoad {
-	isPlaying: boolean;
-	setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-	songs: any;
-	setSongs: React.Dispatch<any>;
-	currentSong: any;
-	setCurrentSong: React.Dispatch<any>;
-}
 
 interface PlayerControlsPreviewProps {
 	currentSongPlaying: any;
+	isPlaying: boolean;
+	setPlaying: (isPlaying: boolean) => void;
 }
 
-export const PlayerControlsPreview = ({ currentSongPlaying }: PlayerControlsPreviewProps) => {
+export const PlayerControlsPreview = ({ currentSongPlaying, isPlaying, setPlaying }: PlayerControlsPreviewProps) => {
 	const [songs, setSongs] = useState<any>();
-	const [a, setCurrentSong] = useState<any>();
-	const [isPlaying, setPlaying] = useState<boolean>(false);
-	console.log('PlayerControlsPreview', currentSongPlaying);
-	const payLoad: PayLoad = {
-		songs,
-		setSongs,
-		currentSong: currentSongPlaying,
-		setCurrentSong,
-		isPlaying,
-		setPlaying,
-	};
+	useEffect(() => {
+		if (currentSongPlaying) {
+			setCurrentSongData((rest) => {
+				return {
+					href: currentSongPlaying?.external_urls.spotify,
+					...rest,
+				};
+			});
+		}
+	}, [currentSongPlaying]);
+
+	const [currentSongData, setCurrentSongData] = useState<any>({ progress: 0, length: 0 });
+
+
 
 	return (
 		<section className="player-controls-container">
 			<div className="player-controls-layout">
-				<ControlButtons {...payLoad} />
-				{songs && <PlayBackBar {...payLoad}/>}
+				<ControlButtons
+					songs={songs}
+					setSongs={setSongs}
+					currentSong={currentSongPlaying}
+					setCurrentSong={setCurrentSongData}
+					isPlaying={isPlaying}
+					setPlaying={setPlaying}
+				/>
+
+				<PlayBackBar currentSong={currentSongData} isPlaying={isPlaying} setCurrentSongData={setCurrentSongData} />
 			</div>
 		</section>
 	);
 };
-

@@ -17,10 +17,9 @@ export const useAuth = (code: string = '') => {
 	const dispatch: any = useDispatch();
 	const navigate = useNavigate();
 	const { tokenData }: any = useSelector((state: any): any => state.userModule);
-
+	
 	useEffect(() => {
-		console.log('useEffect[code]')
-		if (!code || code === '' || tokenData) return;
+		if (!code || code === '' || tokenData || userService.getLocalEntity('tokenData')) return;
 		dispatch(setSpotifyToken({ code, spotifyApi }));
 	}, [code]);
 
@@ -43,7 +42,6 @@ export const useAuth = (code: string = '') => {
 					throw new Error('Failed to refresh token');
 				}
 				dispatch(setSpotifyToken({ tokenData: data }));
-
 				setIsLoading(false);
 				setRefreshToken(data.newRefreshToken);
 				setExpiresIn(data.expiresIn);
@@ -66,6 +64,6 @@ export const useAuth = (code: string = '') => {
 		setExpiresIn,
 		isLoading,
 		spotifyApi,
-		tokenData
+		tokenData,
 	};
 };

@@ -31,7 +31,7 @@ export const ControlButtons = ({ isPlaying, setPlaying, setCurrentSong, songs, c
         songs,
         currentSong,
     };
-	console.log('ControlButtons', currentSong);
+	// console.log('ControlButtons', currentSong);
     return (
         <article className="control-buttons-container">
             <Shuffle />

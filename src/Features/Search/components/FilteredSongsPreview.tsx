@@ -5,18 +5,19 @@ interface FilteredSongsPreviewProps {
 	index: number;
 	song: any;
 	onSong: (song: any) => void;
+	setPlaying: (isPlaying: boolean) => void;
 }
-export const FilteredSongsPreview = ({ song, index, onSong }: FilteredSongsPreviewProps) => {
+export const FilteredSongsPreview = ({ song, index, onSong, setPlaying }: FilteredSongsPreviewProps) => {
 	const [isSelected, setIsSelected] = useState(false);
 	const [isLiked, setIsLiked] = useState<boolean>(false);
 	const handleSelect = () => {
 		setIsSelected((prev) => !prev);
 		onSong({ ...song });
-		console.dir(song);
+		setPlaying(true);
+		console.dir('song', song);
 	};
 
 	const img = song.album.images[0].url;
-	// console.log('song', song);
 
 	return (
 		<div

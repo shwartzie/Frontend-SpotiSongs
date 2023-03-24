@@ -4,11 +4,9 @@ import { AudioElement } from '../../../types';
 import { Bar } from '../components/Bar';
 
 type PlayBackBarProps = {
-	songs: any;
 	currentSong: any;
-	setSongs: React.Dispatch<React.SetStateAction<any[]>>;
 	isPlaying: boolean;
-	setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+	setCurrentSongData: (currentSongData: any) => void;
 };
 
 // type CurrentSong = {
@@ -18,20 +16,16 @@ type PlayBackBarProps = {
 //     length: number;
 // };
 
-export const PlayBackBar = ({
-	songs,
-	setSongs,
-	isPlaying,
-	setPlaying,
-	currentSong,
-}: PlayBackBarProps) => {
+export const PlayBackBar = ({ isPlaying, currentSong, setCurrentSongData }: PlayBackBarProps) => {
 	const audioElement: AudioElement = useRef();
-	console.log('PlayBackBar', currentSong);
+	// console.log('PlayBackBar', currentSong?.uri);
+
 	useEffect(() => {
+		console.log('PlayBackBar isPlaying', isPlaying);
 		if (isPlaying) {
-			audioElement.current?.play();
+			audioElement.current.play();
 		} else {
-			audioElement.current?.pause();
+			audioElement.current.pause();
 		}
 	}, [isPlaying]);
 
@@ -42,23 +36,22 @@ export const PlayBackBar = ({
 	};
 
 	const onPlaying = (event) => {
-		console.log('onPlaying currentSong.uri', currentSong.uri);
-		const duration = audioElement.current.duration;
-		const currentTime = audioElement.current.currentTime;
+		console.log('onPlaying currentSong.uri', currentSong?.uri, audioElement.current);
+		const duration = audioElement.current?.duration;
+		const currentTime = audioElement.current?.currentTime;
 
-		// setCurrentSong({
-		// 	...currentSong,
-		// 	progress: (currentTime / duration) * 100,
-		// 	length: duration,
-		// });
+		setCurrentSongData({
+			...currentSong,
+			progress: (currentTime / duration) * 100,
+			length: duration,
+		});
 	};
-
-	return (
+	console.log('currentSong', currentSong)
+	return (	
 		<article className="play-back-bar">
 			<>
-				<audio ref={audioElement} onTimeUpdate={onPlaying}>
-					<source src={currentSong.uri} />
-				</audio>
+				{currentSong && <audio ref={audioElement} onTimeUpdate={onPlaying} src={currentSong.href} /> }
+
 				<Bar currentSong={currentSong} checkWidth={checkWidth} />
 			</>
 		</article>

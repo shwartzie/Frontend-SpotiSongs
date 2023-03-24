@@ -1,8 +1,10 @@
 import { userLoginService } from 'Features/UserCommon/Login/services/user.login.service';
+import { userService } from 'Features/UserCommon/services/user.service';
 
 const INITIAL_STATE = {
 	loggedInUser: null,
 	tokenData: null,
+	spotifyApi: null
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
@@ -24,8 +26,8 @@ export const userReducer = (state = INITIAL_STATE, action) => {
 			console.log('ADD_TOKEN', action.spotifyApi);
 			return {
 				...state,
-				tokenData: { ...action.tokenData },
-				spotifyApi: action.spotifyApi || state.tokenData?.spotifyApi,
+				tokenData: { ...action.tokenData } || state.tokenData || userService.getLocalEntity('tokenData'),
+				spotifyApi: action.spotifyApi || state.spotifyApi,
 			};
 		default:
 			return state;

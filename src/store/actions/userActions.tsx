@@ -1,5 +1,6 @@
+import { TokenData,TokenApiData } from '../../types/Token';
 import { userService } from '../../Features/UserCommon/services/user.service';
-
+import SpotifyWebApi from 'spotify-web-api-node';
 type UserToLogIn = {
 	username: string;
 	password: string;
@@ -22,6 +23,7 @@ type Token = {
 	data: { accessToken: string; refreshToken: string; expiresIn: number };
 	status: number;
 };
+
 export const setSpotifyToken = ({ code, spotifyApi, tokenData }: any) => {
 	return async (dispatch: any) => {
 		try {
@@ -30,7 +32,7 @@ export const setSpotifyToken = ({ code, spotifyApi, tokenData }: any) => {
 				return;
 			}
 
-			const { data, status }: Token = await userService.loginWithSpotify(code);
+			const { data, status }: TokenApiData = await userService.loginWithSpotify(code, spotifyApi._credentials.clientId);
 			dispatch({ type: 'ADD_TOKEN', tokenData: { ...data }, spotifyApi });
 
 			if (status !== 200) {
@@ -43,6 +45,19 @@ export const setSpotifyToken = ({ code, spotifyApi, tokenData }: any) => {
 	};
 };
 
+export const setLocalToken = () => {
+	return async (dispatch: any) => {
+		const tokenData : TokenData = userService.getLocalEntity('tokenData');
+		const spotifyApiClientId = userService.getLocalEntity('spotfiyApi');
+		if (!tokenData) return;
+		const spotifyApi = new SpotifyWebApi({
+			clientId: spotifyApiClientId,
+		});
+		console.dir('setLocalToken', spotifyApi);
+		spotifyApi.setAccessToken(tokenData.accessToken);
+		dispatch({ type: 'ADD_TOKEN', tokenData: { ...tokenData }, spotifyApi });
+	};
+};
 export const logout = (loggedInUser) => {
 	return async (dispatch) => {
 		// const user = await userService.logout()

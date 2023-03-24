@@ -17,13 +17,9 @@ const code: string = new URLSearchParams(window.location.search).get('code');
 export const LogInPage = () => {
 	const dispatch: any = useDispatch();
 
-	const { isLoading, tokenData } = useAuth(code);
+	const { isLoading } = useAuth(code);
 
-	useEffect(() => {
-		if (tokenData) {
-			userLoginService.save('tokenData', tokenData.accessToken);
-		}
-	}, [tokenData]);
+	
 	const handleLogin = async () => {
 		dispatch(login({ ...demoUser }));
 	};

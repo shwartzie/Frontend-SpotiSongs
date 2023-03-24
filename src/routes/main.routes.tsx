@@ -7,18 +7,37 @@ import { Route, Routes } from 'react-router-dom';
 import { LogInPage } from 'Features/UserCommon/Login/pages/LogInPage';
 import { SignUpPage } from 'Features/UserCommon/Signup/pages/SignUpPage';
 import { NotFound } from 'Features/NotFound/pages/NotFound';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLocalToken } from '../store/actions/userActions';
 
 export const MainRoutes = () => {
 	const [currentSongPlaying, setCurrentSong] = useState<any>(null);
-	const { tokenData } = useSelector((state: any) => state.userModule);
+	const [isPlaying, setPlaying] = useState<boolean>(false);
+	console.log('toggled', isPlaying);
+	const dispatch: any = useDispatch();
+	const { tokenData, spotifyApi } = useSelector((state: any) => state.userModule);
+	useEffect(() => {
+		if (!tokenData) {
+			dispatch(setLocalToken());
+		}
+	}, [tokenData, spotifyApi]);
+	
 	return (
 		<>
 			<Routes>
-				<Route element={<Layout currentSongPlaying={currentSongPlaying} tokenData={tokenData}/>}>
+				<Route
+					element={
+						<Layout
+							currentSongPlaying={currentSongPlaying}
+							tokenData={tokenData}
+							isPlaying={isPlaying}
+							setPlaying={setPlaying}
+						/>
+					}
+				>
 					<Route index element={<LogInPage />} />
 					<Route path="home" element={<Home />} />
-					<Route path="search" element={<Search onSong={setCurrentSong} />} />
+					<Route path="search" element={<Search onSong={setCurrentSong} setPlaying={setPlaying} />} />
 					<Route path="signup" element={<SignUpPage />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />

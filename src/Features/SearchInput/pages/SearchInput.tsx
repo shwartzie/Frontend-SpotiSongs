@@ -17,9 +17,10 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
 	useEffect(() => {
 		if (!query || query == '') return;
 		if (!tokenData?.accessToken) {
-			navigate('/login');
+			navigate('/');
 			return;
 		}
+		console.log('SearchInput tokenData',tokenData, spotifyApi);
 		let cancelled: boolean = false;
 		spotifyApi
 			.searchTracks(query)
@@ -58,12 +59,9 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
 	const handleQuery = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		const filterBy = event.target.value;
 		setQuery(filterBy);
-		// const res = utilService.debounce(() => setQuery(filterBy), 1000)
 		if (filterBy === '') {
 			dispatch(setSongsQuery({ tracks: null, tracksData: null }));
 		}
-		// console.log("trying to debounce", filterBy);
-		// console.log('res',res)
 	};
 
 	return (

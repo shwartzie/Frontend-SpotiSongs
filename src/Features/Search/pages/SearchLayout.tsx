@@ -9,11 +9,18 @@ import { Genres } from './Genres';
 
 interface SearchLayoutProps {
 	title: string;
-	songs: any[] | null;
-	songsData: any | null;
-	onSong: (song: any) => void | null;
+	songs?: any[] | null;
+	songsData?: any | null;
+	onSong?: (song: any) => void | null;
+	setPlaying?: (isPlaying: boolean) => void;
 }
-export const SearchLayout = ({ title, songs, songsData, onSong }: SearchLayoutProps) => {
+export const SearchLayout = ({
+	title,
+	songs,
+	songsData,
+	onSong,
+	setPlaying,
+}: SearchLayoutProps) => {
 	const [genres, setGenres] = useState<string[] | any>();
 
 	// console.log('SearchLayout', songs)
@@ -37,7 +44,12 @@ export const SearchLayout = ({ title, songs, songsData, onSong }: SearchLayoutPr
 			{!songs ? (
 				<Genres genres={genres} title={title} />
 			) : (
-				<Filtered songs={songs} songsData={songsData} onSong={onSong} />
+				<Filtered
+					songs={songs}
+					songsData={songsData}
+					onSong={onSong}
+					setPlaying={setPlaying}
+				/>
 			)}
 		</>
 	);

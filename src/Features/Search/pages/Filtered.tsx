@@ -4,7 +4,7 @@ import { ArtistInfo } from '../../ArtistInfoDisplay/pages/ArtistInfo';
 import { FilteredSongsPreview } from '../components/FilteredSongsPreview';
 import { FilteredProps } from '../../../types/Songs';
 
-export const Filtered = ({ songs, songsData, onSong }: FilteredProps) => {
+export const Filtered = ({ songs, songsData, onSong, setPlaying }: FilteredProps) => {
 	return (
 		<main className="content-spacing filtered-main-container">
 			<header>options to filter by:</header>
@@ -27,6 +27,7 @@ export const Filtered = ({ songs, songsData, onSong }: FilteredProps) => {
 											key={song.id}
 											index={index}
 											onSong={onSong}
+											setPlaying={setPlaying}
 										/>
 									))}
 						</div>
