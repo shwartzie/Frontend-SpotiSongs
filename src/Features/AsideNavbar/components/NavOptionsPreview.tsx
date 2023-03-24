@@ -4,29 +4,23 @@ import { Link, useNavigate } from 'react-router-dom';
 
 //TODO FIX SVGS
 type NavOptionsProps = {
-    setActivePage: React.Dispatch<React.SetStateAction<string>>;
-    option: string,
-    activePage: string;
+	setActivePage: React.Dispatch<React.SetStateAction<string>>;
+	option: string;
+	activePage: string;
 };
 export const NavOptionsPreview = ({ option, setActivePage, activePage }: NavOptionsProps) => {
+	const navigate = useNavigate();
 
-    const navigate = useNavigate();
-
-    const handleActivePage = () => {
-        if (option == "home") {
-            navigate('/');
-        } else {
-            navigate(option);
-            setActivePage(option);
-        }
-    };
-    return (
-        <li>
-            <a onClick={() => handleActivePage()}>
-                <div className={option}></div>
-                <NavOptionsName option={option} activePage={activePage} />
-            </a>
-        </li>
-    );
-}
-
+	const handleActivePage = () => {
+		navigate(option);
+		setActivePage(option);
+	};
+	return (
+		<li>
+			<a onClick={() => handleActivePage()}>
+				<div className={option}></div>
+				<NavOptionsName option={option} activePage={activePage} />
+			</a>
+		</li>
+	);
+};

@@ -20,7 +20,6 @@ export const SearchInput = ({ setQuery, query }: SearchInputProps) => {
 			navigate('/');
 			return;
 		}
-		console.log('SearchInput tokenData',tokenData, spotifyApi);
 		let cancelled: boolean = false;
 		spotifyApi
 			.searchTracks(query)

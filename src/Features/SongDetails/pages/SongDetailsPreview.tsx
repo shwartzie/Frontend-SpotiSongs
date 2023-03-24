@@ -11,8 +11,9 @@ export const SongDetailsPreview = () => {
     const [isLiked, setLiked] = useState<boolean>(false);
     return (
         <section className='left-side-footer-container'>
+            {/* authors={["Eminem", "Dido"]} */}
             <ExpandingImage src={demoSrc} />
-            <SongTitle songName={"Stan"} authors={["Eminem", "Dido"]} />
+            <SongTitle songName={"Stan"}  />
             <LikedSong isLiked={isLiked} setLiked={setLiked} />
             <PreviewImage src={demoSrc}/>
         </section>

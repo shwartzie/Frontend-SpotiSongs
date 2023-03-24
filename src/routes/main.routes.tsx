@@ -9,11 +9,11 @@ import { SignUpPage } from 'Features/UserCommon/Signup/pages/SignUpPage';
 import { NotFound } from 'Features/NotFound/pages/NotFound';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLocalToken } from '../store/actions/userActions';
+import { LikedSongs } from 'Features/LikedSongs/pages/LikedSongs';
 
 export const MainRoutes = () => {
 	const [currentSongPlaying, setCurrentSong] = useState<any>(null);
 	const [isPlaying, setPlaying] = useState<boolean>(false);
-	console.log('toggled', isPlaying);
 	const dispatch: any = useDispatch();
 	const { tokenData, spotifyApi } = useSelector((state: any) => state.userModule);
 	useEffect(() => {
@@ -21,7 +21,7 @@ export const MainRoutes = () => {
 			dispatch(setLocalToken());
 		}
 	}, [tokenData, spotifyApi]);
-	
+
 	return (
 		<>
 			<Routes>
@@ -39,6 +39,7 @@ export const MainRoutes = () => {
 					<Route path="home" element={<Home />} />
 					<Route path="search" element={<Search onSong={setCurrentSong} setPlaying={setPlaying} />} />
 					<Route path="signup" element={<SignUpPage />} />
+					<Route path="likedSongs" element={<LikedSongs onSong={setCurrentSong} setPlaying={setPlaying} />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
 			</Routes>

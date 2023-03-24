@@ -18,10 +18,8 @@ type PlayBackBarProps = {
 
 export const PlayBackBar = ({ isPlaying, currentSong, setCurrentSongData }: PlayBackBarProps) => {
 	const audioElement: AudioElement = useRef();
-	// console.log('PlayBackBar', currentSong?.uri);
 
 	useEffect(() => {
-		console.log('PlayBackBar isPlaying', isPlaying);
 		if (isPlaying) {
 			audioElement.current.play();
 		} else {
@@ -36,7 +34,6 @@ export const PlayBackBar = ({ isPlaying, currentSong, setCurrentSongData }: Play
 	};
 
 	const onPlaying = (event) => {
-		console.log('onPlaying currentSong.uri', currentSong?.uri, audioElement.current);
 		const duration = audioElement.current?.duration;
 		const currentTime = audioElement.current?.currentTime;
 
@@ -46,7 +43,6 @@ export const PlayBackBar = ({ isPlaying, currentSong, setCurrentSongData }: Play
 			length: duration,
 		});
 	};
-	console.log('currentSong', currentSong)
 	return (	
 		<article className="play-back-bar">
 			<>

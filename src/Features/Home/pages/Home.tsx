@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { FavouritesTitle } from '../components/FavouritesTitle';
 import { Favourites } from '../components/Favourites';
-import { useAuth } from '../../../hooks/authHooks';
+import { useAuth } from '../../../hooks/useAuth';
 import { userService } from 'Features/UserCommon/services/user.service';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '../../../common/Components/Loading';

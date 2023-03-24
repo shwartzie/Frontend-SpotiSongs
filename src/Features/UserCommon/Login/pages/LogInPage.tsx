@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux/es/exports';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../../store/actions/userActions';
 import { Link } from 'react-router-dom';
-import { useAuth } from 'hooks/authHooks';
+import { useAuth } from 'hooks/useAuth';
 import { Loading } from 'common/Components/Loading';
 import { userLoginService } from '../services/user.login.service';
 const demoUser = {
@@ -17,10 +17,18 @@ const code: string = new URLSearchParams(window.location.search).get('code');
 export const LogInPage = () => {
 	const dispatch: any = useDispatch();
 
-	const { isLoading } = useAuth(code);
+	const { tokenData, spotifyApi } = useSelector((state: any) => state.userModule);
 
 	
+	const { isLoading } = useAuth(code);
+
 	const handleLogin = async () => {
+		
+		//TODO: use getMe function to get the user information;
+		// spotifyApi?.getMe().then(res => {
+		// 	console.log(res)
+		// });
+
 		dispatch(login({ ...demoUser }));
 	};
 

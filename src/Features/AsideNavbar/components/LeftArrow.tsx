@@ -10,7 +10,6 @@ export const LeftArrow = ({ setPage, activePage }: LeftArrowProps) => {
 
     return (
         <button onClick={() => setPage((prev) => {
-            // console.log(prev);
             return prev;
         })}>
             <span className='left-arrow' ></span>

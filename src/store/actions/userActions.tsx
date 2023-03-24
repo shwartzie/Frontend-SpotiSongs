@@ -19,15 +19,11 @@ export const login = (userToLogIn: UserToLogIn) => {
 	};
 };
 
-type Token = {
-	data: { accessToken: string; refreshToken: string; expiresIn: number };
-	status: number;
-};
 
-export const setSpotifyToken = ({ code, spotifyApi, tokenData }: any) => {
+export const setSpotifyToken = ({ code, spotifyApi, tokenData,isRefreshing }: any) => {
 	return async (dispatch: any) => {
 		try {
-			if (tokenData) {
+			if (tokenData && !isRefreshing) {
 				dispatch({ type: 'ADD_TOKEN', tokenData });
 				return;
 			}

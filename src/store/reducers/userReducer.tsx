@@ -23,7 +23,6 @@ export const userReducer = (state = INITIAL_STATE, action) => {
 			};
 
 		case 'ADD_TOKEN':
-			console.log('ADD_TOKEN', action.spotifyApi);
 			return {
 				...state,
 				tokenData: { ...action.tokenData } || state.tokenData || userService.getLocalEntity('tokenData'),

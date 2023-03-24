@@ -30,8 +30,8 @@
 			flex-wrap: wrap;
 			.PlayerRSWP {
 				background-color: transparent !important;
-                &:first-child {
-                    padding-top:rem(8px);
+                &:first-child > *  {
+                    margin-top:rem(8px);
                 }
 				// ._ContentRSWP__1xc0f9k {
 				// 	.__nnvdcq__1udtsym {

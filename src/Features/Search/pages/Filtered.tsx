@@ -1,13 +1,21 @@
 import { Title } from 'common/Components/Title';
+import { SongLayout } from 'Features/Song/pages/Song';
 import React from 'react';
 import { ArtistInfo } from '../../ArtistInfoDisplay/pages/ArtistInfo';
 import { FilteredSongsPreview } from '../components/FilteredSongsPreview';
-import { FilteredProps } from '../../../types/Songs';
+
+export interface FilteredProps {
+	songs: any[];
+	songsData: any | null;
+	onSong: (song: any) => void;
+	setPlaying: (isPlaying: boolean) => void;
+	
+}
 
 export const Filtered = ({ songs, songsData, onSong, setPlaying }: FilteredProps) => {
 	return (
 		<main className="content-spacing filtered-main-container">
-			<header>options to filter by:</header>
+			{/* <header>options to filter by:</header> */}
 			<article className="filtered-layout">
 				<div className="filtered-layout-conatainer">
 					<section className="artist-section">
@@ -17,20 +25,7 @@ export const Filtered = ({ songs, songsData, onSong, setPlaying }: FilteredProps
 
 					<section className="filtered-songs-main-conatiner">
 						<Title title={'Songs'} className={'search-layout-title'} />
-						<div className="songs-layout">
-							{songs &&
-								songs
-									.slice(0)
-									.map((song: any, index: number) => (
-										<FilteredSongsPreview
-											song={song}
-											key={song.id}
-											index={index}
-											onSong={onSong}
-											setPlaying={setPlaying}
-										/>
-									))}
-						</div>
+						{songs && <SongLayout songs={songs} onSong={onSong} setPlaying={setPlaying} />}
 					</section>
 				</div>
 			</article>

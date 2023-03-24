@@ -1,27 +1,24 @@
 import React from 'react';
 
 type SongTitleProps = {
-    songName: string;
-    authors: string[];
+	songName: string;
+	authors?: any;
 };
 
 export const SongTitle = ({ songName, authors }: SongTitleProps) => {
+	return (
+		<div className="footer-song-title-container">
+			<span className="footer-song-name">
+				<a> {songName}</a>
+			</span>
 
-    return (
-        <div className='footer-song-title-container'>
-            <span className='footer-song-name'>
-                <a> {songName}</a>
-            </span>
-
-            <div className='footer-song-authors'>
-                {authors && authors.map((author) => (
-                    <span key={author}>
-                        <a >
-                            {author}
-                        </a>
-                    </span>
-                ))}
-            </div>
-        </div>
-    );
+			<div className="footer-song-authors">
+				{authors && (
+					<span>
+						<a>{authors[0].name}</a>
+					</span>
+				)}
+			</div>
+		</div>
+	);
 };

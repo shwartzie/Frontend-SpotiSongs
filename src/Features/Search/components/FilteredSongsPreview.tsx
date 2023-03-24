@@ -6,8 +6,15 @@ interface FilteredSongsPreviewProps {
 	song: any;
 	onSong: (song: any) => void;
 	setPlaying: (isPlaying: boolean) => void;
+	isLikedSongsPage?: boolean;
 }
-export const FilteredSongsPreview = ({ song, index, onSong, setPlaying }: FilteredSongsPreviewProps) => {
+export const FilteredSongsPreview = ({
+	song,
+	index,
+	onSong,
+	setPlaying,
+	isLikedSongsPage,
+}: FilteredSongsPreviewProps) => {
 	const [isSelected, setIsSelected] = useState(false);
 	const [isLiked, setIsLiked] = useState<boolean>(false);
 	const handleSelect = () => {
@@ -29,6 +36,7 @@ export const FilteredSongsPreview = ({ song, index, onSong, setPlaying }: Filter
 		>
 			<div className="songs-grid-row">
 				<div className="song-left" role="gridcell">
+					{/* {isLikedSongsPage && <h3>{index}</h3>} */}
 					<img src={img} alt="" />
 					<div className="flex column">
 						<span className="song-name">{song.name}</span>

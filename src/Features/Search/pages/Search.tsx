@@ -14,8 +14,6 @@ export const Search = ({ onSong,setPlaying }: SearchProps) => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		console.log('listening to tracks...', tracks);
-		// setLoading(true);
 		if (tracks) {
 			setSongs([...tracks]);
 			setSongsData({ ...tracksData });
