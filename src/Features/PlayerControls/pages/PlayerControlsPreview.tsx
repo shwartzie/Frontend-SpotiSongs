@@ -1,9 +1,6 @@
-import React, { useEffect, useMemo, useState, useRef } from 'react';
-import { ControlButtons } from '../components/ControlsButtons';
+import React, { useEffect, useState } from 'react';
 import { PlayBackBar } from '../../PlayBackBar/pages/PlayBackBar';
-import { songService } from '../../PlayBackBar/services/song.service';
-import { audioService } from '../../../audio/index';
-const path = '../../../audio/in-the-end.mp3';
+import { ControlButtons } from '../components/ControlsButtons';
 // interface ControlButtons {
 //     audioElement: AudioElement;
 //     isPlaying: boolean;
