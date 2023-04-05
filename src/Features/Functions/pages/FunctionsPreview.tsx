@@ -9,7 +9,7 @@ import React from 'react'
 export const FunctionsPreview = () => {
 
     const components: any[] = [
-        { cmp: <Lyrics />, key: 1 },
+        // { cmp: <Lyrics />, key: 1 },
         { cmp: <Queue />, key: 2 },
         { cmp: <ConnectDevice />, key: 3 },
         { cmp: <Volume />, key: 4 },

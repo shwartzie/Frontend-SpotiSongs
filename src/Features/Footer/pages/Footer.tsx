@@ -1,7 +1,8 @@
+import { Lyrics } from 'Features/Lyrics/pages/Lyrics';
 import React, { useEffect, useState } from 'react';
-import { FunctionsPreview } from '../../../../Functions/pages/FunctionsPreview';
-import { PlayerControlsPreview } from '../../../../PlayerControls/pages/PlayerControlsPreview';
-import { SongDetailsPreview } from '../../../../SongDetails/pages/SongDetailsPreview';
+// import { FunctionsPreview } from '../../../../Functions/pages/FunctionsPreview';
+// import { PlayerControlsPreview } from '../../../../PlayerControls/pages/PlayerControlsPreview';
+// import { SongDetailsPreview } from '../../../../SongDetails/pages/SongDetailsPreview';
 import SpotifyPlayer from 'react-spotify-web-playback';
 
 interface FooterProps {
@@ -27,6 +28,7 @@ export const Footer = ({ currentSongPlaying, tokenData, isPlaying, setPlaying }:
 						setPlaying={setPlaying}
 					/>
 					<FunctionsPreview /> */}
+					<Lyrics currentSongPlaying={currentSongPlaying}/>
 					<SpotifyPlayer
 						token={tokenData.accessToken}
 						uris={currentSongPlaying?.uri ? [currentSongPlaying?.uri] : []}
@@ -52,6 +54,3 @@ export const Footer = ({ currentSongPlaying, tokenData, isPlaying, setPlaying }:
 		</footer>
 	);
 };
-
-{
-}

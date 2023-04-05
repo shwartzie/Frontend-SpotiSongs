@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import { Aside } from '../../AsideNavbar/pages/Aside';
 import { Header } from '../components/Header';
-import { Footer } from '../Features/Footer/pages/Footer';
+import { Footer } from '../../Footer/pages/Footer';
 
 interface LayoutProps {
 	currentSongPlaying: any;
