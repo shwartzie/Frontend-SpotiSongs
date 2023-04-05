@@ -26,7 +26,7 @@ export const LyricsModal = ({ lyrics, setClosed, isClosed, setIsClicked }: Lyric
 								&times;
 							</button>
 						</div>
-						{!lyrics ? <Loading /> : <LyricsText lyrics={lyrics} />}
+						{!lyrics.length ? <Loading /> : <LyricsText lyrics={lyrics} />}
 					</div>
 				</div>
 			)}
