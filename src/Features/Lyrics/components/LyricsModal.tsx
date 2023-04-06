@@ -13,7 +13,7 @@ export const LyricsModal = ({ lyrics, setClosed, isClosed, setIsClicked, setLyri
 	const handleClose = () => {
 		setClosed(true);
 		setIsClicked((prev: boolean) => !prev);
-		setLyrics(null);
+		// setLyrics(null);
 	};
 	return (
 		<>

@@ -10,14 +10,19 @@ export const useLyrics = ({ currentSongPlaying }: useLyrics) => {
 	const [isClicked, setIsClicked] = useState<boolean>(false);
 	const [lyrics, setLyrics] = useState<string>(null);
 	const [isClosed, setClosed] = useState<boolean>(true);
-	const [songName, setCurrentSongName] = useState<string>();
+	const [songName, setCurrentSongName] = useState<string>('');
 
 	useEffect(() => {
-		if (lyrics?.length > 0 || songName === currentSongPlaying?.name) {
+		if (songName !== currentSongPlaying?.name) setLyrics(null);
+	}, [currentSongPlaying]);
+
+	useEffect(() => {
+		if (lyrics && songName === currentSongPlaying?.name) {
 			setClosed(false);
 			return;
 		}
-		const _handleLyrics = async () => {
+		// console.log(lyrics, '\n', songName, '\n', currentSongPlaying?.name);
+		(async () => {
 			const { data, status }: LyricsPayload = await lyricsService.getLyrics({
 				track: currentSongPlaying.name,
 				artist: currentSongPlaying.artists[0].name,
@@ -30,8 +35,7 @@ export const useLyrics = ({ currentSongPlaying }: useLyrics) => {
 			setLyrics(data.lyrics);
 			setClosed(false);
 			setCurrentSongName(currentSongPlaying.name);
-		};
-		_handleLyrics();
+		})();
 
 		return () => {
 			setClosed(false);
