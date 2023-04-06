@@ -28,10 +28,8 @@ export const LikedSongs = ({ onSong, setPlaying }: LikedSongsProps) => {
 	useEffect(() => {
 		savedTracks.then((body) => {
 			if (!body.items) return;
-			console.log(body);
 			const tracks = body.items.map((item) => item.track);
 			// setAddedAt(tracks.items.)
-			console.log(tracks);
 			setLikedSongs([...tracks]);
 			setTotalSongs(body.total);
 		});

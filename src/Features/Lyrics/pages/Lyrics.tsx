@@ -8,13 +8,21 @@ interface LyricsProps {
 	currentSongPlaying: any;
 }
 export const Lyrics = ({ currentSongPlaying }: LyricsProps) => {
-	const { setIsClicked, isClicked, lyrics, setClosed, isClosed }: UseLyrics = useLyrics({ currentSongPlaying });
+	const { setIsClicked, isClicked, lyrics, setLyrics, setClosed, isClosed }: UseLyrics = useLyrics({
+		currentSongPlaying,
+	});
 
 	return (
 		<>
 			<LyricsButton setIsClicked={setIsClicked} />
 			{isClicked && (
-				<LyricsModal lyrics={lyrics} setClosed={setClosed} isClosed={isClosed} setIsClicked={setIsClicked} />
+				<LyricsModal
+					lyrics={lyrics}
+					setClosed={setClosed}
+					isClosed={isClosed}
+					setIsClicked={setIsClicked}
+					setLyrics={setLyrics}
+				/>
 			)}
 		</>
 	);

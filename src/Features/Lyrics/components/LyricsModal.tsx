@@ -7,12 +7,13 @@ interface LyricsModalProps {
 	setClosed: (isClosed: any) => void;
 	isClosed: boolean;
 	setIsClicked: (isClicked: any) => void;
+	setLyrics: (lyrics: string) => void;
 }
-export const LyricsModal = ({ lyrics, setClosed, isClosed, setIsClicked }: LyricsModalProps) => {
-	console.log(`LyricsModal ${isClosed}`);
+export const LyricsModal = ({ lyrics, setClosed, isClosed, setIsClicked, setLyrics }: LyricsModalProps) => {
 	const handleClose = () => {
 		setClosed(true);
 		setIsClicked((prev: boolean) => !prev);
+		setLyrics(null);
 	};
 	return (
 		<>
@@ -26,7 +27,7 @@ export const LyricsModal = ({ lyrics, setClosed, isClosed, setIsClicked }: Lyric
 								&times;
 							</button>
 						</div>
-						{!lyrics.length ? <Loading /> : <LyricsText lyrics={lyrics} />}
+						{lyrics !== null ? <LyricsText lyrics={lyrics} /> : <Loading />}
 					</div>
 				</div>
 			)}
