@@ -7,7 +7,6 @@
     justify-content: center;
     .song-liked-button {
         background: transparent;
-        color: #ffffffb3;
         padding: 0;
         border: none;
         height: 16px;
@@ -17,6 +16,6 @@
         background-size: cover;
     }
     .liked {
-        background-color: #1ed760;
+        background-color: $lime;
     }
 }

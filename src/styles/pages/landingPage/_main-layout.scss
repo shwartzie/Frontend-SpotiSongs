@@ -9,7 +9,7 @@
 .landing-page-layout {
     display: flex;
     width: 100%;
-    background-color: #121212;
+    background-color: $layout;
     flex-direction: column;
     position: relative;
     height: 100%;
@@ -55,7 +55,7 @@
                         line-height: normal;
                         min-width: 0;
                         h2 {
-                            color: white;
+                            color: $text-base;
                             box-sizing: border-box;
                             -webkit-tap-highlight-color: transparent;
                             margin-block: 0px;

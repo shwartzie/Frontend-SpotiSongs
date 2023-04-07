@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 // import { FunctionsPreview } from '../../../../Functions/pages/FunctionsPreview';
 // import { PlayerControlsPreview } from '../../../../PlayerControls/pages/PlayerControlsPreview';
 // import { SongDetailsPreview } from '../../../../SongDetails/pages/SongDetailsPreview';
-import SpotifyPlayer from 'react-spotify-web-playback';
+import SpotifyPlayer, { State } from 'react-spotify-web-playback';
 
 interface FooterProps {
 	currentSongPlaying: any;
@@ -13,7 +13,7 @@ interface FooterProps {
 }
 
 export const Footer = ({ currentSongPlaying, tokenData, isPlaying, setPlaying }: FooterProps) => {
-
+	
 	return (
 		<footer className="footer-main-container">
 			<div className="footer-container">
@@ -25,15 +25,20 @@ export const Footer = ({ currentSongPlaying, tokenData, isPlaying, setPlaying }:
 						setPlaying={setPlaying}
 					/>
 					<FunctionsPreview /> */}
-					<Lyrics currentSongPlaying={currentSongPlaying}/>
+					{currentSongPlaying && <Lyrics currentSongPlaying={currentSongPlaying}/>}
 					<SpotifyPlayer
 						token={tokenData.accessToken}
 						uris={currentSongPlaying?.uri ? [currentSongPlaying?.uri] : []}
 						play={isPlaying}
-						callback={(state) => {
+						// next={}
+						// previous={}
+						callback={(state: State) => {
 							if (!state.isPlaying) {
 								setPlaying(false);
+								return;
 							}
+							state.volume = 0.5
+							// console.dir(state)
 						}}
 						showSaveIcon
 						styles={{

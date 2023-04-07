@@ -5,7 +5,7 @@
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	// background-color: #1db954;
+	// background-color: $lime;
 }
 
 .spotify-login {
@@ -24,12 +24,12 @@
 	font-size: 28px;
 	font-weight: 700;
 	text-align: center;
-	color: #1db954;
+	color: $lime;
 	margin-bottom: 30px;
 }
 
 .spotify-login__button {
-	background-color: #1db954;
+	background-color: $lime;
 	// color: #fff;
 	font-size: 16px;
 	font-weight: 700;

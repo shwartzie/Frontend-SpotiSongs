@@ -8,11 +8,11 @@
     ul {
         margin: 0px;
         -webkit-app-region: no-drag;
-        background-color: #282828;
+        background-color: $layout-1;
         border-radius: 4px;
-        -webkit-box-shadow: 0 16px 24px rgb(0 0 0 / 30%),
-            0 6px 8px rgb(0 0 0 / 20%);
-        box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+        -webkit-box-shadow: 0 16px 24px #0000004d,
+            0 6px 8px $box-shadow-primary;
+        box-shadow: 0 16px 24px #0000004d, 0 6px 8px $box-shadow-primary;
         max-height: calc(100vh - 24px);
         max-width: 350px;
         min-width: 160px;
@@ -48,25 +48,25 @@
                 background: transparent;
                 border: 0;
                 border-radius: 2px;
-                color: hsla(0, 0%, 100%, 0.9);
+                color: red;
                 cursor: default;
                 text-decoration: none;
                 &:hover {
-                    background-color: hsla(0, 0%, 100%, 0.1);
-                    color: #fff;
+                    background-color: $hover-layout;
+                    color: $text-base;
                     text-decoration: none;
                 }
                 a {
                     background: transparent;
                     border: 0;
                     border-radius: 2px;
-                    color: hsla(0, 0%, 100%, 0.9);
+                    color: #ffffffe6;
                     cursor: default;
                     text-decoration: none;
                 }
             }
             li:not(:last-child) > :after {
-                border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+                border-bottom: 1px solid $hover-layout;
                 bottom: 0;
                 content: "";
                 left: 0;

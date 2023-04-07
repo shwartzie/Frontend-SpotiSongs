@@ -12,6 +12,7 @@ export const Lyrics = ({ currentSongPlaying }: LyricsProps) => {
 		currentSongPlaying,
 	});
 
+	
 	return (
 		<>
 			<LyricsButton setIsClicked={setIsClicked} />

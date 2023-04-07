@@ -27,7 +27,7 @@
     .expanding-image-container {
         width: 56px;
         height: 56px;
-        background-color: #282828;
+        background-color: $layout-1;
         border: 0;
         display: block;
         margin: 0;
@@ -35,7 +35,7 @@
         z-index: 0;
         .expanding-image {
             position: relative;
-            background-color: #000;
+            background-color: $dark;
             background-position: 50%;
             background-repeat: no-repeat;
             background-size: contain;
@@ -67,7 +67,7 @@
             right: 0;
             top: 2px;
             border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.374);
+            background-color: #0000005f;
             transition: background-color ease 0.5s;
             position: absolute;
             background-image: url("../../../assets/svg/arrow-left-svgrepo-com.svg");
@@ -78,7 +78,7 @@
             z-index: 1;
             &:hover {
                 cursor: pointer;
-                background-color: rgba(0, 0, 0, 0.762);
+                background-color: #000000c2;
             }
         }
     }

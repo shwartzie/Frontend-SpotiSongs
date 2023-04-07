@@ -43,6 +43,7 @@ export const useLyrics = ({ currentSongPlaying }: useLyrics) => {
 		};
 	}, [isClicked]);
 
+
 	return {
 		isClicked,
 		setIsClicked,

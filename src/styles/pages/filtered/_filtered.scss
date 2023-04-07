@@ -40,8 +40,8 @@
 	position: relative;
 }
 
-.artist-info-container {
-	background: #181818;
+.artist-info {
+	background: $layout-secondary;
 	border-radius: calc($card-container-border-radius + 2px);
 	flex: 1;
 	isolation: isolate;
@@ -50,13 +50,13 @@
 	transition: background-color 0.3s ease;
 	width: 100%;
 
-	.artist-info-layout {
+	&-layout {
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
 		height: 100%;
 
-		.artist-info-img {
+		&-img {
 			padding-bottom: 92px;
 			width: 92px;
 			border-radius: 50%;
@@ -70,7 +70,7 @@
 				border-radius: 50%;
 			}
 		}
-		.artist-info-credentials {
+		&-credentials {
 			min-height: 62px;
 
 			.credentials-type {
@@ -79,9 +79,8 @@
 				margin-block: 0px;
 				font-size: 0.8125rem;
 				font-weight: 400;
-				color: $text-subdued, #6a6a6a;
 				span {
-					background-color: rgba(0, 0, 0, 0.2);
+					background-color: $box-shadow-primary;
 					border-radius: 500px;
 					display: inline-block;
 					padding: 4px 12px;
@@ -89,7 +88,7 @@
 					margin-block: 0px;
 					font-size: 0.8125rem;
 					font-weight: 700;
-					color: $text-base;
+					color: $text-subdued;
 				}
 			}
 		}
@@ -152,7 +151,7 @@
 						font-weight: 500;
 					}
 					.song-artist {
-						color: #b3b3b3;
+						color: $span-secondary;
 						@media (min-width: 768px) {
 							font-size: 0.875rem;
 						}

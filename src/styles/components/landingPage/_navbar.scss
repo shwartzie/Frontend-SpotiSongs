@@ -18,10 +18,10 @@
 			gap: 16px;
 			width:130px;
 			button {
-				background-color: rgba(0, 0, 0, 0.7);
+				background-color: #000000b3;
 				border: none;
 				border-radius: 50%;
-				color: #fff;
+				color: $text-base;
 				cursor: pointer;
 				display: flex;
 				height: 32px;
@@ -64,10 +64,10 @@
 			}
 		}
 		align-items: center;
-		background-color: rgba(0, 0, 0, 0.7);
+		background-color: #000000b3;
 		border: 0;
 		border-radius: 23px;
-		color: #fff;
+		color: $text-base;
 		display: flex;
 		gap: 8px;
 		height: 32px;
@@ -76,7 +76,7 @@
 		position: relative;
 
 		&:hover {
-			background-color: hsla(0, 0%, 100%, 0.1);
+			background-color: $hover-layout;
 		}
 		figure {
 			width: 28px;

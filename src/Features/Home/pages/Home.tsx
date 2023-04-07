@@ -10,7 +10,9 @@ import { useSelector } from 'react-redux';
 
 // const code: string = new URLSearchParams(window.location.search).get('code');
 export const Home = () => {
-	const { tokenData } = useSelector((state: any): any => state.userModule);
+	const { tokenData, spotifyApi } = useSelector((state: any): any => state.userModule);
+
+	console.dir(spotifyApi)
 
 	return (
 		<main>

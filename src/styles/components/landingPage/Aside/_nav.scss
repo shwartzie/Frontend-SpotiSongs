@@ -24,16 +24,16 @@
                     margin-block: 0px;
                     font-size: 0.8125rem;
                     font-weight: 700;
-                    color: #b3b3b3;
+                    color:$span-secondary;
                 }
             }
             span:hover {
                 transition: color ease-in 0.2s;
-                color: #fff;
+                color: $text-base;
             }
 
             .active-option {
-                color: #fff;
+                color: $text-base;
             }
             .home {
                 background-image: url("../../../../assets/svg/home-svgrepo-com.svg");

@@ -4,8 +4,8 @@
 	margin: 0;
 	padding: 0;
 	vertical-align: baseline;
-	background-color: #181818;
-	border-top: 1px solid #282828;
+	background-color: $layout-secondary;
+	border-top: 1px solid $layout-1;
 	display: flex;
 	flex-direction: column;
 	min-width: 620px;
@@ -15,8 +15,8 @@
 	bottom: 0;
 	width: 100%;
 	.footer-container {
-		background-color: #181818;
-		border-top: 1px solid #282828;
+		background-color: $layout-secondary;
+		border-top: 1px solid $layout-1;
 		display: flex;
 		flex-direction: column;
 		min-width: 620px;
