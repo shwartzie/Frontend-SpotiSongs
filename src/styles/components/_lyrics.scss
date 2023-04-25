@@ -65,22 +65,6 @@
 		color: #1db954;
 		cursor: pointer;
 	}
-	&__content::-webkit-scrollbar {
-		width: 10px;
-		background-color: #121212;
-	}
-
-	&__content::-webkit-scrollbar-thumb {
-		background-color: #1db954;
-		border-radius: 5px;
-	}
-
-	&__content::-webkit-scrollbar-thumb:hover {
-		background-color: #0f9d58;
-	}
-
-	&__content::-webkit-scrollbar-track {
-		background-color: #222222f9;
-		// border-radius: 10px;
-	}
 }
+
+

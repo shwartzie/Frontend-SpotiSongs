@@ -20,7 +20,7 @@ export const LyricsModal = ({ lyrics, setClosed, isClosed, setIsClicked, setLyri
 			{!isClosed && (
 				<div className="LyricsModal">
 					<div className="LyricsModal__backdrop" onClick={() => handleClose()} />
-					<div className="LyricsModal__content">
+					<div className="LyricsModal__content scroll">
 						<div className="LyricsModal__header">
 							{/* <h2>Lyrics</h2> */}
 							<button className="LyricsModal__close-btn" onClick={() => handleClose()}>
