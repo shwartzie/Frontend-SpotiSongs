@@ -6,7 +6,7 @@ import SpotifyWebApi from 'spotify-web-api-node';
 import { signup, login, setSpotifyToken } from 'store/actions/userActions';
 
 const spotifyApi = new SpotifyWebApi({
-	clientId: '42f2800f08eb405abb7ea297b337bba2',
+	clientId: process.env.REACT_APP_CLIENT_ID,
 });
 
 export const useAuth = (code: string = '') => {
@@ -26,22 +26,22 @@ export const useAuth = (code: string = '') => {
 	useEffect(() => {
 		if (!tokenData) return;
 		spotifyApi.setAccessToken(tokenData.accessToken);
-		navigate('/home');
+		// navigate('/home');
 		setRefreshToken(tokenData.refreshToken);
 		setExpiresIn(tokenData.expiresIn);
 		setIsLoading(false);
-		// spotifyApi
-		// 	.getMe()
-		// 	.then(({ body }) => {
-		// 		console.log('getting body', { ...body });
-		// 		const user: any = userService.getUserById(body.id);
-		// 		console.log('getting user', { ...user });
-		// 		if (user) {
-		// 			dispatch(login({ ...user }));
-		// 		} else {
-		// 			dispatch(signup({ ...body }));
-		// 		}
-		// 	})
+		spotifyApi
+			.getMe()
+			.then(({ body }) => {
+				console.log('getting body', { ...body });
+				// const user: any = userService.getUserById(body.id);
+				// console.log('getting user', { ...user });
+				// if (user) {
+				// 	dispatch(login({ ...user }));
+				// } else {
+				// 	dispatch(signup({ ...body }));
+				// }
+			})
 		// 	.catch((error) => {
 		// 		// navigate('/');
 		// 		console.error(error);

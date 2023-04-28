@@ -10,7 +10,7 @@
 @import './pages/landingPage/aside';
 @import './pages/landingPage/footer';
 @import './pages/filtered/filtered';
-@import './pages/login/components';
+@import './pages/user/login';
 // Components
 @import './components/landingPage/layout';
 @import './components/landingPage/navbar';
@@ -38,6 +38,7 @@
 @import './components/footer/functionsPreview/full-screen';
 @import './components/loader';
 @import './components/lyrics';
+@import './pages/user/signup';
 // Helpers
 @import './helpers/layout-helper';
 

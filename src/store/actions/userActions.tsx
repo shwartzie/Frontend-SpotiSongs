@@ -40,6 +40,7 @@ export const setSpotifyToken = ({ code, spotifyApi, tokenData, isRefreshing }: a
 				code,
 				spotifyApi._credentials.clientId
 			);
+			
 			dispatch({ type: 'ADD_TOKEN', tokenData: { ...data }, spotifyApi });
 
 			if (status !== 200) {

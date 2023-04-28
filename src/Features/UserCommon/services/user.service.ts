@@ -62,8 +62,8 @@ async function getRefreshToken(refreshToken: string) {
 async function loginWithSpotify(code: string, spotifyApi: string): Promise<TokenApiData> {
 	try {
 		const result: TokenApiData = await axios.post('auth/login/spotify', { code });
-		saveLocalEntity('tokenData', { ...result.data });
-		saveLocalEntity('spotifyApi', spotifyApi);
+		// saveLocalEntity('tokenData', { ...result.data });
+		// saveLocalEntity('spotifyApi', spotifyApi);
 		return result;
 	} catch (error) {
 		console.log(error);

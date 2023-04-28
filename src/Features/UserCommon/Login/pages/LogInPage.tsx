@@ -1,29 +1,95 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../../../store/actions/userActions';
+import { login, setSpotifyToken } from '../../../../store/actions/userActions';
 import { Link } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
 import { Loading } from 'common/Components/Loading';
 import { userLoginService } from '../services/user.login.service';
 import { LoginButton } from '../components/LoginButton';
 import { userService } from 'Features/UserCommon/services/user.service';
+import SpotifyWebApi from 'spotify-web-api-node';
 const demoUser = {
 	username: 'admin',
 	password: 'admin',
 };
 
+const spotifyApi = new SpotifyWebApi({
+	clientId: process.env.REACT_APP_CLIENT_ID,
+});
+
 const code: string = new URLSearchParams(window.location.search).get('code');
 
 export const LogInPage = () => {
+	const [refreshToken, setRefreshToken] = useState<string>(null);
+	const [expiresIn, setExpiresIn] = useState<number>(null);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+
 	const dispatch: any = useDispatch();
+	const navigate = useNavigate();
 
-	const { tokenData, spotifyApi } = useSelector((state: any) => state.userModule);
+	const { tokenData }: any = useSelector((state: any): any => state.userModule);
 
-	const { isLoading } = useAuth(code);
+	useEffect(() => {
+		if (!code || code === '' || tokenData || userService.getLocalEntity('tokenData')) return;
+		dispatch(setSpotifyToken({ code, spotifyApi }));
+	}, [code]);
 
-	const handleLogin:() => void = async () => {
-		
+	useEffect(() => {
+		if (!tokenData) return;
+		// navigate('/home');
+		spotifyApi.setAccessToken(tokenData.accessToken);
+
+		spotifyApi
+			.getMe()
+			.then(({ body }) => {
+				console.log('getting body', { ...body });
+				const user: any = userService.getUserById(body.id);
+				console.log('getting user', { ...user });
+				if (user) {
+					dispatch(login({ ...user }));
+				} else {
+					navigate('/signup');
+					// dispatch(signup({ ...body }));
+				}
+				setRefreshToken(tokenData.refreshToken);
+				setExpiresIn(tokenData.expiresIn);
+				setIsLoading(false);
+			})
+			.catch((error) => {
+				navigate('/');
+				console.error(error);
+			});
+	}, [tokenData]);
+
+	const handleRefreshToken = async (refreshToken: string) => {
+		const interval = setInterval(async () => {
+			setIsLoading(true);
+			try {
+				const { data, status } = await userService.getRefreshToken(refreshToken);
+				if (status !== 200) {
+					navigate('/login');
+					throw new Error('Failed to refresh token');
+				}
+				dispatch(setSpotifyToken({ tokenData: { ...data }, spotifyApi, isRefreshing: true }));
+				setIsLoading(false);
+				setRefreshToken(data.newRefreshToken);
+				setExpiresIn(data.expiresIn);
+			} catch (error) {
+				console.error(`Failed to get refreshToken: ${error}`);
+			}
+		}, (expiresIn - 60) * 1000);
+		return () => clearInterval(interval);
+	};
+
+	useEffect(() => {
+		if (!refreshToken || !expiresIn) return;
+		handleRefreshToken(refreshToken);
+	}, [refreshToken, expiresIn]);
+
+	// const { isLoading } = useAuth(code);
+
+	const handleLogin: () => void = async () => {
 		// dispatch(login({ ...demoUser }));
 	};
 
