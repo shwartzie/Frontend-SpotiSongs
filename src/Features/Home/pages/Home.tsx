@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { FavouritesTitle } from '../components/FavouritesTitle';
-import { Favourites } from '../components/Favourites';
-import { useAuth } from '../../../hooks/useAuth';
-import { userService } from 'Features/UserCommon/services/user.service';
-import { useNavigate } from 'react-router-dom';
-import { Loading } from '../../../common/Components/Loading';
 import { useSelector } from 'react-redux';
+import { Favourites } from '../components/Favourites';
+import { FavouritesTitle } from '../components/FavouritesTitle';
 
-// const code: string = new URLSearchParams(window.location.search).get('code');
+
 export const Home = () => {
-	const { tokenData, spotifyApi } = useSelector((state: any): any => state.userModule);
-
-	console.dir(spotifyApi)
+	// const dispatch: any = useDispatch();
+	// const { tokenData, spotifyApi } = useSelector((state: any) => state.userModule);
 
 	return (
 		<main>

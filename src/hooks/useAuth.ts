@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-node';
-import { setSpotifyToken } from 'store/actions/userActions';
+import { signup, login, setSpotifyToken } from 'store/actions/userActions';
 
 const spotifyApi = new SpotifyWebApi({
 	clientId: '42f2800f08eb405abb7ea297b337bba2',
@@ -30,6 +30,22 @@ export const useAuth = (code: string = '') => {
 		setRefreshToken(tokenData.refreshToken);
 		setExpiresIn(tokenData.expiresIn);
 		setIsLoading(false);
+		// spotifyApi
+		// 	.getMe()
+		// 	.then(({ body }) => {
+		// 		console.log('getting body', { ...body });
+		// 		const user: any = userService.getUserById(body.id);
+		// 		console.log('getting user', { ...user });
+		// 		if (user) {
+		// 			dispatch(login({ ...user }));
+		// 		} else {
+		// 			dispatch(signup({ ...body }));
+		// 		}
+		// 	})
+		// 	.catch((error) => {
+		// 		// navigate('/');
+		// 		console.error(error);
+		// 	});
 	}, [tokenData]);
 
 	const handleRefreshToken = async (refreshToken: string) => {

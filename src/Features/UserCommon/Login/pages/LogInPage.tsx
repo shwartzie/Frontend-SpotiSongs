@@ -7,6 +7,7 @@ import { useAuth } from 'hooks/useAuth';
 import { Loading } from 'common/Components/Loading';
 import { userLoginService } from '../services/user.login.service';
 import { LoginButton } from '../components/LoginButton';
+import { userService } from 'Features/UserCommon/services/user.service';
 const demoUser = {
 	username: 'admin',
 	password: 'admin',
@@ -22,12 +23,8 @@ export const LogInPage = () => {
 	const { isLoading } = useAuth(code);
 
 	const handleLogin:() => void = async () => {
-		//TODO: use getMe function to get the user information;
-		// spotifyApi?.getMe().then(res => {
-		// 	console.log(res)
-		// });
-
-		dispatch(login({ ...demoUser }));
+		
+		// dispatch(login({ ...demoUser }));
 	};
 
 	return <>{!isLoading ? <Loading /> : <LoginButton handleLogin={handleLogin} />}</>;

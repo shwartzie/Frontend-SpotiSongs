@@ -14,9 +14,14 @@ interface LayoutProps {
 export const Layout = ({ currentSongPlaying, tokenData, isPlaying, setPlaying }: LayoutProps) => {
 	const [activePage, setActivePage] = useState<string>('home');
 	const [onPagination, setPage] = useState<any>(activePage);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8811caa864551de42fc19f2ba7b379d364dd3765
 	const location: Location = useLocation();
 	const options: string[] = ['home', 'search', 'library', 'likedSongs', 'createPlaylist'];
 
+	const outletStyle = location.pathname !== '/' ? { width: '100%!important' } : {};
 	useEffect(() => {
 		if (!isPlaying && currentSongPlaying) setPlaying(true);
 	}, [currentSongPlaying]);
@@ -31,13 +36,23 @@ export const Layout = ({ currentSongPlaying, tokenData, isPlaying, setPlaying }:
 						)}
 						<div
 							className="landing-page-component-container"
+<<<<<<< HEAD
 							style={location.pathname == '/' ? { width: '100%' } : {}}
+=======
+							ref={(el: HTMLDivElement) =>
+								el && location.pathname == '/' && el.style.setProperty('width', '100%', 'important')
+							}
+>>>>>>> 8811caa864551de42fc19f2ba7b379d364dd3765
 						>
 							{location.pathname !== '/' && <Header activePage={activePage} setPage={setPage} />}
 							<Outlet />
 						</div>
 					</div>
+<<<<<<< HEAD
 					{tokenData && location.pathname !== '/' && (
+=======
+					{tokenData && (
+>>>>>>> 8811caa864551de42fc19f2ba7b379d364dd3765
 						<Footer
 							currentSongPlaying={currentSongPlaying}
 							tokenData={tokenData}

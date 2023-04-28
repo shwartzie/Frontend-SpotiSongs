@@ -11,23 +11,23 @@
 	flex-direction: column;
 }
 
+.scroll {
+	&::-webkit-scrollbar {
+		width: 10px;
+		background-color: #121212;
+	}
 
-//scroll
-.scroll::-webkit-scrollbar {
-	width: 10px;
-	background-color: $layout;
-}
+	&::-webkit-scrollbar-thumb {
+		background-color: #1db954;
+		border-radius: 5px;
+	}
 
-.scroll::-webkit-scrollbar-thumb {
-	background-color: $lime;
-	border-radius: 5px;
-}
+	&::-webkit-scrollbar-thumb:hover {
+		background-color: #0f9d58;
+	}
 
-.scroll::-webkit-scrollbar-thumb:hover {
-	background-color: $lime-hover;
-}
-
-.scroll::-webkit-scrollbar-track {
-	background-color: $layout-lighter;
-	// border-radius: 10px;
+	&::-webkit-scrollbar-track {
+		background-color: #222222f9;
+		// border-radius: 10px;
+	}
 }

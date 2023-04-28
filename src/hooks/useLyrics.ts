@@ -20,7 +20,7 @@ export const useLyrics = ({ currentSongPlaying }: useLyrics) => {
 		if (lyrics && songName === currentSongPlaying?.name) {
 			setClosed(false);
 			return;
-		}
+		} else if (!currentSongPlaying) return;
 		// console.log(lyrics, '\n', songName, '\n', currentSongPlaying?.name);
 		(async () => {
 			const { data, status }: LyricsPayload = await lyricsService.getLyrics({

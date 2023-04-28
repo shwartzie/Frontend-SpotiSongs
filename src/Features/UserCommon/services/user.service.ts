@@ -3,6 +3,8 @@ import { TokenData, TokenApiData } from '../../../types/Token';
 
 export const userService = {
 	login,
+	signup,
+	getUserById,
 	loginWithSpotify,
 	getRefreshToken,
 	saveLocalEntity,
@@ -12,12 +14,39 @@ export const userService = {
 
 type User = {};
 
+const USER_BASE = 'user';
+
 async function login(user) {
 	try {
-		const result = await axios.post('auth/login', { ...user });
+		const result: any = await axios.get(`${USER_BASE}/${user.id}`);
+		if (result.status !== 200) throw result.error;
 		return result;
 	} catch (error) {
 		console.log(error);
+		throw error;
+	}
+}
+
+async function signup(user) {
+	try {
+		const result = await axios.post(`${USER_BASE}/signup`, { ...user });
+		console.log('signup successful', result);
+		return result;
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+}
+
+async function getUserById(userId: string) {
+	try {
+		console.log('getUserById', userId);
+		const result = await axios.get(`${USER_BASE}/${userId}`);
+		console.log('getUserByIdresult', result);
+		return result;
+	} catch (error) {
+		console.log(error);
+		throw error;
 	}
 }
 

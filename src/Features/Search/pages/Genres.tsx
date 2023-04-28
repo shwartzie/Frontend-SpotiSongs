@@ -17,12 +17,12 @@ interface GenresProps {
 export const Genres = ({ genres, title }: GenresProps) => {
 	return (
 		<>
-			<Title title={title} className={'search-container-layout-title'} />
-			<div className='search-container-overflow scroll'>
-				<article className="search-container-layout">
+			<Title title={title} className={'search-layout-title'} />
+			<main className='genres-container scroll'>
+				<article className="genres-container-layout">
 					{genres && genres.map((genre: Genre) => <GenreLayoutPreview genre={genre} key={genre.id} />)}
 				</article>
-			</div>
+			</main>
 		</>
 	);
 };
