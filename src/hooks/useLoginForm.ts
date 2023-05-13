@@ -21,11 +21,15 @@ interface SignUpFormErrors {
 }
 
 export const useLoginForm = ({ isLogin }: useLoginFormProps) => {
+	const location = useLocation();
+
+	const { email, id } = location.state;
+
 	const [formData, setFormData] = useState<SignUpFormData>({
-		username: '',
+		username: id || '',
 		password: '',
 		confirmPassword: '',
-		email: '',
+		email: email || '',
 	});
 	const handleChange = (name: string, value: string) => {
 		setFormData((prevFormData) => ({
@@ -37,7 +41,6 @@ export const useLoginForm = ({ isLogin }: useLoginFormProps) => {
 	const [formErrors, setFormErrors] = useState<SignUpFormErrors>({
 		username: '',
 		password: '',
-		email: '',
 		confirmPassword: '',
 	});
 
@@ -45,34 +48,7 @@ export const useLoginForm = ({ isLogin }: useLoginFormProps) => {
 	const navigate = useNavigate();
 
 	const validateInput = (name: string, value: any) => {
-		// let errorMessage = '';
-		// if (name === 'username') {
-		// 	if (value.length < 8) {
-		// 		errorMessage = 'Username must be at least 8 characters long.';
-		// 	}
-		// } else if (name === 'password') {
-		// 	if (value.length < 8) {
-		// 		errorMessage = 'Password must be at least 8 characters long.';
-		// 	} else if (!/\d/.test(value)) {
-		// 		errorMessage = 'Password must contain at least one number.';
-		// 	} else if (!/[!@#$%^&*]/.test(value)) {
-		// 		errorMessage = 'Password must contain at least one special character.';
-		// 	} else if (!/[A-Z]/.test(value)) {
-		// 		errorMessage = 'Password must contain at least one uppercase letter.';
-		// 	}
-		// } else if (name === 'confirmPassword') {
-		// 	if (value !== password.current.value) {
-		// 		errorMessage = 'Passwords do not match.';
-		// 	}
-		// } else if (name === 'email') {
-		// 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		// 	if (!emailRegex.test(value)) {
-		// 		errorMessage = 'Email is not valid.';
-		// 	}
-		// }
-		// setErrors((prevErrors) => ({ ...prevErrors, [name]: errorMessage }));
 		const errors: SignUpFormErrors = {};
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if (formData.username.length < 8) {
 			errors.username = 'Username must be at least 8 characters long.';
 		} else if (formData.password.length < 8) {
@@ -83,10 +59,8 @@ export const useLoginForm = ({ isLogin }: useLoginFormProps) => {
 			errors.password = 'Password must contain at least one special character.';
 		} else if (!/[A-Z]/.test(formData.password)) {
 			errors.password = 'Password must contain at least one uppercase letter.';
-		} 
-		if (!emailRegex.test(formData.email)) {
-			errors.email = 'Email is not valid.';
-		} 
+		}
+
 		if (formData.password !== formData.confirmPassword) {
 			errors.confirmPassword = 'Passwords do not match.';
 		}
@@ -100,16 +74,14 @@ export const useLoginForm = ({ isLogin }: useLoginFormProps) => {
 
 		// Check if there are any errors
 		if (Object.values(formErrors).every((val: string) => val === '')) {
-			// const userToLogin: any = { password };
-
 			// if (!isLogin) {
-			// 	dispatch(signup({ username, password, email }));
+			// 	dispatch(signup({...formData }));
 			// } else {
-			// 	dispatch(login({ ...userToLogin }));
+			// 	dispatch(login({ ...formData }));
 			// }
 
 			// navigate('/home');
-			setFormErrors({ username: '', password: '', email: '', confirmPassword: '' });
+			setFormErrors({ username: '', password: '', confirmPassword: '' });
 		}
 	};
 	// console.log(formData)

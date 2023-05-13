@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { login, setSpotifyToken } from '../../../../store/actions/userActions';
 import { Link } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
@@ -9,10 +9,10 @@ import { userLoginService } from '../services/user.login.service';
 import { LoginButton } from '../components/LoginButton';
 import { userService } from 'Features/UserCommon/services/user.service';
 import SpotifyWebApi from 'spotify-web-api-node';
-const demoUser = {
-	username: 'admin',
-	password: 'admin',
-};
+// const demoUser = {
+// 	username: 'admin',
+// 	password: 'admin',
+// };
 
 const spotifyApi = new SpotifyWebApi({
 	clientId: process.env.REACT_APP_CLIENT_ID,
@@ -27,6 +27,7 @@ export const LogInPage = () => {
 
 	const dispatch: any = useDispatch();
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const { tokenData }: any = useSelector((state: any): any => state.userModule);
 
@@ -39,19 +40,15 @@ export const LogInPage = () => {
 		if (!tokenData) return;
 		// navigate('/home');
 		spotifyApi.setAccessToken(tokenData.accessToken);
-
 		spotifyApi
 			.getMe()
-			.then(({ body }) => {
-				console.log('getting body', { ...body });
-				const user: any = userService.getUserById(body.id);
-				console.log('getting user', { ...user });
-				if (user) {
-					dispatch(login({ ...user }));
-				} else {
-					navigate('/signup');
-					// dispatch(signup({ ...body }));
-				}
+			.then(async ({ body }) => {
+				// console.log('getting body', { ...body });
+				let user: any = await userService.getUserById(body.id);
+				if (!user) user = await userService.signup(body);
+				console.log('before dispatch',user);
+				await dispatch(login({ userId: user.data.id }));
+				// console.log('getting user', { ...user });
 				setRefreshToken(tokenData.refreshToken);
 				setExpiresIn(tokenData.expiresIn);
 				setIsLoading(false);

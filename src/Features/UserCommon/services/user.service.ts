@@ -16,10 +16,14 @@ type User = {};
 
 const USER_BASE = 'user';
 
-async function login(user) {
+async function login(userId: string) {
+	console.log("userId-----------", userId)
 	try {
-		const result: any = await axios.get(`${USER_BASE}/${user.id}`);
-		if (result.status !== 200) throw result.error;
+		const result: any = await axios.get(`${USER_BASE}/login/${userId}`, {
+			params: {
+				isSchema: true,
+			},
+		});
 		return result;
 	} catch (error) {
 		console.log(error);
@@ -27,7 +31,7 @@ async function login(user) {
 	}
 }
 
-async function signup(user) {
+async function signup(user: any) {
 	try {
 		const result = await axios.post(`${USER_BASE}/signup`, { ...user });
 		console.log('signup successful', result);
@@ -40,13 +44,12 @@ async function signup(user) {
 
 async function getUserById(userId: string) {
 	try {
-		console.log('getUserById', userId);
 		const result = await axios.get(`${USER_BASE}/${userId}`);
-		console.log('getUserByIdresult', result);
+		console.log('getUserById result', result);
 		return result;
 	} catch (error) {
 		console.log(error);
-		throw error;
+		// throw error;
 	}
 }
 

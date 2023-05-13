@@ -2,13 +2,15 @@ import { TokenData, TokenApiData } from '../../types/Token';
 import { userService } from '../../Features/UserCommon/services/user.service';
 import SpotifyWebApi from 'spotify-web-api-node';
 type UserToLogIn = {
-	username: string;
-	password: string;
+	userId: string;
+	// username: string;
+	// password: string;
 };
-export const login = (userToLogIn: UserToLogIn) => {
+export const login = ({ userId }: UserToLogIn) => {
+	console.log('after dispatch', userId);
 	return async (dispatch) => {
 		try {
-			const user = await userService.login(userToLogIn);
+			const user = await userService.login(userId);
 			dispatch({ type: 'LOGIN', loggedInUser: { ...user } });
 		} catch (error) {
 			console.error(error);
@@ -40,7 +42,7 @@ export const setSpotifyToken = ({ code, spotifyApi, tokenData, isRefreshing }: a
 				code,
 				spotifyApi._credentials.clientId
 			);
-			
+
 			dispatch({ type: 'ADD_TOKEN', tokenData: { ...data }, spotifyApi });
 
 			if (status !== 200) {
