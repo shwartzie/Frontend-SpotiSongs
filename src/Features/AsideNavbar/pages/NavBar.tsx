@@ -28,7 +28,7 @@ export const NavBar = ({ activePage, setPage, query, setQuery }: NavBarProps) =>
 				</section>
 
 				{pathname === '/search' && (
-					<section className="nav-search-input">
+					<section className="search-input">
 						<SearchInput setQuery={setQuery} query={query} />
 					</section>
 				)}

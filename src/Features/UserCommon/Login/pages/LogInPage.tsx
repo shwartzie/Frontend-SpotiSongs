@@ -52,6 +52,7 @@ export const LogInPage = () => {
 				setRefreshToken(tokenData.refreshToken);
 				setExpiresIn(tokenData.expiresIn);
 				setIsLoading(false);
+				navigate('/home');
 			})
 			.catch((error) => {
 				navigate('/');
