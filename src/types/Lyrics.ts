@@ -16,8 +16,4 @@ export interface LyricsPayload {
 export type UseLyrics = {
 	lyrics: string;
 	setLyrics: (lyrics: string) => void;
-	isClicked: boolean;
-	setIsClicked: (isClicked: boolean) => void;
-	isClosed: boolean;
-	setClosed: (isClosed: boolean) => void;
 };

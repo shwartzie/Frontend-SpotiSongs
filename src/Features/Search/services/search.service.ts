@@ -1,8 +1,8 @@
 import { utilService } from 'common/services/util.service';
 
-import { axiosInstance } from 'common/services/Server/axios';
+import { axiosService } from 'common/services/Server/axios';
 
-const axios = axiosInstance.axios.create();
+const axios = axiosService.axiosWithAuth;
 
 export const searchService = {
 	query,

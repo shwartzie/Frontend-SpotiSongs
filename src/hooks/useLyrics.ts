@@ -1,5 +1,5 @@
 import { lyricsService } from 'Features/Lyrics/services/lyrics.service';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { LyricsPayload } from 'types/Lyrics';
 
 interface useLyrics {
@@ -7,48 +7,39 @@ interface useLyrics {
 }
 
 export const useLyrics = ({ currentSongPlaying }: useLyrics) => {
-	const [isClicked, setIsClicked] = useState<boolean>(false);
 	const [lyrics, setLyrics] = useState<string>(null);
-	const [isClosed, setClosed] = useState<boolean>(true);
 	const [songName, setCurrentSongName] = useState<string>('');
 
+	const isSongNameEqual = () => {
+		return songName === currentSongPlaying?.name;
+	};
+
 	useEffect(() => {
-		if (songName !== currentSongPlaying?.name) setLyrics(null);
+		if (isSongNameEqual()) setLyrics(null);
 	}, [currentSongPlaying]);
 
 	useEffect(() => {
-		if (lyrics && songName === currentSongPlaying?.name) {
-			setClosed(false);
-			return;
-		} else if (!currentSongPlaying) return;
-		// console.log(lyrics, '\n', songName, '\n', currentSongPlaying?.name);
 		(async () => {
-			const { data, status }: LyricsPayload = await lyricsService.getLyrics({
-				track: currentSongPlaying.name,
-				artist: currentSongPlaying.artists[0].name,
-			});
-			// TODO: Handle Error
-			// if (status !== 200) {
-			// 	return;
-			// }
+			try {
+				const { data, status }: LyricsPayload = await lyricsService.getLyrics({
+					track: currentSongPlaying.name,
+					artist: currentSongPlaying.artists[0].name,
+				});
 
-			setLyrics(data.lyrics);
-			setClosed(false);
-			setCurrentSongName(currentSongPlaying.name);
+				setLyrics(data.lyrics);
+				setCurrentSongName(currentSongPlaying.name);
+			} catch (error) {
+				console.error(error);
+			}
 		})();
 
 		return () => {
-			setClosed(false);
+			// setLyrics("Could not find lyrics for this song")
 			return;
 		};
-	}, [isClicked]);
-
+	}, [currentSongPlaying]);
 
 	return {
-		isClicked,
-		setIsClicked,
-		isClosed,
-		setClosed,
 		lyrics,
 		setLyrics,
 	};

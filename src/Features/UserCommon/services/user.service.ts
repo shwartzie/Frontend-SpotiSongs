@@ -1,7 +1,7 @@
-import { axiosInstance } from 'common/services/Server/axios';
+import { axiosService } from 'common/services/Server/axios';
 import { TokenData, TokenApiData } from '../../../types/Token';
 
-const axios = axiosInstance.axios.create();
+const axios = axiosService.axios;
 
 export const userService = {
 	login,

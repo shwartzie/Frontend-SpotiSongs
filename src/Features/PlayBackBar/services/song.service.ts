@@ -1,6 +1,6 @@
-import { axiosInstance } from 'common/services/Server/axios';
+import { axiosService } from 'common/services/Server/axios';
 
-const axios = axiosInstance.axiosWithAuth.create();
+const axios = axiosService.axiosWithAuth;
 
 export const songService = {
 	get,

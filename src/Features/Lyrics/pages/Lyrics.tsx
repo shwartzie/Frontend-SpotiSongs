@@ -1,5 +1,5 @@
 import { useLyrics } from 'hooks/useLyrics';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { LyricsButton } from '../components/LyricsButton';
 import { LyricsModal } from '../components/LyricsModal';
 import { UseLyrics } from 'types/Lyrics';
@@ -8,11 +8,14 @@ interface LyricsProps {
 	currentSongPlaying: any;
 }
 export const Lyrics = ({ currentSongPlaying }: LyricsProps) => {
-	const { setIsClicked, isClicked, lyrics, setLyrics, setClosed, isClosed }: UseLyrics = useLyrics({
+	const { lyrics, setLyrics }: UseLyrics = useLyrics({
 		currentSongPlaying,
 	});
+	const [isClosed, setClosed] = useState<boolean>(true);
+	const [isClicked, setIsClicked] = useState<boolean>(false);
 
-	
+	console.log(isClicked);
+
 	return (
 		<>
 			<LyricsButton setIsClicked={setIsClicked} />
@@ -23,6 +26,7 @@ export const Lyrics = ({ currentSongPlaying }: LyricsProps) => {
 					isClosed={isClosed}
 					setIsClicked={setIsClicked}
 					setLyrics={setLyrics}
+					isClicked={isClicked}
 				/>
 			)}
 		</>

@@ -13,7 +13,6 @@ interface FooterProps {
 }
 
 export const Footer = ({ currentSongPlaying, tokenData, isPlaying, setPlaying }: FooterProps) => {
-	
 	return (
 		<footer className="footer-main-container">
 			<div className="footer-container">
