@@ -14,8 +14,6 @@ export const Lyrics = ({ currentSongPlaying }: LyricsProps) => {
 	const [isClosed, setClosed] = useState<boolean>(true);
 	const [isClicked, setIsClicked] = useState<boolean>(false);
 
-	console.log(isClicked);
-
 	return (
 		<>
 			<LyricsButton setIsClicked={setIsClicked} />

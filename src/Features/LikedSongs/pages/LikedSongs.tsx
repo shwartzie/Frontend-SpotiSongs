@@ -1,10 +1,9 @@
-import { Loading } from 'common/Components/Loading';
-import { FilteredSongsPreview } from 'Features/Search/components/FilteredSongsPreview';
 import { SongLayout } from 'Features/Song/pages/Song';
-import { SongTitle } from 'Features/SongDetails/components/SongTitle';
-import React, { useMemo, useState, useEffect } from 'react';
+import { Loading } from 'common/Components/Loading';
+import { tokenService } from 'common/services/Server/token';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { likedSongsService } from '../services/liked-songs.service';
+import { useNavigate } from 'react-router-dom';
 
 export interface LikedSongsProps {
 	onSong: (song: any) => void;
@@ -15,18 +14,43 @@ export const LikedSongs = ({ onSong, setPlaying }: LikedSongsProps) => {
 	const { tokenData, spotifyApi } = useSelector((state: any) => state.userModule);
 	const [likedSongs, setLikedSongs] = useState<any>();
 	const [totalSongs, setTotalSongs] = useState<number>();
-
+	const navigate = useNavigate();
 	const savedTracks: any = useMemo(async () => {
 		if (!tokenData) return [];
-		const { body } = await spotifyApi.getMySavedTracks({
+		let offset: number = 1;
+
+		const { body }: any = await spotifyApi.getMySavedTracks({
 			limit: 50,
-			offset: 1,
+			offset,
 		});
+
+		while (offset < 200) {
+			offset += 49;
+			const payload: any = await spotifyApi.getMySavedTracks({
+				limit: 50,
+				offset,
+			});
+			console.log(body.items);
+			body.items.push([...payload.body.items])
+			body.items = body.items.flat(Infinity);
+		}
 		return body;
 	}, [tokenData, spotifyApi]);
 
 	useEffect(() => {
+		// const isTokenValid: any = tokenService.isTokenValid().then((response) => {
+		// 	// console.log('isTokenValid', response);
+		// 	if (response.status !== 200) {
+		// 		navigate('/');
+		// 		console.error(response.message);
+		// 		return false;
+		// 	}
+		// 	return true;
+		// });
+		// if (!isTokenValid) return;
 		savedTracks.then((body) => {
+			console.log(body);
+
 			if (!body.items) return;
 			const tracks = body.items.map((item) => item.track);
 			// setAddedAt(tracks.items.)
@@ -36,12 +60,12 @@ export const LikedSongs = ({ onSong, setPlaying }: LikedSongsProps) => {
 	}, [savedTracks]);
 
 	return (
-		<main>
+		<main style={{height: 'calc(100% - 150px)'}}>
 			{!likedSongs ? (
 				<Loading />
 			) : (
 				<section className="filtered-songs-main-conatiner">
-					<SongLayout songs={likedSongs} onSong={onSong} setPlaying={setPlaying} isLikedSongsPage={true}/>
+					<SongLayout songs={likedSongs} onSong={onSong} setPlaying={setPlaying} isLikedSongsPage={true} />
 				</section>
 			)}
 		</main>

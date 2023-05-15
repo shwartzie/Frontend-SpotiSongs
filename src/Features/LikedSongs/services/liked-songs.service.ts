@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { axiosService } from 'common/services/Server/axios';
-const axios = axiosService.axiosWithAuth;
+import { tokenService } from 'common/services/Server/token';
+const axios: any = axiosService.axiosWithAuth;
 
 export const likedSongsService = {
 	query,
@@ -8,6 +9,10 @@ export const likedSongsService = {
 
 async function query(accessToken: string) {
 	try {
+		console.log('query')
+		const isTokenValid: any = await tokenService.isTokenValid();
+		if (isTokenValid.status !== 200) throw new Error(isTokenValid.message);
+
 		const response: AxiosResponse<any, any> = await axios.get('https://api.spotify.com/v1/me/tracks', {
 			headers: {
 				Authorization: 'Bearer ' + accessToken,

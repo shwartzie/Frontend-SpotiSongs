@@ -9,7 +9,7 @@ interface SongProps {
 }
 export const SongLayout = ({ songs, onSong, setPlaying, isLikedSongsPage }: SongProps) => {
 	return (
-		<div className="songs-layout">
+		<div className="songs-layout scroll">
 			{songs.slice(0).map((song: any, index: number) => (
 				<div key={song.id}>
 					<FilteredSongsPreview

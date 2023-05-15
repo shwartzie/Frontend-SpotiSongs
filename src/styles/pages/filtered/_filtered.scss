@@ -99,7 +99,7 @@
 	grid-column: 3/-1;
 	max-width: 100%;
 	width: 100vw;
-
+	height: 100%;
 	.songs-layout {
 		display: flex;
 		flex-direction: column;
@@ -108,11 +108,11 @@
 		border: 1px solid transparent;
 		border-radius: 4px;
 		outline: 0;
-		height: 224px;
+		height: 100%;
 		contain: layout size;
 		position: relative;
 		transform: translateY(0px);
-
+		overflow: auto;
 		.songs-preview {
 			.songs-grid-row > *:not(:last-child) {
 				margin-right: 16px;
