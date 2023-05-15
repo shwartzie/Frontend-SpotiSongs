@@ -1,77 +1,78 @@
 .main-landing-page {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    width: 100%;
-   
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	width: 100%;
 }
 
 .landing-page-layout {
-    display: flex;
-    width: 100%;
-    background-color: $layout;
-    flex-direction: column;
-    position: relative;
+	display: flex;
+	width: 100%;
+	background-color: $layout;
+	flex-direction: column;
+	position: relative;
+	// height: calc(100vh - 90px);
     height: 100%;
-    .landing-page-layout-main-container {
-        display: flex;
-        height: 100%;
-    }
+	&-main-container {
+		display: flex;
+		height: 100%;
+        width:100%;
+        justify-content: center;
+	}
 
-    .landing-page-component-container {
-        display: flex;
-        flex-direction: column;
-        width: calc(100% - 241px);
-    }
+	.landing-page-component-container {
+		display: flex;
+		flex-direction: column;
+		width: calc(100% - 241px);
+	}
 
-    main {
-        height: 100%;
-        display: block;
-        .landing-page-header-and-favourites-container {
-            grid-gap: 24px;
-            display: grid;
-            padding: 0 32px;
-            padding-top: 24px;
+	main {
+		height: 100%;
+		display: block;
+		.landing-page-header-and-favourites-container {
+			grid-gap: 24px;
+			display: grid;
+			padding: 0 32px;
+			padding-top: 24px;
 
-            .landing-page-header-and-favourites-section {
-                webkit-box-orient: vertical;
-                -webkit-box-direction: normal;
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-                -ms-flex-direction: column;
-                flex-direction: column;
-                margin-bottom: 16px;
-                min-height: 200px;
-                position: relative;
-                .favourites-title {
-                    display: flex;
-                    margin-bottom: 16px;
-                    line-height: 26px;
-                    height: 36px;
-                    div {
-                        display: block;
-                        flex-grow: 1;
-                        line-height: normal;
-                        min-width: 0;
-                        h2 {
-                            color: $text-base;
-                            box-sizing: border-box;
-                            -webkit-tap-highlight-color: transparent;
-                            margin-block: 0px;
-                            font-size: 2rem;
-                            font-weight: 700;
-                            font-family: CircularStd-Bold;
-                            // color: #000000;
-                            display: inline-block;
-                            max-width: 100%;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
-                        }
-                    }
-                }
-            }
-        }
-    }
+			.landing-page-header-and-favourites-section {
+				-webkit-box-direction: normal;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-ms-flex-direction: column;
+				flex-direction: column;
+				margin-bottom: 16px;
+				min-height: 200px;
+				position: relative;
+				.favourites-title {
+					display: flex;
+					margin-bottom: 16px;
+					line-height: 26px;
+					height: 36px;
+					div {
+						display: block;
+						flex-grow: 1;
+						line-height: normal;
+						min-width: 0;
+						h2 {
+							color: $text-base;
+							box-sizing: border-box;
+							-webkit-tap-highlight-color: transparent;
+							margin-block: 0px;
+							font-size: 2rem;
+							font-weight: 700;
+							font-family: CircularStd-Bold;
+							// color: #000000;
+							display: inline-block;
+							max-width: 100%;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+						}
+					}
+				}
+			}
+		}
+	}
 }

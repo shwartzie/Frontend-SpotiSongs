@@ -1,5 +1,7 @@
-import axios from 'common/services/Server/axios';
+import { axiosInstance } from 'common/services/Server/axios';
 import { TokenData, TokenApiData } from '../../../types/Token';
+
+const axios = axiosInstance.axios.create();
 
 export const userService = {
 	login,
@@ -17,7 +19,7 @@ type User = {};
 const USER_BASE = 'user';
 
 async function login(userId: string) {
-	console.log("userId-----------", userId)
+	console.log('userId-----------', userId);
 	try {
 		const result: any = await axios.get(`${USER_BASE}/login/${userId}`, {
 			params: {

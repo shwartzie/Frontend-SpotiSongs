@@ -17,7 +17,7 @@ interface GenresProps {
 export const Genres = ({ genres, title }: GenresProps) => {
 	return (
 		<>
-			<Title title={title} className={'search-layout-title'} />
+			<Title title={title} className={'search-conatiner-layout-title'} />
 			<main className='genres-container scroll'>
 				<article className="genres-container-layout">
 					{genres && genres.map((genre: Genre) => <GenreLayoutPreview genre={genre} key={genre.id} />)}

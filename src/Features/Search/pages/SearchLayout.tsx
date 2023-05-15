@@ -3,7 +3,7 @@ import { utilService } from 'common/services/util.service';
 import React, { useEffect, useState, useMemo } from 'react';
 import { FilteredSongsPreview } from '../components/FilteredSongsPreview';
 import { GenreLayoutPreview } from '../components/GenreLayoutPreview';
-import { searchLayoutService } from '../services/search.layout.service';
+import { searchService } from '../services/search.service';
 import { Filtered } from './Filtered';
 import { Genres } from './Genres';
 
@@ -27,9 +27,9 @@ export const SearchLayout = ({
 	useEffect(() => {
 		if (songs) return;
 		const cb = async () => {
-			const genres = await searchLayoutService.queryDemo();
-			const updatedGenres = generateIds(genres);
-			setGenres([...updatedGenres]);
+			const genres = await searchService.queryDemo();
+			const updatedGenres =  generateIds(genres);
+			if (genres) setGenres([...updatedGenres]);
 		};
 		cb();
 	}, [songs]);
@@ -56,7 +56,7 @@ export const SearchLayout = ({
 };
 
 function generateIds(genres: string[]) {
-	return genres.map((genre: any) => {
+	return genres?.length > 0 && genres.map((genre: any) => {
 		return {
 			...genre,
 			id: utilService.makeId(16),

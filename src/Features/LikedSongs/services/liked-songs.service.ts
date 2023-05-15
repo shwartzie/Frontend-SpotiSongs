@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
-import axios from 'common/services/Server/axios';
+import { axiosInstance } from 'common/services/Server/axios';
+const axios = axiosInstance.axiosWithAuth.create();
 
 export const likedSongsService = {
 	query,

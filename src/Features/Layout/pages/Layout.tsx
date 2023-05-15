@@ -31,11 +31,11 @@ export const Layout = ({ currentSongPlaying, tokenData, isPlaying, setPlaying }:
 						)}
 						<div
 							className="landing-page-component-container"
-							ref={(el: HTMLDivElement) =>
-								el &&
-								(pathname == '/' || pathname == '/signup') &&
-								el.style.setProperty('width', '100%')
-							}
+							// ref={(el: HTMLDivElement) =>
+							// 	el &&
+							// 	(pathname == '/' || pathname == '/signup') &&
+							// 	el.style.setProperty('width', '100%')
+							// }
 						>
 							{pathname !== '/' && <Header activePage={activePage} setPage={setPage} />}
 							<Outlet />

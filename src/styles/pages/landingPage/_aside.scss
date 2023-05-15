@@ -6,7 +6,6 @@
     -webkit-box-orient: vertical;
     -webkit-box-flex: 1;
     cursor: default;
-    -ms-flex: 1;
     // flex: 1;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -21,5 +20,8 @@
     display: -ms-flexbox;
     display: flex;
     background-color: $dark;
-    width:241px;
+    max-width: 241px;
+    min-width: 200px;
+    width:100%;
+
 }
