@@ -4,6 +4,8 @@ import { tokenService } from 'common/services/Server/token';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { likedSongsService } from '../services/liked-songs.service';
+import { userService } from 'Features/UserCommon/services/user.service';
 
 export interface LikedSongsProps {
 	onSong: (song: any) => void;
@@ -11,56 +13,67 @@ export interface LikedSongsProps {
 }
 
 export const LikedSongs = ({ onSong, setPlaying }: LikedSongsProps) => {
-	const { tokenData, spotifyApi } = useSelector((state: any) => state.userModule);
+	const { tokenData, spotifyApi, loggedInUser } = useSelector((state: any) => state.userModule);
 	const [likedSongs, setLikedSongs] = useState<any>();
 	const [totalSongs, setTotalSongs] = useState<number>();
-	const navigate = useNavigate();
-	const savedTracks: any = useMemo(async () => {
-		if (!tokenData) return [];
+	// const navigate = useNavigate();
+	// console.log(loggedInUser)
+
+	const isTracks = (tracks = null) => {
+		return likedSongs?.length > 0 || tracks?.length > 0;
+	};
+	const handleLikedSongs = async (): Promise<any[]> => {
+		const promises: Promise<any>[] = [];
 		let offset: number = 1;
-
-		const { body }: any = await spotifyApi.getMySavedTracks({
-			limit: 50,
-			offset,
-		});
-
 		while (offset < 200) {
 			offset += 49;
-			const payload: any = await spotifyApi.getMySavedTracks({
+			const payload: any = spotifyApi.getMySavedTracks({
 				limit: 50,
 				offset,
 			});
-			console.log(body.items);
-			body.items.push([...payload.body.items])
-			body.items = body.items.flat(Infinity);
+			promises.push(payload);
 		}
-		return body;
+		const tracks = await Promise.all(promises);
+		const flattendTracks = tracks
+			.map((payload) => {
+				setTotalSongs(payload.body.total);
+				return payload.body.items;
+			})
+			.flatMap((item) => item)
+			.map((item) => item.track);
+
+		setLikedSongs([...flattendTracks]);
+		return flattendTracks;
+	};
+	useEffect(() => {
+		if (isTracks()) return;
+		let isSave = false,
+			tracksToSave = [];
+		likedSongsService
+			.getTracks(loggedInUser.id)
+			.then(async ({ data }) => {
+				if (isTracks(data.tracks)) {
+					setLikedSongs([...data.tracks]);
+				} else {
+					tracksToSave = await handleLikedSongs();
+					isSave = true;
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+			})
+			.finally(async () => {
+				if (!isSave) return;
+				await likedSongsService.add([...tracksToSave], loggedInUser.id);
+			});
+
+		return () => {
+			setLikedSongs([]);
+		};
 	}, [tokenData, spotifyApi]);
 
-	useEffect(() => {
-		// const isTokenValid: any = tokenService.isTokenValid().then((response) => {
-		// 	// console.log('isTokenValid', response);
-		// 	if (response.status !== 200) {
-		// 		navigate('/');
-		// 		console.error(response.message);
-		// 		return false;
-		// 	}
-		// 	return true;
-		// });
-		// if (!isTokenValid) return;
-		savedTracks.then((body) => {
-			console.log(body);
-
-			if (!body.items) return;
-			const tracks = body.items.map((item) => item.track);
-			// setAddedAt(tracks.items.)
-			setLikedSongs([...tracks]);
-			setTotalSongs(body.total);
-		});
-	}, [savedTracks]);
-
 	return (
-		<main style={{height: 'calc(100% - 150px)'}}>
+		<main style={{ height: 'calc(100% - 150px)' }}>
 			{!likedSongs ? (
 				<Loading />
 			) : (

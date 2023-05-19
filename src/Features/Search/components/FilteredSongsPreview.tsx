@@ -25,7 +25,6 @@ export const FilteredSongsPreview = ({
 	};
 
 	const img = song.album.images[0].url;
-
 	return (
 		<div
 			className="songs-preview"

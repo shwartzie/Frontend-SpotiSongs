@@ -7,11 +7,12 @@ type UserToLogIn = {
 	// password: string;
 };
 export const login = ({ userId }: UserToLogIn) => {
-	console.log('after dispatch', userId);
+	
 	return async (dispatch) => {
 		try {
 			const user = await userService.login(userId);
-			dispatch({ type: 'LOGIN', loggedInUser: { ...user } });
+			// console.log('after dispatch', user);
+			dispatch({ type: 'LOGIN', loggedInUser: { ...user.data } });
 		} catch (error) {
 			console.error(error);
 			throw new Error(`User was not found, following error: ${error}`);
