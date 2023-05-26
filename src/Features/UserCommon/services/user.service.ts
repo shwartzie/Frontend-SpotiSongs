@@ -19,7 +19,6 @@ type User = {};
 const USER_BASE = 'user';
 
 async function login(userId: string) {
-	console.log('userId-----------', userId);
 	try {
 		const result: any = await axios.get(`${USER_BASE}/login/${userId}`, {
 			params: {
@@ -48,7 +47,7 @@ async function getUserById(userId: string) {
 	try {
 		const result = await axios.get(`${USER_BASE}/${userId}`);
 		console.log('getUserById result', result);
-		return result;
+		return result.data;
 	} catch (error) {
 		console.log(error);
 		// throw error;

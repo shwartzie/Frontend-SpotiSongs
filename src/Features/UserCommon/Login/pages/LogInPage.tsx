@@ -47,7 +47,7 @@ export const LogInPage = () => {
 				let user: any = await userService.getUserById(body.id);
 				if (!user) user = await userService.signup(body);
 				console.log('before dispatch',user);
-				await dispatch(login({ userId: user.data.id }));
+				await dispatch(login({ userId: user.external_id }));
 				// console.log('getting user', { ...user });
 				setRefreshToken(tokenData.refreshToken);
 				setExpiresIn(tokenData.expiresIn);

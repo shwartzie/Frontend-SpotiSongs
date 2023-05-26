@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { likedSongsService } from '../services/liked-songs.service';
 import { userService } from 'Features/UserCommon/services/user.service';
+import { albumService } from 'common/services/album/album.service';
 
 export interface LikedSongsProps {
 	onSong: (song: any) => void;
@@ -14,57 +15,54 @@ export interface LikedSongsProps {
 
 export const LikedSongs = ({ onSong, setPlaying }: LikedSongsProps) => {
 	const { tokenData, spotifyApi, loggedInUser } = useSelector((state: any) => state.userModule);
-	const [likedSongs, setLikedSongs] = useState<any>();
-	const [totalSongs, setTotalSongs] = useState<number>();
+	const [likedSongs, setLikedSongs] = useState<any>([]);
+	const [totalSongs, setTotalSongs] = useState<number>(0);
+	const [isLoading, setLoading] = useState<boolean>(true);
 	// const navigate = useNavigate();
 	// console.log(loggedInUser)
 
-	const isTracks = (tracks = null) => {
+	const _isTracks = (tracks = null) => {
 		return likedSongs?.length > 0 || tracks?.length > 0;
 	};
-	const handleLikedSongs = async (): Promise<any[]> => {
-		const promises: Promise<any>[] = [];
-		let offset: number = 1;
-		while (offset < 200) {
-			offset += 49;
-			const payload: any = spotifyApi.getMySavedTracks({
-				limit: 50,
-				offset,
-			});
-			promises.push(payload);
-		}
-		const tracks = await Promise.all(promises);
-		const flattendTracks = tracks
-			.map((payload) => {
-				setTotalSongs(payload.body.total);
-				return payload.body.items;
-			})
-			.flatMap((item) => item)
-			.map((item) => item.track);
+	console.log(
+		spotifyApi.getMySavedTracks({
+			limit: 50,
+			offset: 1,
+		})
+	);
+	const loadLikedSongs = async () => {
+		const tracks = await likedSongsService.loadSongs(spotifyApi);
+		setLikedSongs(tracks);
+		const tracksToAdd = likedSongsService.getTracksToAdd(tracks, loggedInUser.external_id);
+		console.log(tracksToAdd);
 
-		setLikedSongs([...flattendTracks]);
-		return flattendTracks;
+		const tracksResponse = likedSongsService.add(tracksToAdd, loggedInUser.external_id);
+		const albumResponse = albumService.add(tracks, loggedInUser.external_id);
+		const imagesResponse = albumService.addImages(tracks, loggedInUser.external_id);
+
+		const responses = await Promise.all([tracksResponse, albumResponse, imagesResponse]);
+		responses.forEach((element) => {
+			console.log(element.message);
+		});
 	};
+
 	useEffect(() => {
-		if (isTracks()) return;
-		let isSave = false,
-			tracksToSave = [];
+		if (_isTracks() && !loggedInUser) return;
+		console.log({ ...loggedInUser });
 		likedSongsService
-			.getTracks(loggedInUser.id)
+			.getTracks(loggedInUser.external_id)
 			.then(async ({ data }) => {
-				if (isTracks(data.tracks)) {
+				console.log('getTracks data', data);
+				if (_isTracks(data.tracks)) {
 					setLikedSongs([...data.tracks]);
 				} else {
-					tracksToSave = await handleLikedSongs();
-					isSave = true;
+					await loadLikedSongs();
 				}
+				setLoading(false);
 			})
 			.catch((error) => {
 				console.error(error);
-			})
-			.finally(async () => {
-				if (!isSave) return;
-				await likedSongsService.add([...tracksToSave], loggedInUser.id);
+				setLikedSongs([]);
 			});
 
 		return () => {
@@ -74,7 +72,7 @@ export const LikedSongs = ({ onSong, setPlaying }: LikedSongsProps) => {
 
 	return (
 		<main style={{ height: 'calc(100% - 150px)' }}>
-			{!likedSongs ? (
+			{isLoading ? (
 				<Loading />
 			) : (
 				<section className="filtered-songs-main-conatiner">
