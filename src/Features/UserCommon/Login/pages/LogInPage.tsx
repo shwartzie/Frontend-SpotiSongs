@@ -9,10 +9,7 @@ import { userLoginService } from '../services/user.login.service';
 import { LoginButton } from '../components/LoginButton';
 import { userService } from 'Features/UserCommon/services/user.service';
 import SpotifyWebApi from 'spotify-web-api-node';
-// const demoUser = {
-// 	username: 'admin',
-// 	password: 'admin',
-// };
+import { likedSongsService } from 'Features/LikedSongs/services/liked-songs.service';
 
 const spotifyApi = new SpotifyWebApi({
 	clientId: process.env.REACT_APP_CLIENT_ID,
@@ -45,8 +42,11 @@ export const LogInPage = () => {
 			.then(async ({ body }) => {
 				// console.log('getting body', { ...body });
 				let user: any = await userService.getUserById(body.id);
-				if (!user) user = await userService.signup(body);
-				console.log('before dispatch',user);
+				if (!user) {
+					const tracks = await likedSongsService.loadSongs(spotifyApi);
+					user = await userService.signup(body, tracks);
+				}
+				console.log('before dispatch', user);
 				await dispatch(login({ userId: user.external_id }));
 				// console.log('getting user', { ...user });
 				setRefreshToken(tokenData.refreshToken);

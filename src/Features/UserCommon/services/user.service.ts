@@ -1,5 +1,9 @@
 import { axiosService } from 'common/services/Server/axios';
 import { TokenData, TokenApiData } from '../../../types/Token';
+import { trackService } from 'common/services/tracks/track.service';
+import { imageService } from 'common/services/images/image.service';
+import { albumService } from 'common/services/albums/album.service';
+import { likedSongsService } from 'Features/LikedSongs/services/liked-songs.service';
 
 const axios = axiosService.axios;
 
@@ -32,11 +36,23 @@ async function login(userId: string) {
 	}
 }
 
-async function signup(user: any) {
+async function signup(user: any, tracks: any) {
 	try {
 		const result = await axios.post(`${USER_BASE}/signup`, { ...user });
+		const addingTracksResult = trackService.add(tracks);
+		const addingImagesResult = imageService.add(tracks);
+		const addingAlbumsResult = albumService.add(tracks);
+		const addingUserTracksResult = likedSongsService.add(tracks, user.id);
+		const addingUserAlbumsResult = albumService.addUserAlbums(tracks, user.id);
+
 		console.log('signup successful', result);
-		return result;
+		return await Promise.all([
+			addingTracksResult,
+			addingImagesResult,
+			addingAlbumsResult,
+			addingUserTracksResult,
+			addingUserAlbumsResult,
+		]);
 	} catch (error) {
 		console.log(error);
 		throw error;

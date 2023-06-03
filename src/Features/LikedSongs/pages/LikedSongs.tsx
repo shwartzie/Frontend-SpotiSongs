@@ -6,7 +6,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { likedSongsService } from '../services/liked-songs.service';
 import { userService } from 'Features/UserCommon/services/user.service';
-import { albumService } from 'common/services/album/album.service';
+import { albumService } from 'common/services/albums/album.service';
+import { imageService } from 'common/services/images/image.service';
 
 export interface LikedSongsProps {
 	onSong: (song: any) => void;
@@ -33,17 +34,6 @@ export const LikedSongs = ({ onSong, setPlaying }: LikedSongsProps) => {
 	const loadLikedSongs = async () => {
 		const tracks = await likedSongsService.loadSongs(spotifyApi);
 		setLikedSongs(tracks);
-		const tracksToAdd = likedSongsService.getTracksToAdd(tracks, loggedInUser.external_id);
-		console.log(tracksToAdd);
-
-		const tracksResponse = likedSongsService.add(tracksToAdd, loggedInUser.external_id);
-		const albumResponse = albumService.add(tracks, loggedInUser.external_id);
-		const imagesResponse = albumService.addImages(tracks, loggedInUser.external_id);
-
-		const responses = await Promise.all([tracksResponse, albumResponse, imagesResponse]);
-		responses.forEach((element) => {
-			console.log(element.message);
-		});
 	};
 
 	useEffect(() => {
