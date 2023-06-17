@@ -23,7 +23,7 @@ export const Filtered = ({ songs, songsData, onSong, setPlaying }: FilteredProps
 						<ArtistInfo songsData={songsData} />
 					</section>
 
-					<section className="filtered-songs-main-conatiner">
+					<section className="filtered-songs-main-conatiner scroll">
 						<Title title={'Songs'} className={'search-layout-title'} />
 						{songs && <SongLayout songs={songs} onSong={onSong} setPlaying={setPlaying} />}
 					</section>

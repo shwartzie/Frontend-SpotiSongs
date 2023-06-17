@@ -99,8 +99,10 @@
 .filtered-songs-main-conatiner {
 	grid-column: 3/-1;
 	max-width: 100%;
-	width: 100vw;
-
+	max-height: 100%;
+	width: 100%;
+	height:100%;
+	overflow: auto;
 	.songs-layout {
 		display: flex;
 		flex-direction: column;
@@ -110,7 +112,7 @@
 		border-radius: 4px;
 		outline: 0;
 		height: 224px;
-		contain: layout size;
+		// contain: layout size;
 		position: relative;
 		transform: translateY(0px);
 

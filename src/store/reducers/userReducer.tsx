@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
-	const { loggedInUser } = state;
+	const { loggedInUser , tokenData, spotifyApi} = state;
 	switch (action.type) {
 		case 'LOGIN':
 			return {
@@ -25,8 +25,8 @@ export const userReducer = (state = INITIAL_STATE, action) => {
 		case 'ADD_TOKEN':
 			return {
 				...state,
-				tokenData: { ...action.tokenData } || state.tokenData || userService.getLocalEntity('tokenData'),
-				spotifyApi: action.spotifyApi || state.spotifyApi,
+				tokenData: { ...action.tokenData } || tokenData || userService.getLocalEntity('tokenData'),
+				spotifyApi: action.spotifyApi || spotifyApi,
 			};
 		default:
 			return state;

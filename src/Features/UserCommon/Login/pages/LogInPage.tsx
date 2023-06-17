@@ -17,11 +17,8 @@ const code: string = new URLSearchParams(window.location.search).get('code');
 export const LogInPage = () => {
 	const dispatch: any = useDispatch();
 
-	const { tokenData, spotifyApi } = useSelector((state: any) => state.userModule);
-
-	const { isLoading } = useAuth(code);
-
-	const handleLogin:() => void = async () => {
+	const { isLoading, spotifyApi } = useAuth(code);
+	const handleLogin: () => void = async () => {
 		//TODO: use getMe function to get the user information;
 		// spotifyApi?.getMe().then(res => {
 		// 	console.log(res)

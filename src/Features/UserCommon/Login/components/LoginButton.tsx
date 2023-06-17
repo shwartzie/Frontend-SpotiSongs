@@ -14,6 +14,9 @@ export const LoginButton = ({ handleLogin }: LoginButtonProps) => {
 				<Link to={`${AuthUrl}`} onClick={() => handleLogin()}>
 					<button className="spotify-login__button">Login with Spotify</button>
 				</Link>
+				{/* <div onClick={() => handleLogin()}>
+					<button className="spotify-login__button">Login with Spotify</button>
+				</div> */}
 			</div>
 		</div>
 	);
